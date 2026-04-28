@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Persuasion &amp; Sales Psychology — Bahasakuinggris</title>
+<style>
+    :root { --bg:#fff; --text:#1f2937; --heading:#1a365d; --accent:#d69e2e; --danger:#e53e3e; --line:#e5e7eb; --muted:#64748b; --soft:#f8fafc; --bridge:#f0f4f8; --lesson:#fffbeb; --whatif:#f5f0ff; }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:"Segoe UI", system-ui, -apple-system, sans-serif; line-height:1.65; }
+    h1,h2,h3,h4,h5 { font-family:Georgia, "Times New Roman", serif; color:var(--heading); line-height:1.3; scroll-margin-top:80px; }
+    .cover { min-height:100vh; display:grid; place-items:center; text-align:center; padding:2rem; border-bottom:1px solid var(--line); }
+    .cover h1 { font-size:clamp(2rem,4vw,3.3rem); margin:.25rem 0; }
+    .cover .subtitle { color:var(--heading); font-size:1.1rem; } .cover .meta { color:var(--muted); margin-top:1rem; }
+    .layout { display:flex; }
+    .sidebar-toggle { display:none; position:fixed; top:12px; left:12px; z-index:1200; border:1px solid var(--line); background:white; border-radius:8px; padding:.45rem .65rem; }
+    aside { position:sticky; top:0; align-self:flex-start; width:310px; max-height:100vh; overflow:auto; border-right:1px solid var(--line); background:#fff; padding:1rem; }
+    .toc-list,.toc-list ul { list-style:none; margin:0; padding-left:.8rem; } .toc-list>li { margin:.24rem 0; }
+    .toc-list a { text-decoration:none; color:#334155; font-size:.92rem; display:block; padding:.16rem .4rem; border-left:2px solid transparent; border-radius:4px; }
+    .toc-list a.active { color:var(--heading); border-left-color:var(--accent); background:#f8fafc; font-weight:600; }
+    main { flex:1; padding:1.2rem clamp(1rem,3vw,2.5rem) 3rem; } .ebook-content { max-width:980px; margin:auto; }
+    .major-section { padding:1rem 0; border-bottom:1px solid var(--line); } .section-alt { background:var(--soft); padding:1.1rem; border-radius:10px; border:1px solid #edf2f7; }
+    .table-scroll { overflow-x:auto; margin:1rem 0; } table { width:100%; border-collapse:collapse; min-width:640px; background:#fff; }
+    th,td { border:1px solid #dbe1e8; padding:.58rem .6rem; vertical-align:top; } th { background:#f8fafc; font-weight:700; }
+    .scorecard-table th::after { content:" ⇅"; color:#94a3b8; font-size:.78em; } .scorecard-table tbody tr:nth-child(even) { background:#fcfdff; }
+    .status-green { background:#e6ffed; } .status-yellow { background:#fffbea; } .status-red { background:#ffe8e8; } .status-gray { background:#f3f4f6; }
+    .warning-marker { color:var(--danger); font-weight:700; font-size:1.12em; } .controversial-heading { border-left:4px solid var(--danger); padding-left:.55rem; }
+    blockquote { margin:1rem 0; border-left:4px solid #cbd5e1; padding:.6rem .85rem; background:#f8fafc; }
+    .archetype-box { display:flex; flex-wrap:wrap; align-items:center; gap:.45rem; margin:.8rem 0 1rem; } .archetype-label { font-weight:700; color:#475569; }
+    .archetype-pill { background:#ebf4ff; border:1px solid #bfdbfe; color:#1e40af; padding:.22rem .55rem; border-radius:999px; font-size:.86rem; }
+    .lesson-box { background:var(--lesson); border-left:4px solid var(--accent); padding:.7rem .8rem; margin:.9rem 0 1.1rem; font-size:.95rem; } .lesson-title { margin:.2rem 0 .45rem; font-weight:700; }
+    .narrative-bridge { background:var(--bridge); border:1px solid #d7e0ea; border-radius:10px; padding:.75rem .9rem; margin:1rem 0; } .narrative-bridge p { font-style:italic; color:#334155; }
+    .timeline-scroll { overflow-x:auto; padding-bottom:.5rem; margin:.9rem 0 1.2rem; } .timeline-track { display:grid; grid-auto-flow:column; grid-auto-columns:minmax(180px,1fr); gap:.65rem; min-width:max-content; }
+    .timeline-col { border:1px solid #dbe4ee; border-radius:10px; background:#fff; padding:.55rem; } .timeline-year { font-weight:700; color:var(--heading); border-bottom:1px solid #e2e8f0; padding-bottom:.35rem; margin-bottom:.45rem; }
+    .timeline-event { font-size:.9rem; padding:.42rem .5rem; border-radius:7px; margin:.36rem 0; border:1px solid transparent; } .timeline-event.positive { background:#ecfdf3; border-color:#b7efcc; } .timeline-event.negative { background:#fff1f1; border-color:#f6c2c2; }
+    .pattern-chain { display:flex; flex-direction:column; gap:.4rem; margin:1rem 0 1.2rem; } .chain-card { border:1px solid #dbe4ee; border-radius:9px; background:#fff; padding:.6rem .7rem; } .chain-arrow { text-align:center; color:#64748b; font-size:1.2rem; }
+    .juxtaposition-wrap { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; margin:.75rem 0 1rem; } .juxta-card { border-radius:10px; border:1px solid #e2e8f0; padding:.65rem .75rem; }
+    .juxta-card.positive { background:#f0fff4; border-color:#bbf7d0; } .juxta-card.positive h5 { color:#166534; } .juxta-card.negative { background:#fff1f2; border-color:#fecdd3; } .juxta-card.negative h5 { color:#991b1b; }
+    .whatif-card { background:var(--whatif); border-left:4px solid #7c3aed; padding:.65rem .8rem; border-radius:8px; margin:.6rem 0; }
+    .checklist-table tbody tr td:first-child { font-weight:700; text-align:center; width:48px; } .fake-checkbox { display:inline-block; border:1px solid #cbd5e1; border-radius:6px; padding:.14rem .38rem; background:#fff; font-family:ui-monospace,monospace; }
+    .retro-score-table td:nth-child(2) { font-weight:700; text-align:center; } .score-safe { background:#ecfdf3; color:#166534; } .score-low { background:#fffbea; color:#92400e; } .score-mid { background:#fff7ed; color:#9a3412; } .score-high { background:#fee2e2; color:#991b1b; }
+    .back-to-top { position:fixed; right:16px; bottom:18px; border:none; background:var(--heading); color:#fff; width:42px; height:42px; border-radius:999px; cursor:pointer; opacity:0; transform:translateY(8px); transition:.2s; } .back-to-top.show { opacity:1; transform:translateY(0); }
+    /* --- Overlay backdrop --- */
+    .sidebar-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:1050; opacity:0; transition:opacity .24s; }
+    .sidebar-overlay.show { display:block; opacity:1; }
+
+    /* --- Reading progress bar --- */
+    .reading-progress { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--accent),#f59e0b); z-index:1300; width:0; transition:width .12s linear; }
+
+    /* --- Accordion for mobile profiles --- */
+    .profile-collapse-btn { display:none; }
+
+    /* ===== TABLET: ≤1024px ===== */
+    @media (max-width:1024px) {
+      .sidebar-toggle { display:block; }
+      aside { position:fixed; top:0; left:0; transform:translateX(-105%); transition:.24s; z-index:1100; width:min(82vw,320px); box-shadow:0 10px 30px rgba(2,6,23,.18); }
+      aside.open { transform:translateX(0); }
+      main { padding-top:3.8rem; }
+      .juxtaposition-wrap { grid-template-columns:1fr; }
+      .toc-list a { padding:.4rem .5rem; min-height:36px; display:flex; align-items:center; }
+    }
+
+    /* ===== MOBILE: ≤768px ===== */
+    @media (max-width:768px) {
+      body { font-size:15px; line-height:1.7; -webkit-text-size-adjust:100%; }
+      h1 { font-size:1.6rem; } h2 { font-size:1.35rem; scroll-margin-top:56px; } h3 { font-size:1.15rem; scroll-margin-top:56px; } h4 { font-size:1.05rem; }
+      main { padding:3.2rem .75rem 4rem; }
+      .cover { min-height:80vh; padding:1.5rem 1rem; }
+      .cover h1 { font-size:1.6rem; }
+      .cover .subtitle { font-size:.95rem; }
+
+      /* Tables: scroll hint + shadow */
+      .table-scroll { position:relative; }
+      .table-scroll::after { content:"← geser →"; display:block; text-align:center; font-size:.78rem; color:var(--muted); padding:.3rem 0; }
+      table { min-width:520px; font-size:.85rem; }
+      th,td { padding:.4rem .45rem; }
+
+      /* TOC touch targets */
+      .toc-list a { padding:.5rem .55rem; min-height:44px; font-size:.95rem; border-radius:6px; }
+      .toc-list>li { margin:.12rem 0; }
+
+      /* Sidebar wider on mobile */
+      aside { width:min(88vw,340px); padding:.8rem .6rem; }
+
+      /* Lesson box, bridge, whatif — full width */
+      .lesson-box, .narrative-bridge, .whatif-card { padding:.6rem .65rem; font-size:.9rem; }
+      blockquote { padding:.5rem .65rem; font-size:.93rem; }
+
+      /* Timeline: smaller columns */
+      .timeline-track { grid-auto-columns:minmax(150px,1fr); }
+      .timeline-event { font-size:.82rem; padding:.35rem .4rem; }
+
+      /* Pattern chain */
+      .chain-card { padding:.5rem .55rem; font-size:.9rem; }
+
+      /* Archetype pills */
+      .archetype-pill { font-size:.8rem; padding:.18rem .45rem; }
+
+      /* Back to top: larger touch target */
+      .back-to-top { width:48px; height:48px; font-size:1.2rem; right:12px; bottom:14px; }
+
+      /* Hamburger: larger */
+      .sidebar-toggle { padding:.55rem .75rem; font-size:1.15rem; top:8px; left:8px; }
+
+      /* Profile accordion */
+      .profile-collapse-btn { display:inline-block; background:none; border:1px solid var(--line); border-radius:6px; padding:.3rem .6rem; font-size:.82rem; color:var(--muted); cursor:pointer; margin-left:.5rem; vertical-align:middle; }
+      .profile-body.collapsed { display:none; }
+
+      /* Juxtaposition cards stacked */
+      .juxta-card { padding:.55rem .6rem; font-size:.9rem; }
+
+      /* Checklist table */
+      .checklist-table { min-width:400px; }
+
+      /* Scorecard table */
+      .scorecard-table { min-width:700px; font-size:.8rem; }
+    }
+
+    /* ===== SMALL PHONE: ≤480px ===== */
+    @media (max-width:480px) {
+      body { font-size:14px; }
+      h1 { font-size:1.4rem; } h2 { font-size:1.2rem; } h3 { font-size:1.08rem; }
+      main { padding:3rem .5rem 4rem; }
+      .cover { min-height:70vh; padding:1.2rem .8rem; }
+      .cover h1 { font-size:1.35rem; }
+      .cover .subtitle { font-size:.88rem; }
+      .section-alt { padding:.7rem; border-radius:8px; }
+      .lesson-box, .narrative-bridge, .whatif-card { margin:.6rem -.15rem; border-radius:6px; }
+      table { min-width:440px; font-size:.78rem; }
+      th,td { padding:.32rem .35rem; }
+      .timeline-track { grid-auto-columns:minmax(130px,1fr); gap:.45rem; }
+      .archetype-box { gap:.3rem; }
+      .archetype-pill { font-size:.75rem; }
+      aside { width:min(92vw,300px); }
+      .toc-list a { font-size:.9rem; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print { @page { margin:2cm; } .sidebar-toggle,aside,.back-to-top,.reading-progress,.sidebar-overlay,.profile-collapse-btn { display:none !important; } main { padding:0; } .major-section,.section-alt { break-inside:avoid; page-break-inside:avoid; border:none; background:#fff; } h2 { break-before:page; page-break-before:always; } a { color:#000; text-decoration:none; } .profile-body.collapsed { display:block !important; } }
+  
+.back-home { padding:.8rem 1.5rem .2rem; }
+.back-home a { display:inline-flex; align-items:center; gap:.4rem; color:#4a5568; text-decoration:none; font-size:.9rem; font-weight:500; padding:.4rem .8rem; border-radius:6px; border:1px solid #e2e8f0; background:#fff; transition:all .15s; }
+.back-home a:hover { color:#1a365d; border-color:#1a365d; background:#f7fafc; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+@media(max-width:600px) { .back-home { padding:.6rem 1rem .2rem; } .back-home a { font-size:.82rem; } }
+</style>
+</head>
+<body>
+<header class="cover">
+<div>
+<h1>Persuasion &amp; Sales Psychology — Bahasakuinggris</h1>
+<p class="subtitle">Dokumen Blueprint</p>
+<p class="meta">Regenerasi HTML &#8226; 28 April 2026</p>
+</div>
+</header>
+<div class="reading-progress" id="readingProgress"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<button aria-label="Buka/Tutup Daftar Isi" class="sidebar-toggle" id="sidebarToggle" type="button">&#9776;</button>
+<div class="layout">
+<aside id="sidebar"><h2>Daftar Isi</h2><ul class="toc-list">
+<li><a data-target="tujuan-blueprint-closing" href="#tujuan-blueprint-closing">Tujuan Blueprint Closing</a></li>
+<li><a data-target="prinsip-dasar-psikologi-penjualan" href="#prinsip-dasar-psikologi-penjualan">Prinsip Dasar Psikologi Penjualan</a></li>
+<li><a data-target="funnel-wa-dari-klik-sampai-transfer" href="#funnel-wa-dari-klik-sampai-transfer">Funnel WA dari Klik sampai Transfer</a></li>
+<li><a data-target="target-kpi-wa-closing" href="#target-kpi-wa-closing">Target KPI WA Closing</a></li>
+<li><a data-target="struktur-tim-dan-peran-chat" href="#struktur-tim-dan-peran-chat">Struktur Tim dan Peran Chat</a></li>
+<li><a data-target="tahapan-skrip-wa-inti" href="#tahapan-skrip-wa-inti">Tahapan Skrip WA Inti</a></li>
+<li><a data-target="whatsapp-script-persona-pelajarmahasiswa-1525" href="#whatsapp-script-persona-pelajarmahasiswa-1525">WhatsApp Script Persona: Pelajar/Mahasiswa 15–25</a></li>
+<li><a data-target="whatsapp-script-persona-pekerja-2340" href="#whatsapp-script-persona-pekerja-2340">WhatsApp Script Persona: Pekerja 23–40</a></li>
+<li><a data-target="whatsapp-script-persona-orang-tua-3050" href="#whatsapp-script-persona-orang-tua-3050">WhatsApp Script Persona: Orang Tua 30–50</a></li>
+<li><a data-target="framework-menangani-keberatan" href="#framework-menangani-keberatan">Framework Menangani Keberatan</a></li>
+<li><a data-target="objection-handling-murah-jelek" href="#objection-handling-murah-jelek">Objection Handling: &quot;Murah = Jelek?&quot;</a></li>
+<li><a data-target="objection-handling-online-efektif" href="#objection-handling-online-efektif">Objection Handling: &quot;Online Efektif?&quot;</a></li>
+<li><a data-target="objection-handling-takut-tipu" href="#objection-handling-takut-tipu">Objection Handling: &quot;Takut Tipu&quot;</a></li>
+<li><a data-target="objection-handling-jadwal-bentrok" href="#objection-handling-jadwal-bentrok">Objection Handling: &quot;Jadwal Bentrok&quot;</a></li>
+<li><a data-target="urgency-scarcity-tactics-yang-etis" href="#urgency-scarcity-tactics-yang-etis">Urgency &amp; Scarcity Tactics yang Etis</a></li>
+<li><a data-target="template-urgency-message" href="#template-urgency-message">Template Urgency Message</a></li>
+<li><a data-target="deployment-social-proof" href="#deployment-social-proof">Deployment Social Proof</a></li>
+<li><a data-target="trust-building-sequence" href="#trust-building-sequence">Trust-Building Sequence</a></li>
+<li><a data-target="pricing-psychology-anchor-effect" href="#pricing-psychology-anchor-effect">Pricing Psychology: Anchor Effect</a></li>
+<li><a data-target="script-anchor-pricing" href="#script-anchor-pricing">Script Anchor Pricing</a></li>
+<li><a data-target="follow-up-cadence-7-hari" href="#follow-up-cadence-7-hari">Follow-Up Cadence 7 Hari</a></li>
+<li><a data-target="conversion-optimization-untuk-wa-sales" href="#conversion-optimization-untuk-wa-sales">Conversion Optimization untuk WA Sales</a></li>
+<li><a data-target="sop-respons-admin" href="#sop-respons-admin">SOP Respons Admin</a></li>
+<li><a data-target="trigger-questions-untuk-meningkatkan-closing" href="#trigger-questions-untuk-meningkatkan-closing">Trigger Questions untuk Meningkatkan Closing</a></li>
+<li><a data-target="struktur-label-crm-wa" href="#struktur-label-crm-wa">Struktur Label CRM WA</a></li>
+<li><a data-target="playbook-respon-komentar-publik-dari-iklan" href="#playbook-respon-komentar-publik-dari-iklan">Playbook Respon Komentar Publik dari Iklan</a></li>
+<li><a data-target="momen-tepat-upsell-dan-cross-sell" href="#momen-tepat-upsell-dan-cross-sell">Momen Tepat Upsell dan Cross-sell</a></li>
+<li><a data-target="checklist-kualitas-chat-harian-maksimal-15-item" href="#checklist-kualitas-chat-harian-maksimal-15-item">Checklist Kualitas Chat Harian (maksimal 15 item)</a></li>
+<li><a data-target="checklist-audit-mingguan-maksimal-15-item" href="#checklist-audit-mingguan-maksimal-15-item">Checklist Audit Mingguan (maksimal 15 item)</a></li>
+<li><a data-target="faq-untuk-admin-maksimal-10" href="#faq-untuk-admin-maksimal-10">FAQ untuk Admin (maksimal 10)</a></li>
+<li><a data-target="matrix-eksperimen-closing-8-minggu" href="#matrix-eksperimen-closing-8-minggu">Matrix Eksperimen Closing 8 Minggu</a></li>
+<li><a data-target="roadmap-8-minggu-faseminggu" href="#roadmap-8-minggu-faseminggu">Roadmap 8 Minggu (FASE/MINGGU)</a></li>
+<li><a data-target="cta-bank-untuk-admin-maksimal-15" href="#cta-bank-untuk-admin-maksimal-15">CTA Bank untuk Admin (maksimal 15)</a></li>
+<li><a data-target="naskah-penutup-setelah-transfer" href="#naskah-penutup-setelah-transfer">Naskah Penutup Setelah Transfer</a></li>
+<li><a data-target="retensi-awal-agar-refund-risk-turun" href="#retensi-awal-agar-refund-risk-turun">Retensi Awal agar Refund Risk Turun</a></li>
+<li><a data-target="penutup-eksekusi" href="#penutup-eksekusi">Penutup Eksekusi</a></li>
+</ul></aside>
+<main><nav class="back-home"><a href="../index.html">&larr; Back to Home Page</a></nav><article class="ebook-content"><section class="major-section"><h1>Persuasion &amp; Sales Psychology — Bahasakuinggris</h1>
+<h2 id="tujuan-blueprint-closing">Tujuan Blueprint Closing</h2>
+<ul>
+<li>Dokumen ini jadi pedoman closing berbasis WhatsApp.</li>
+<li>Fokusnya mengubah chat jadi pendaftar berbayar.</li>
+<li>Semua skrip tetap ramah, suportif, dan energik.</li>
+<li>Gaya komunikasi semi-kasual, jelas, dan singkat.</li>
+<li>CTA utama: WhatsApp 0812-1633-0704.</li>
+</ul>
+<h2 id="prinsip-dasar-psikologi-penjualan">Prinsip Dasar Psikologi Penjualan</h2>
+<ul>
+<li>Orang beli karena percaya, bukan karena ditekan.</li>
+<li>Calon siswa butuh jelas manfaat, proses, dan risiko.</li>
+<li>Harga diproses relatif, bukan absolut.</li>
+<li>Keputusan cepat muncul saat langkah berikutnya jelas.</li>
+<li>Konsistensi follow-up menutup celah lupa.</li>
+</ul>
+<h2 id="funnel-wa-dari-klik-sampai-transfer">Funnel WA dari Klik sampai Transfer</h2>
+<ul>
+<li>Tahap 1: Masuk chat dari iklan.</li>
+<li>Tahap 2: Sapaan cepat dan mapping kebutuhan.</li>
+<li>Tahap 3: Rekomendasi kelas paling relevan.</li>
+<li>Tahap 4: Tangani keberatan utama.</li>
+<li>Tahap 5: Beri opsi batch dan jadwal.</li>
+<li>Tahap 6: Minta komitmen aksi sederhana.</li>
+<li>Tahap 7: Follow-up sampai keputusan.</li>
+</ul>
+<h2 id="target-kpi-wa-closing">Target KPI WA Closing</h2>
+<ul>
+<li>First response time di bawah 5 menit.</li>
+<li>Rasio chat ke qualified minimal 45%.</li>
+<li>Rasio qualified ke transfer minimal 28%.</li>
+<li>Rasio transfer ke hadir kelas pertama minimal 85%.</li>
+<li>Waktu rata-rata closing maksimal 72 jam.</li>
+</ul>
+<h2 id="struktur-tim-dan-peran-chat">Struktur Tim dan Peran Chat</h2>
+<ul>
+<li>Admin 1: respons awal dan kualifikasi.</li>
+<li>Admin 2: konsultasi akademik ringan.</li>
+<li>Admin 3: follow-up dan reminder pembayaran.</li>
+<li>Supervisor: audit percakapan harian.</li>
+<li>Setiap admin wajib pakai template inti sama.</li>
+</ul>
+<h2 id="tahapan-skrip-wa-inti">Tahapan Skrip WA Inti</h2>
+<h3 id="tahap-a-sambut-dan-bangun-nyaman">Tahap A — Sambut dan Bangun Nyaman</h3>
+<ul>
+<li>Ucapkan salam personal pakai nama.</li>
+<li>Ucapkan terima kasih karena sudah chat.</li>
+<li>Tegaskan tim siap bantu pilih kelas.</li>
+<li>Tanyakan tujuan utama belajar.</li>
+</ul>
+<h3 id="tahap-b-kualifikasi-kebutuhan">Tahap B — Kualifikasi Kebutuhan</h3>
+<ul>
+<li>Tanyakan status: pelajar, pekerja, atau orang tua.</li>
+<li>Tanyakan target: speaking, TOEFL, atau IELTS.</li>
+<li>Tanyakan batas waktu target.</li>
+<li>Tanyakan jadwal yang memungkinkan.</li>
+</ul>
+<h3 id="tahap-c-rekomendasi-terarah">Tahap C — Rekomendasi Terarah</h3>
+<ul>
+<li>Cocokkan kebutuhan dengan produk.</li>
+<li>Jelaskan output realistis dalam bahasa sederhana.</li>
+<li>Jelaskan jumlah meeting dan ritme belajar.</li>
+<li>Tutup dengan pertanyaan konfirmasi minat.</li>
+</ul>
+<h3 id="tahap-d-closing-dan-komitmen">Tahap D — Closing dan Komitmen</h3>
+<ul>
+<li>Beri dua opsi batch terdekat.</li>
+<li>Tekankan kelas kecil dan slot terbatas.</li>
+<li>Minta pilihan batch secara spesifik.</li>
+<li>Lanjutkan ke instruksi pendaftaran.</li>
+</ul>
+<h2 id="whatsapp-script-persona-pelajarmahasiswa-1525">WhatsApp Script Persona: Pelajar/Mahasiswa 15–25</h2>
+<h3 id="opening-script">Opening Script</h3>
+<ul>
+<li>&quot;Halo, Kak [Nama]. Makasih sudah chat Bahasakuinggris 😊&quot;</li>
+<li>&quot;Kakak lagi fokus speaking, TOEFL, atau IELTS?&quot;</li>
+<li>&quot;Biar aku bantu pilih kelas yang paling pas.&quot;</li>
+</ul>
+<h3 id="discovery-script">Discovery Script</h3>
+<ul>
+<li>&quot;Sekarang statusnya sekolah atau kuliah, Kak?&quot;</li>
+<li>&quot;Targetnya mau dipakai buat apa dulu?&quot;</li>
+<li>&quot;Kakak enaknya belajar jam berapa biasanya?&quot;</li>
+</ul>
+<h3 id="recommendation-script">Recommendation Script</h3>
+<ul>
+<li>&quot;Kalau mau mulai cepat, kelas Speaking/Grammar Rp79K cocok banget.&quot;</li>
+<li>&quot;Ada 10x meeting, kelas kecil, jadi lebih banyak praktik.&quot;</li>
+<li>&quot;Kalau target skor, kita arahkan ke TOEFL/IELTS prep.&quot;</li>
+</ul>
+<h3 id="closing-script">Closing Script</h3>
+<ul>
+<li>&quot;Batch terdekat buka [hari]. Kursinya terbatas per kelas.&quot;</li>
+<li>&quot;Kakak mau aku amankan slot batch [A] atau [B]?&quot;</li>
+<li>&quot;Kalau sudah oke, aku kirim langkah daftar sekarang ya.&quot;</li>
+</ul>
+<h2 id="whatsapp-script-persona-pekerja-2340">WhatsApp Script Persona: Pekerja 23–40</h2>
+<h3 id="opening-script-2">Opening Script</h3>
+<ul>
+<li>&quot;Halo, Kak [Nama]. Senang bisa bantu target English kerjanya.&quot;</li>
+<li>&quot;Kakak lagi cari kelas buat speaking kerja atau tes skor?&quot;</li>
+<li>&quot;Aku bantu pilih yang paling efisien buat jadwal Kakak.&quot;</li>
+</ul>
+<h3 id="discovery-script-2">Discovery Script</h3>
+<ul>
+<li>&quot;Biasanya jam kosong setelah kerja kapan, Kak?&quot;</li>
+<li>&quot;Target terdekatnya interview, promosi, atau sertifikasi?&quot;</li>
+<li>&quot;Deadline targetnya sekitar bulan apa?&quot;</li>
+</ul>
+<h3 id="recommendation-script-2">Recommendation Script</h3>
+<ul>
+<li>&quot;Untuk ritme kerja, kita pilih jadwal yang realistis dulu.&quot;</li>
+<li>&quot;TOEFL Prep Rp299K/20x meeting cocok untuk target skor terarah.&quot;</li>
+<li>&quot;IELTS Prep Rp359K/20x meeting cocok untuk kebutuhan internasional.&quot;</li>
+</ul>
+<h3 id="closing-script-2">Closing Script</h3>
+<ul>
+<li>&quot;Kita ada batch yang mulai pekan ini dan pekan depan.&quot;</li>
+<li>&quot;Kalau Kakak pilih hari ini, aku bantu lock kursi dulu.&quot;</li>
+<li>&quot;Mau aku kirim format pendaftaran sekarang?&quot;</li>
+</ul>
+<h2 id="whatsapp-script-persona-orang-tua-3050">WhatsApp Script Persona: Orang Tua 30–50</h2>
+<h3 id="opening-script-3">Opening Script</h3>
+<ul>
+<li>&quot;Halo Bapak/Ibu [Nama], terima kasih sudah menghubungi kami.&quot;</li>
+<li>&quot;Kami siap bantu pilih kelas sesuai kebutuhan putra/putri.&quot;</li>
+<li>&quot;Boleh saya tanya target utamanya dulu?&quot;</li>
+</ul>
+<h3 id="discovery-script-3">Discovery Script</h3>
+<ul>
+<li>&quot;Ananda saat ini kelas berapa, Pak/Bu?&quot;</li>
+<li>&quot;Fokusnya speaking harian atau persiapan skor tes?&quot;</li>
+<li>&quot;Jam belajar yang paling aman biasanya kapan?&quot;</li>
+</ul>
+<h3 id="recommendation-script-3">Recommendation Script</h3>
+<ul>
+<li>&quot;Untuk dasar speaking, kelas Rp79K cocok jadi langkah awal.&quot;</li>
+<li>&quot;Jika target skor, kami arahkan ke program TOEFL/IELTS terstruktur.&quot;</li>
+<li>&quot;Pengajar kami teruji dari Kampung Inggris Pare Kediri.&quot;</li>
+</ul>
+<h3 id="closing-script-3">Closing Script</h3>
+<ul>
+<li>&quot;Kelas dibuat kecil agar pendampingan lebih terjaga.&quot;</li>
+<li>&quot;Batch terdekat punya kuota terbatas per kelas.&quot;</li>
+<li>&quot;Jika berkenan, saya kirim alur daftar hari ini, Pak/Bu.&quot;</li>
+</ul>
+<h2 id="framework-menangani-keberatan">Framework Menangani Keberatan</h2>
+<ul>
+<li>Langkah 1: Dengarkan penuh tanpa memotong.</li>
+<li>Langkah 2: Validasi emosi calon siswa.</li>
+<li>Langkah 3: Klarifikasi akar keberatan.</li>
+<li>Langkah 4: Jawab dengan bukti relevan.</li>
+<li>Langkah 5: Konfirmasi ulang pemahaman.</li>
+<li>Langkah 6: Arahkan ke aksi kecil.</li>
+</ul>
+<h2 id="objection-handling-murah-jelek">Objection Handling: &quot;Murah = Jelek?&quot;</h2>
+<ul>
+<li>Validasi: &quot;Wajar banget kalau Kakak mikir begitu.&quot;</li>
+<li>Reframe: &quot;Harga terjangkau karena skema kelas online efisien.&quot;</li>
+<li>Bukti: &quot;Pengajar teruji, 100K+ alumni, dan izin Diknas.&quot;</li>
+<li>Penutup: &quot;Mau aku jelaskan alur belajar per pertemuan?&quot;</li>
+</ul>
+<h2 id="objection-handling-online-efektif">Objection Handling: &quot;Online Efektif?&quot;</h2>
+<ul>
+<li>Validasi: &quot;Banyak yang awalnya ragu juga.&quot;</li>
+<li>Reframe: &quot;Efektif kalau ritme dan praktiknya konsisten.&quot;</li>
+<li>Bukti: &quot;Kelas kecil, sesi praktik, dan pendampingan aktif.&quot;</li>
+<li>Penutup: &quot;Aku kirim contoh pola belajarnya, ya?&quot;</li>
+</ul>
+<h2 id="objection-handling-takut-tipu">Objection Handling: &quot;Takut Tipu&quot;</h2>
+<ul>
+<li>Validasi: &quot;Kehati-hatian itu bagus, Kak.&quot;</li>
+<li>Reframe: &quot;Kami justru terbuka soal legalitas dan profil lembaga.&quot;</li>
+<li>Bukti: &quot;Ada izin Diknas dan mitra institusi jelas.&quot;</li>
+<li>Penutup: &quot;Mau aku kirim detail identitas lembaganya sekarang?&quot;</li>
+</ul>
+<h2 id="objection-handling-jadwal-bentrok">Objection Handling: &quot;Jadwal Bentrok&quot;</h2>
+<ul>
+<li>Validasi: &quot;Sip, jadwal memang tantangan utama.&quot;</li>
+<li>Reframe: &quot;Kita pilih batch yang paling realistis dulu.&quot;</li>
+<li>Bukti: &quot;Tersedia opsi jam belajar berbeda tiap batch.&quot;</li>
+<li>Penutup: &quot;Kakak lebih cocok opsi malam atau akhir pekan?&quot;</li>
+</ul>
+<h2 id="urgency-scarcity-tactics-yang-etis">Urgency &amp; Scarcity Tactics yang Etis</h2>
+<ul>
+<li>Gunakan batas kuota kelas kecil, bukan tekanan palsu.</li>
+<li>Gunakan kalender batch dengan tanggal jelas.</li>
+<li>Gunakan countdown ringan menjelang penutupan batch.</li>
+<li>Gunakan waiting list saat slot penuh.</li>
+<li>Hindari kalimat mengancam atau memaksa.</li>
+</ul>
+<h2 id="template-urgency-message">Template Urgency Message</h2>
+<ul>
+<li>&quot;Batch [nama] tersisa [x] kursi per hari ini.&quot;</li>
+<li>&quot;Pendaftaran batch ini ditutup [tanggal, jam].&quot;</li>
+<li>&quot;Kalau slot penuh, kami masukkan ke waiting list berikutnya.&quot;</li>
+<li>&quot;Mau aku bantu amankan kursi sekarang?&quot;</li>
+</ul>
+<h2 id="deployment-social-proof">Deployment Social Proof</h2>
+<ul>
+<li>Proof 1: 100K+ alumni.</li>
+<li>Proof 2: Pengajar teruji Kampung Inggris Pare.</li>
+<li>Proof 3: Izin Diknas aktif.</li>
+<li>Proof 4: Mitra Grab Indonesia.</li>
+<li>Proof 5: Mitra STIE Semarang.</li>
+<li>Proof 6: Mitra My Idea School Jakarta.</li>
+<li>Proof ditampilkan bertahap sesuai tahap chat.</li>
+</ul>
+<h2 id="trust-building-sequence">Trust-Building Sequence</h2>
+<ul>
+<li>Kontak awal: tone hangat dan responsif.</li>
+<li>Setelah discovery: tampilkan kejelasan proses belajar.</li>
+<li>Saat ada keraguan: tampilkan legalitas dan partner.</li>
+<li>Sebelum closing: tampilkan testimoni relevan persona.</li>
+<li>Setelah transfer: kirim kepastian onboarding.</li>
+</ul>
+<h2 id="pricing-psychology-anchor-effect">Pricing Psychology: Anchor Effect</h2>
+<ul>
+<li>Mulai dari value total 20x meeting berpengajar teruji.</li>
+<li>Bandingkan effort belajar mandiri yang sering tidak konsisten.</li>
+<li>Turunkan ke angka paket yang terasa masuk akal.</li>
+<li>Gunakan paket Rp79K sebagai low-risk entry.</li>
+<li>Arahkan upsell natural ke TOEFL/IELTS saat target jelas.</li>
+</ul>
+<h2 id="script-anchor-pricing">Script Anchor Pricing</h2>
+<ul>
+<li>&quot;Kalau dihitung per pertemuan, biayanya jadi ringan.&quot;</li>
+<li>&quot;Mulai dari Rp79K dulu untuk bangun ritme belajar.&quot;</li>
+<li>&quot;Kalau target skor, paket 20x meeting lebih terarah.&quot;</li>
+<li>&quot;Kakak mau start dari entry dulu atau langsung target skor?&quot;</li>
+</ul>
+<h2 id="follow-up-cadence-7-hari">Follow-Up Cadence 7 Hari</h2>
+<h3 id="hari-0">Hari 0</h3>
+<ul>
+<li>Respon awal kurang dari 5 menit.</li>
+<li>Kirim rekomendasi kelas personal.</li>
+<li>Tawarkan opsi batch A/B.</li>
+</ul>
+<h3 id="hari-1">Hari 1</h3>
+<ul>
+<li>Follow-up ringan: cek kebutuhan belum terjawab.</li>
+<li>Kirim testimoni relevan persona.</li>
+</ul>
+<h3 id="hari-2">Hari 2</h3>
+<ul>
+<li>Follow-up edukatif: jelaskan metode kelas kecil.</li>
+<li>Tanyakan hambatan utama keputusan.</li>
+</ul>
+<h3 id="hari-3">Hari 3</h3>
+<ul>
+<li>Follow-up urgency: update sisa kursi batch.</li>
+<li>Tawarkan bantuan pendaftaran cepat.</li>
+</ul>
+<h3 id="hari-4">Hari 4</h3>
+<ul>
+<li>Follow-up trust: kirim bukti legalitas dan mitra.</li>
+<li>Ajak diskusi singkat 5 menit via chat.</li>
+</ul>
+<h3 id="hari-5">Hari 5</h3>
+<ul>
+<li>Follow-up value: ringkas manfaat sesuai target calon.</li>
+<li>Beri pilihan jelas: lanjut batch ini atau berikutnya.</li>
+</ul>
+<h3 id="hari-6">Hari 6</h3>
+<ul>
+<li>Follow-up final untuk batch berjalan.</li>
+<li>Jika belum siap, pindah ke nurture list.</li>
+</ul>
+<h3 id="hari-7">Hari 7</h3>
+<ul>
+<li>Nurture message dengan konten mini belajar.</li>
+<li>Jaga relasi tanpa pressure.</li>
+</ul>
+<h2 id="conversion-optimization-untuk-wa-sales">Conversion Optimization untuk WA Sales</h2>
+<ul>
+<li>Gunakan quick replies untuk pertanyaan berulang.</li>
+<li>Gunakan template sesuai persona.</li>
+<li>Gunakan form mini di chat untuk kualifikasi cepat.</li>
+<li>Kirim voice note hanya saat perlu nuansa personal.</li>
+<li>Hindari paragraf panjang dan istilah teknis berat.</li>
+<li>Selalu akhiri chat dengan pertanyaan aksi.</li>
+</ul>
+<h2 id="sop-respons-admin">SOP Respons Admin</h2>
+<ul>
+<li>Maksimal 3 bubble per kiriman.</li>
+<li>Satu bubble maksimal 22 kata.</li>
+<li>Satu sesi chat maksimal satu CTA utama.</li>
+<li>Jangan kirim brosur panjang di awal.</li>
+<li>Hindari jawaban copy-paste kaku.</li>
+</ul>
+<h2 id="trigger-questions-untuk-meningkatkan-closing">Trigger Questions untuk Meningkatkan Closing</h2>
+<ul>
+<li>&quot;Kalau target ini tercapai, dampaknya apa buat Kakak?&quot;</li>
+<li>&quot;Hal utama yang bikin ragu sekarang apa?&quot;</li>
+<li>&quot;Dari dua opsi batch, mana yang paling realistis?&quot;</li>
+<li>&quot;Mau saya bantu lock slotnya sekarang?&quot;</li>
+</ul>
+<h2 id="struktur-label-crm-wa">Struktur Label CRM WA</h2>
+<ul>
+<li>Label Persona: Pelajar, Pekerja, Orang Tua.</li>
+<li>Label Intent: Speaking, TOEFL, IELTS.</li>
+<li>Label Stage: New, Qualified, Objection, Closing.</li>
+<li>Label Outcome: Won, Lost, Nurture.</li>
+<li>Label Reason Lost: Harga, Jadwal, Prioritas Lain.</li>
+</ul>
+<h2 id="playbook-respon-komentar-publik-dari-iklan">Playbook Respon Komentar Publik dari Iklan</h2>
+<ul>
+<li>Balas komentar netral dengan ajakan DM/WA.</li>
+<li>Balas komentar skeptis dengan data ringkas.</li>
+<li>Jangan debat panjang di kolom komentar.</li>
+<li>Pindahkan diskusi sensitif ke chat pribadi.</li>
+<li>Catat komentar yang sering muncul untuk update skrip.</li>
+</ul>
+<h2 id="momen-tepat-upsell-dan-cross-sell">Momen Tepat Upsell dan Cross-sell</h2>
+<ul>
+<li>Upsell saat calon sudah setuju belajar rutin.</li>
+<li>Cross-sell TOEFL Scoring saat menjelang target tes.</li>
+<li>Jangan upsell sebelum trust dasar terbentuk.</li>
+<li>Prioritaskan kecocokan target, bukan sekadar nominal.</li>
+</ul>
+<h2 id="checklist-kualitas-chat-harian-maksimal-15-item">Checklist Kualitas Chat Harian (maksimal 15 item)</h2>
+<ul>
+<li>Cek kecepatan respons tiap admin.</li>
+<li>Cek penggunaan nama calon siswa.</li>
+<li>Cek pertanyaan discovery sudah lengkap.</li>
+<li>Cek relevansi rekomendasi kelas.</li>
+<li>Cek kualitas handling keberatan.</li>
+<li>Cek penggunaan social proof tepat konteks.</li>
+<li>Cek kejelasan CTA tiap sesi.</li>
+<li>Cek follow-up berjalan sesuai jadwal.</li>
+<li>Cek tone tetap ramah dan suportif.</li>
+<li>Cek label CRM terisi benar.</li>
+</ul>
+<h2 id="checklist-audit-mingguan-maksimal-15-item">Checklist Audit Mingguan (maksimal 15 item)</h2>
+<ul>
+<li>Audit 30 chat menang dan 30 chat kalah.</li>
+<li>Petakan alasan gagal terbanyak.</li>
+<li>Perbarui template objection handling.</li>
+<li>Perbarui bank testimoni per persona.</li>
+<li>Sinkronkan skrip dengan insight iklan terbaru.</li>
+<li>Latih ulang admin berdasarkan gap audit.</li>
+<li>Tetapkan eksperimen skrip minggu berikutnya.</li>
+</ul>
+<h2 id="faq-untuk-admin-maksimal-10">FAQ untuk Admin (maksimal 10)</h2>
+<ul>
+<li>&quot;Apa bedanya Speaking/Grammar dan TOEFL Prep?&quot;</li>
+<li>&quot;Apakah bisa ikut kalau basic masih rendah?&quot;</li>
+<li>&quot;Bagaimana sistem kelas online berjalan?&quot;</li>
+<li>&quot;Jadwal kelasnya ada opsi apa saja?&quot;</li>
+<li>&quot;Bagaimana bukti legalitas lembaga?&quot;</li>
+<li>&quot;Apakah ada kelas kecil atau kelas besar?&quot;</li>
+<li>&quot;Bagaimana jika jadwal saya berubah?&quot;</li>
+<li>&quot;TOEFL Scoring dipakai untuk apa?&quot;</li>
+<li>&quot;Bagaimana alur pendaftaran dan pembayaran?&quot;</li>
+<li>&quot;Apakah orang tua bisa ikut memantau progress?&quot;</li>
+</ul>
+<h2 id="matrix-eksperimen-closing-8-minggu">Matrix Eksperimen Closing 8 Minggu</h2>
+<div class="table-scroll"><table>
+<thead><tr>
+<th>Minggu</th>
+<th>Fokus Eksperimen</th>
+<th>Variabel Uji</th>
+<th>Indikator Sukses</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Respons awal</td>
+<td>Sapaan formal vs semi-kasual</td>
+<td>Reply rate naik</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Discovery</td>
+<td>3 vs 5 pertanyaan awal</td>
+<td>Qualified rate naik</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Value pitch</td>
+<td>Bukti alumni vs bukti partner</td>
+<td>Trust signal naik</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Objection</td>
+<td>Format teks vs voice note</td>
+<td>Conversion objection naik</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Urgency</td>
+<td>Kuota only vs kuota+deadline</td>
+<td>Speed to decision naik</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Anchor harga</td>
+<td>Per meeting vs paket total</td>
+<td>CPA turun</td>
+</tr>
+<tr>
+<td>7</td>
+<td>CTA</td>
+<td>Satu opsi vs dua opsi batch</td>
+<td>Closing rate naik</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Follow-up</td>
+<td>5 hari vs 7 hari cadence</td>
+<td>Win-back naik</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="roadmap-8-minggu-faseminggu">Roadmap 8 Minggu (FASE/MINGGU)</h2>
+<h3 id="fase-1-fondasi-closing">FASE 1 — Fondasi Closing</h3>
+<h4 id="minggu-1">Minggu 1</h4>
+<ul>
+<li>Finalisasi template persona dan SOP chat.</li>
+<li>Latih admin dengan roleplay 3 skenario.</li>
+<li>Aktifkan label CRM standar.</li>
+</ul>
+<h4 id="minggu-2">Minggu 2</h4>
+<ul>
+<li>Jalankan audit harian response time.</li>
+<li>Perbaiki opening script berdasarkan data reply.</li>
+<li>Sinkronkan insight dari Meta Ads.</li>
+</ul>
+<h4 id="minggu-3">Minggu 3</h4>
+<ul>
+<li>Perkuat handling keberatan dominan.</li>
+<li>Uji dua format social proof.</li>
+<li>Kunci baseline conversion per admin.</li>
+</ul>
+<h4 id="minggu-4">Minggu 4</h4>
+<ul>
+<li>Standarisasi script pemenang.</li>
+<li>Rapikan flow follow-up 7 hari.</li>
+<li>Buat dashboard closing mingguan.</li>
+</ul>
+<h3 id="fase-2-scale-conversion">FASE 2 — Scale Conversion</h3>
+<h4 id="minggu-5">Minggu 5</h4>
+<ul>
+<li>Terapkan anchor pricing lebih konsisten.</li>
+<li>Percepat transisi dari chat ke daftar.</li>
+<li>Jalankan eksperimen CTA dua opsi.</li>
+</ul>
+<h4 id="minggu-6">Minggu 6</h4>
+<ul>
+<li>Tingkatkan personalisasi per persona.</li>
+<li>Aktifkan win-back calon pending.</li>
+<li>Perbarui bank jawaban FAQ.</li>
+</ul>
+<h4 id="minggu-7">Minggu 7</h4>
+<ul>
+<li>Scale jam respons terbaik admin.</li>
+<li>Kombinasikan urgency etis dan trust proof.</li>
+<li>Cek rasio qualified ke transfer harian.</li>
+</ul>
+<h4 id="minggu-8">Minggu 8</h4>
+<ul>
+<li>Dokumentasikan playbook final.</li>
+<li>Tetapkan ritme audit bulanan.</li>
+<li>Siapkan target conversion siklus berikutnya.</li>
+</ul>
+<h2 id="cta-bank-untuk-admin-maksimal-15">CTA Bank untuk Admin (maksimal 15)</h2>
+<ul>
+<li>Mau aku bantu pilih kelasnya?</li>
+<li>Mau aku kirim jadwal batch terdekat?</li>
+<li>Pilih batch A atau batch B?</li>
+<li>Aku bantu lock kursinya sekarang?</li>
+<li>Mau mulai dari paket Rp79K dulu?</li>
+<li>Mau langsung fokus TOEFL atau IELTS?</li>
+<li>Boleh aku kirim langkah daftar sekarang?</li>
+<li>Mau aku kirim format pendaftaran cepat?</li>
+<li>Kita lanjut proses daftar hari ini?</li>
+<li>Ada yang masih bikin ragu?</li>
+</ul>
+<h2 id="naskah-penutup-setelah-transfer">Naskah Penutup Setelah Transfer</h2>
+<ul>
+<li>&quot;Terima kasih, Kak [Nama], pendaftarannya sudah masuk.&quot;</li>
+<li>&quot;Kami kirim detail kelas dan grup dalam [waktu].&quot;</li>
+<li>&quot;Kalau ada pertanyaan, tim kami standby bantu.&quot;</li>
+<li>&quot;Senang bisa dampingi perjalanan English Kakak.&quot;</li>
+</ul>
+<h2 id="retensi-awal-agar-refund-risk-turun">Retensi Awal agar Refund Risk Turun</h2>
+<ul>
+<li>Kirim welcome message maksimal 10 menit setelah bayar.</li>
+<li>Kirim reminder H-1 sebelum sesi pertama.</li>
+<li>Kirim checklist persiapan belajar sederhana.</li>
+<li>Pastikan siswa tahu kontak admin pendamping.</li>
+<li>Follow-up setelah pertemuan pertama selesai.</li>
+</ul>
+<h2 id="penutup-eksekusi">Penutup Eksekusi</h2>
+<ul>
+<li>Closing WA yang kuat selalu dimulai dari empati.</li>
+<li>Data harian dipakai untuk perbaiki skrip cepat.</li>
+<li>Trust, clarity, dan follow-up konsisten jadi kunci.</li>
+<li>Jalankan playbook ini disiplin selama 8 minggu penuh.</li>
+</ul></section></article></main>
+</div>
+<button aria-label="Kembali ke atas" class="back-to-top" id="backToTop" type="button">&#8593;</button>
+<script>
+    (function () {
+      'use strict';
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      var toggle = document.getElementById('sidebarToggle');
+      var backBtn = document.getElementById('backToTop');
+      var progressBar = document.getElementById('readingProgress');
+      var tocLinks = Array.from(document.querySelectorAll('.toc-list a'));
+      var sections = tocLinks
+        .map(function (a) { return document.getElementById(a.dataset.target); })
+        .filter(Boolean);
+
+      /* --- Sidebar open/close with overlay --- */
+      function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          if (sidebar.classList.contains('open')) { closeSidebar(); }
+          else { openSidebar(); }
+        });
+      }
+      if (overlay) {
+        overlay.addEventListener('click', closeSidebar);
+      }
+
+      /* --- Swipe to close sidebar --- */
+      var touchStartX = 0;
+      var touchStartY = 0;
+      sidebar.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      sidebar.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        var dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+        if (dx < -60 && dy < 80) { closeSidebar(); }
+      }, { passive: true });
+
+      /* --- TOC link click closes sidebar on mobile --- */
+      tocLinks.forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (window.innerWidth <= 1024) { closeSidebar(); }
+        });
+      });
+
+      /* --- Scroll spy --- */
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var id = entry.target.id;
+            tocLinks.forEach(function (link) {
+              if (link.dataset.target === id) {
+                link.classList.add('active');
+                /* Auto-scroll TOC to active item on desktop */
+                if (window.innerWidth > 1024 && sidebar.scrollHeight > sidebar.clientHeight) {
+                  link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                }
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          });
+        },
+        { rootMargin: '-30% 0px -55% 0px', threshold: 0.1 }
+      );
+      sections.forEach(function (sec) { observer.observe(sec); });
+
+      /* --- Reading progress bar + back-to-top --- */
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            var scrollTop = window.scrollY || document.documentElement.scrollTop;
+            var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight > 0) {
+              progressBar.style.width = Math.min((scrollTop / docHeight) * 100, 100) + '%';
+            }
+            if (scrollTop > 400) { backBtn.classList.add('show'); }
+            else { backBtn.classList.remove('show'); }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      backBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      /* --- Profile accordion on mobile --- */
+      function initAccordion() {
+        var isMobile = window.innerWidth <= 768;
+        var profiles = document.querySelectorAll('h3[id]');
+        profiles.forEach(function (h3) {
+          /* Only profile headings (G0-x, numbered, S-x, T-x) */
+          var text = h3.textContent || '';
+          if (!/^(G0-|[0-9]+\.|S[0-9]|T-[0-9])/.test(text.trim())) return;
+
+          var existingBtn = h3.querySelector('.profile-collapse-btn');
+          if (!existingBtn) {
+            var btn = document.createElement('button');
+            btn.className = 'profile-collapse-btn';
+            btn.textContent = '▼';
+            btn.setAttribute('aria-label', 'Buka/tutup profil');
+            h3.appendChild(btn);
+          }
+
+          var btn = h3.querySelector('.profile-collapse-btn');
+          /* Collect siblings until next h3 or h2 */
+          var body = h3.nextElementSibling;
+          if (body && body.classList.contains('profile-body')) {
+            /* Already wrapped */
+            if (isMobile && !body.classList.contains('collapsed')) {
+              body.classList.add('collapsed');
+              btn.textContent = '▶';
+            } else if (!isMobile) {
+              body.classList.remove('collapsed');
+              btn.textContent = '▼';
+            }
+            return;
+          }
+
+          /* Wrap profile content in a div */
+          var wrapper = document.createElement('div');
+          wrapper.className = 'profile-body';
+          var sibling = h3.nextElementSibling;
+          while (sibling && sibling.tagName !== 'H3' && sibling.tagName !== 'H2') {
+            var next = sibling.nextElementSibling;
+            wrapper.appendChild(sibling);
+            sibling = next;
+          }
+          h3.parentNode.insertBefore(wrapper, sibling);
+
+          if (isMobile) {
+            wrapper.classList.add('collapsed');
+            btn.textContent = '▶';
+          }
+        });
+      }
+
+      /* Toggle accordion on click */
+      document.addEventListener('click', function (e) {
+        if (!e.target.classList.contains('profile-collapse-btn')) return;
+        var h3 = e.target.closest('h3');
+        if (!h3) return;
+        var body = h3.nextElementSibling;
+        if (body && body.classList.contains('profile-body')) {
+          body.classList.toggle('collapsed');
+          e.target.textContent = body.classList.contains('collapsed') ? '▶' : '▼';
+        }
+      });
+
+      /* Init accordion on load and resize */
+      initAccordion();
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(initAccordion, 250);
+      });
+
+      /* --- Keyboard: Escape closes sidebar --- */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+          closeSidebar();
+        }
+      });
+    })();
+    
+</script>
+</body>
+</html>

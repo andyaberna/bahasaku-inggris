@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Performance Mindset &amp; Execution — Bahasakuinggris</title>
+<style>
+    :root { --bg:#fff; --text:#1f2937; --heading:#1a365d; --accent:#d69e2e; --danger:#e53e3e; --line:#e5e7eb; --muted:#64748b; --soft:#f8fafc; --bridge:#f0f4f8; --lesson:#fffbeb; --whatif:#f5f0ff; }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:"Segoe UI", system-ui, -apple-system, sans-serif; line-height:1.65; }
+    h1,h2,h3,h4,h5 { font-family:Georgia, "Times New Roman", serif; color:var(--heading); line-height:1.3; scroll-margin-top:80px; }
+    .cover { min-height:100vh; display:grid; place-items:center; text-align:center; padding:2rem; border-bottom:1px solid var(--line); }
+    .cover h1 { font-size:clamp(2rem,4vw,3.3rem); margin:.25rem 0; }
+    .cover .subtitle { color:var(--heading); font-size:1.1rem; } .cover .meta { color:var(--muted); margin-top:1rem; }
+    .layout { display:flex; }
+    .sidebar-toggle { display:none; position:fixed; top:12px; left:12px; z-index:1200; border:1px solid var(--line); background:white; border-radius:8px; padding:.45rem .65rem; }
+    aside { position:sticky; top:0; align-self:flex-start; width:310px; max-height:100vh; overflow:auto; border-right:1px solid var(--line); background:#fff; padding:1rem; }
+    .toc-list,.toc-list ul { list-style:none; margin:0; padding-left:.8rem; } .toc-list>li { margin:.24rem 0; }
+    .toc-list a { text-decoration:none; color:#334155; font-size:.92rem; display:block; padding:.16rem .4rem; border-left:2px solid transparent; border-radius:4px; }
+    .toc-list a.active { color:var(--heading); border-left-color:var(--accent); background:#f8fafc; font-weight:600; }
+    main { flex:1; padding:1.2rem clamp(1rem,3vw,2.5rem) 3rem; } .ebook-content { max-width:980px; margin:auto; }
+    .major-section { padding:1rem 0; border-bottom:1px solid var(--line); } .section-alt { background:var(--soft); padding:1.1rem; border-radius:10px; border:1px solid #edf2f7; }
+    .table-scroll { overflow-x:auto; margin:1rem 0; } table { width:100%; border-collapse:collapse; min-width:640px; background:#fff; }
+    th,td { border:1px solid #dbe1e8; padding:.58rem .6rem; vertical-align:top; } th { background:#f8fafc; font-weight:700; }
+    .scorecard-table th::after { content:" ⇅"; color:#94a3b8; font-size:.78em; } .scorecard-table tbody tr:nth-child(even) { background:#fcfdff; }
+    .status-green { background:#e6ffed; } .status-yellow { background:#fffbea; } .status-red { background:#ffe8e8; } .status-gray { background:#f3f4f6; }
+    .warning-marker { color:var(--danger); font-weight:700; font-size:1.12em; } .controversial-heading { border-left:4px solid var(--danger); padding-left:.55rem; }
+    blockquote { margin:1rem 0; border-left:4px solid #cbd5e1; padding:.6rem .85rem; background:#f8fafc; }
+    .archetype-box { display:flex; flex-wrap:wrap; align-items:center; gap:.45rem; margin:.8rem 0 1rem; } .archetype-label { font-weight:700; color:#475569; }
+    .archetype-pill { background:#ebf4ff; border:1px solid #bfdbfe; color:#1e40af; padding:.22rem .55rem; border-radius:999px; font-size:.86rem; }
+    .lesson-box { background:var(--lesson); border-left:4px solid var(--accent); padding:.7rem .8rem; margin:.9rem 0 1.1rem; font-size:.95rem; } .lesson-title { margin:.2rem 0 .45rem; font-weight:700; }
+    .narrative-bridge { background:var(--bridge); border:1px solid #d7e0ea; border-radius:10px; padding:.75rem .9rem; margin:1rem 0; } .narrative-bridge p { font-style:italic; color:#334155; }
+    .timeline-scroll { overflow-x:auto; padding-bottom:.5rem; margin:.9rem 0 1.2rem; } .timeline-track { display:grid; grid-auto-flow:column; grid-auto-columns:minmax(180px,1fr); gap:.65rem; min-width:max-content; }
+    .timeline-col { border:1px solid #dbe4ee; border-radius:10px; background:#fff; padding:.55rem; } .timeline-year { font-weight:700; color:var(--heading); border-bottom:1px solid #e2e8f0; padding-bottom:.35rem; margin-bottom:.45rem; }
+    .timeline-event { font-size:.9rem; padding:.42rem .5rem; border-radius:7px; margin:.36rem 0; border:1px solid transparent; } .timeline-event.positive { background:#ecfdf3; border-color:#b7efcc; } .timeline-event.negative { background:#fff1f1; border-color:#f6c2c2; }
+    .pattern-chain { display:flex; flex-direction:column; gap:.4rem; margin:1rem 0 1.2rem; } .chain-card { border:1px solid #dbe4ee; border-radius:9px; background:#fff; padding:.6rem .7rem; } .chain-arrow { text-align:center; color:#64748b; font-size:1.2rem; }
+    .juxtaposition-wrap { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; margin:.75rem 0 1rem; } .juxta-card { border-radius:10px; border:1px solid #e2e8f0; padding:.65rem .75rem; }
+    .juxta-card.positive { background:#f0fff4; border-color:#bbf7d0; } .juxta-card.positive h5 { color:#166534; } .juxta-card.negative { background:#fff1f2; border-color:#fecdd3; } .juxta-card.negative h5 { color:#991b1b; }
+    .whatif-card { background:var(--whatif); border-left:4px solid #7c3aed; padding:.65rem .8rem; border-radius:8px; margin:.6rem 0; }
+    .checklist-table tbody tr td:first-child { font-weight:700; text-align:center; width:48px; } .fake-checkbox { display:inline-block; border:1px solid #cbd5e1; border-radius:6px; padding:.14rem .38rem; background:#fff; font-family:ui-monospace,monospace; }
+    .retro-score-table td:nth-child(2) { font-weight:700; text-align:center; } .score-safe { background:#ecfdf3; color:#166534; } .score-low { background:#fffbea; color:#92400e; } .score-mid { background:#fff7ed; color:#9a3412; } .score-high { background:#fee2e2; color:#991b1b; }
+    .back-to-top { position:fixed; right:16px; bottom:18px; border:none; background:var(--heading); color:#fff; width:42px; height:42px; border-radius:999px; cursor:pointer; opacity:0; transform:translateY(8px); transition:.2s; } .back-to-top.show { opacity:1; transform:translateY(0); }
+    /* --- Overlay backdrop --- */
+    .sidebar-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:1050; opacity:0; transition:opacity .24s; }
+    .sidebar-overlay.show { display:block; opacity:1; }
+
+    /* --- Reading progress bar --- */
+    .reading-progress { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--accent),#f59e0b); z-index:1300; width:0; transition:width .12s linear; }
+
+    /* --- Accordion for mobile profiles --- */
+    .profile-collapse-btn { display:none; }
+
+    /* ===== TABLET: ≤1024px ===== */
+    @media (max-width:1024px) {
+      .sidebar-toggle { display:block; }
+      aside { position:fixed; top:0; left:0; transform:translateX(-105%); transition:.24s; z-index:1100; width:min(82vw,320px); box-shadow:0 10px 30px rgba(2,6,23,.18); }
+      aside.open { transform:translateX(0); }
+      main { padding-top:3.8rem; }
+      .juxtaposition-wrap { grid-template-columns:1fr; }
+      .toc-list a { padding:.4rem .5rem; min-height:36px; display:flex; align-items:center; }
+    }
+
+    /* ===== MOBILE: ≤768px ===== */
+    @media (max-width:768px) {
+      body { font-size:15px; line-height:1.7; -webkit-text-size-adjust:100%; }
+      h1 { font-size:1.6rem; } h2 { font-size:1.35rem; scroll-margin-top:56px; } h3 { font-size:1.15rem; scroll-margin-top:56px; } h4 { font-size:1.05rem; }
+      main { padding:3.2rem .75rem 4rem; }
+      .cover { min-height:80vh; padding:1.5rem 1rem; }
+      .cover h1 { font-size:1.6rem; }
+      .cover .subtitle { font-size:.95rem; }
+
+      /* Tables: scroll hint + shadow */
+      .table-scroll { position:relative; }
+      .table-scroll::after { content:"← geser →"; display:block; text-align:center; font-size:.78rem; color:var(--muted); padding:.3rem 0; }
+      table { min-width:520px; font-size:.85rem; }
+      th,td { padding:.4rem .45rem; }
+
+      /* TOC touch targets */
+      .toc-list a { padding:.5rem .55rem; min-height:44px; font-size:.95rem; border-radius:6px; }
+      .toc-list>li { margin:.12rem 0; }
+
+      /* Sidebar wider on mobile */
+      aside { width:min(88vw,340px); padding:.8rem .6rem; }
+
+      /* Lesson box, bridge, whatif — full width */
+      .lesson-box, .narrative-bridge, .whatif-card { padding:.6rem .65rem; font-size:.9rem; }
+      blockquote { padding:.5rem .65rem; font-size:.93rem; }
+
+      /* Timeline: smaller columns */
+      .timeline-track { grid-auto-columns:minmax(150px,1fr); }
+      .timeline-event { font-size:.82rem; padding:.35rem .4rem; }
+
+      /* Pattern chain */
+      .chain-card { padding:.5rem .55rem; font-size:.9rem; }
+
+      /* Archetype pills */
+      .archetype-pill { font-size:.8rem; padding:.18rem .45rem; }
+
+      /* Back to top: larger touch target */
+      .back-to-top { width:48px; height:48px; font-size:1.2rem; right:12px; bottom:14px; }
+
+      /* Hamburger: larger */
+      .sidebar-toggle { padding:.55rem .75rem; font-size:1.15rem; top:8px; left:8px; }
+
+      /* Profile accordion */
+      .profile-collapse-btn { display:inline-block; background:none; border:1px solid var(--line); border-radius:6px; padding:.3rem .6rem; font-size:.82rem; color:var(--muted); cursor:pointer; margin-left:.5rem; vertical-align:middle; }
+      .profile-body.collapsed { display:none; }
+
+      /* Juxtaposition cards stacked */
+      .juxta-card { padding:.55rem .6rem; font-size:.9rem; }
+
+      /* Checklist table */
+      .checklist-table { min-width:400px; }
+
+      /* Scorecard table */
+      .scorecard-table { min-width:700px; font-size:.8rem; }
+    }
+
+    /* ===== SMALL PHONE: ≤480px ===== */
+    @media (max-width:480px) {
+      body { font-size:14px; }
+      h1 { font-size:1.4rem; } h2 { font-size:1.2rem; } h3 { font-size:1.08rem; }
+      main { padding:3rem .5rem 4rem; }
+      .cover { min-height:70vh; padding:1.2rem .8rem; }
+      .cover h1 { font-size:1.35rem; }
+      .cover .subtitle { font-size:.88rem; }
+      .section-alt { padding:.7rem; border-radius:8px; }
+      .lesson-box, .narrative-bridge, .whatif-card { margin:.6rem -.15rem; border-radius:6px; }
+      table { min-width:440px; font-size:.78rem; }
+      th,td { padding:.32rem .35rem; }
+      .timeline-track { grid-auto-columns:minmax(130px,1fr); gap:.45rem; }
+      .archetype-box { gap:.3rem; }
+      .archetype-pill { font-size:.75rem; }
+      aside { width:min(92vw,300px); }
+      .toc-list a { font-size:.9rem; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print { @page { margin:2cm; } .sidebar-toggle,aside,.back-to-top,.reading-progress,.sidebar-overlay,.profile-collapse-btn { display:none !important; } main { padding:0; } .major-section,.section-alt { break-inside:avoid; page-break-inside:avoid; border:none; background:#fff; } h2 { break-before:page; page-break-before:always; } a { color:#000; text-decoration:none; } .profile-body.collapsed { display:block !important; } }
+  
+.back-home { padding:.8rem 1.5rem .2rem; }
+.back-home a { display:inline-flex; align-items:center; gap:.4rem; color:#4a5568; text-decoration:none; font-size:.9rem; font-weight:500; padding:.4rem .8rem; border-radius:6px; border:1px solid #e2e8f0; background:#fff; transition:all .15s; }
+.back-home a:hover { color:#1a365d; border-color:#1a365d; background:#f7fafc; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+@media(max-width:600px) { .back-home { padding:.6rem 1rem .2rem; } .back-home a { font-size:.82rem; } }
+</style>
+</head>
+<body>
+<header class="cover">
+<div>
+<h1>Performance Mindset &amp; Execution — Bahasakuinggris</h1>
+<p class="subtitle">Dokumen Blueprint</p>
+<p class="meta">Regenerasi HTML &#8226; 28 April 2026</p>
+</div>
+</header>
+<div class="reading-progress" id="readingProgress"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<button aria-label="Buka/Tutup Daftar Isi" class="sidebar-toggle" id="sidebarToggle" type="button">&#9776;</button>
+<div class="layout">
+<aside id="sidebar"><h2>Daftar Isi</h2><ul class="toc-list">
+<li><a data-target="dokumentasi-modul" href="#dokumentasi-modul">Dokumentasi Modul</a></li>
+<li><a data-target="ringkasan-eksekusi" href="#ringkasan-eksekusi">Ringkasan Eksekusi</a></li>
+<li><a data-target="prinsip-performance-mindset" href="#prinsip-performance-mindset">Prinsip Performance Mindset</a></li>
+<li><a data-target="tujuan-bisnis-90-hari" href="#tujuan-bisnis-90-hari">Tujuan Bisnis 90 Hari</a></li>
+<li><a data-target="kpi-dashboard" href="#kpi-dashboard">KPI Dashboard</a></li>
+<li><a data-target="north-star-dan-guardrail" href="#north-star-dan-guardrail">North Star dan Guardrail</a></li>
+<li><a data-target="struktur-tim-dan-peran" href="#struktur-tim-dan-peran">Struktur Tim dan Peran</a></li>
+<li><a data-target="sop-manajemen-iklan" href="#sop-manajemen-iklan">SOP Manajemen Iklan</a></li>
+<li><a data-target="sop-follow-up-dan-enrollment" href="#sop-follow-up-dan-enrollment">SOP Follow-up dan Enrollment</a></li>
+<li><a data-target="weekly-review-cadence" href="#weekly-review-cadence">Weekly Review Cadence</a></li>
+<li><a data-target="format-scorecard-mingguan" href="#format-scorecard-mingguan">Format Scorecard Mingguan</a></li>
+<li><a data-target="scaling-decision-framework" href="#scaling-decision-framework">Scaling Decision Framework</a></li>
+<li><a data-target="risk-mitigation" href="#risk-mitigation">Risk Mitigation</a></li>
+<li><a data-target="90-day-execution-roadmap" href="#90-day-execution-roadmap">90-Day Execution Roadmap</a></li>
+<li><a data-target="automation-opportunities" href="#automation-opportunities">Automation Opportunities</a></li>
+<li><a data-target="hook-library-untuk-iklan-performance" href="#hook-library-untuk-iklan-performance">Hook Library untuk Iklan Performance</a></li>
+<li><a data-target="cta-library-untuk-funnel" href="#cta-library-untuk-funnel">CTA Library untuk Funnel</a></li>
+<li><a data-target="faq-operasional-tim" href="#faq-operasional-tim">FAQ Operasional Tim</a></li>
+<li><a data-target="checklist-eksekusi-mingguan" href="#checklist-eksekusi-mingguan">Checklist Eksekusi Mingguan</a></li>
+<li><a data-target="penutup" href="#penutup">Penutup</a></li>
+</ul></aside>
+<main><nav class="back-home"><a href="../index.html">&larr; Back to Home Page</a></nav><article class="ebook-content"><section class="major-section"><h1>Performance Mindset &amp; Execution — Bahasakuinggris</h1>
+<h2 id="dokumentasi-modul">Dokumentasi Modul</h2>
+<p>Tujuan modul: membangun sistem eksekusi performance marketing 90 hari. Pemakai modul: performance lead, media buyer, tim CRM, tim akademik, manajemen.</p>
+<p>Fungsi utama: KPI dashboard, SOP iklan, cadence review, framework scaling, mitigasi risiko.</p>
+<h2 id="ringkasan-eksekusi">Ringkasan Eksekusi</h2>
+<p>Performance marketing harus diperlakukan sebagai sistem. Sistem yang baik punya target jelas. Sistem yang baik punya ritme evaluasi rutin. Sistem yang baik punya aturan cut dan scale. Bahasakuinggris sudah punya produk kuat. Tantangannya adalah menjaga mesin akuisisi tetap sehat. Mesin itu harus terhubung dengan kualitas onboarding. Mesin itu juga harus terhubung dengan retensi kelas. Dokumen ini menyatukan semua komponen itu.</p>
+<h2 id="prinsip-performance-mindset">Prinsip Performance Mindset</h2>
+<p>Data dulu, opini belakangan. Eksekusi cepat, evaluasi cepat, perbaikan cepat. Satu eksperimen hanya satu hipotesis. Setiap perubahan harus punya alasan terukur. Kampanye boros dipotong cepat. Kampanye sehat dinaikkan bertahap. Akuisisi dan retensi dipantau bersamaan. Feedback siswa wajib masuk ke iterasi kampanye. Proses harus bisa direplikasi lintas anggota tim.</p>
+<h2 id="tujuan-bisnis-90-hari">Tujuan Bisnis 90 Hari</h2>
+<p>Menaikkan volume lead berkualitas harian. Menjaga CPA tetap sehat saat volume naik. Menaikkan enrollment rate dengan follow-up disiplin. Menjaga retensi awal agar siswa tidak cepat drop. Menaikkan NPS agar referal bertumbuh stabil. Meningkatkan efisiensi kerja lewat automasi prioritas.</p>
+<h2 id="kpi-dashboard">KPI Dashboard</h2>
+<h3 id="definisi-kpi-inti">Definisi KPI Inti</h3>
+<p>Leads/day mengukur kapasitas akuisisi harian. CPA mengukur efisiensi biaya per lead valid. Enrollment rate mengukur kualitas konversi lead ke siswa. Retention mengukur ketahanan pengalaman belajar. NPS mengukur kekuatan kepuasan dan rekomendasi.</p>
+<h3 id="tabel-kpi-utama">Tabel KPI Utama</h3>
+<div class="table-scroll"><table>
+<thead><tr>
+<th>KPI</th>
+<th>Definisi operasional</th>
+<th>Target awal</th>
+<th>Ambang waspada</th>
+<th>Frekuensi</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Leads/day</td>
+<td>Lead valid masuk CRM per hari</td>
+<td>40</td>
+<td>&lt;25</td>
+<td>Harian</td>
+</tr>
+<tr>
+<td>CPA</td>
+<td>Total spend dibagi lead valid</td>
+<td>Rp18.000</td>
+<td>&gt;Rp28.000</td>
+<td>Harian</td>
+</tr>
+<tr>
+<td>Enrollment rate</td>
+<td>Enroll dibagi lead valid</td>
+<td>12%</td>
+<td>&lt;8%</td>
+<td>Harian</td>
+</tr>
+<tr>
+<td>Show-up trial</td>
+<td>Hadir trial dibagi booking</td>
+<td>55%</td>
+<td>&lt;40%</td>
+<td>Harian</td>
+</tr>
+<tr>
+<td>Contact &lt;1 jam</td>
+<td>Lead direspons &lt;60 menit</td>
+<td>85%</td>
+<td>&lt;70%</td>
+<td>Harian</td>
+</tr>
+<tr>
+<td>Retention minggu 2</td>
+<td>Siswa lanjut minggu kedua</td>
+<td>80%</td>
+<td>&lt;68%</td>
+<td>Mingguan</td>
+</tr>
+<tr>
+<td>Retention akhir batch</td>
+<td>Siswa tuntas batch</td>
+<td>72%</td>
+<td>&lt;60%</td>
+<td>Mingguan</td>
+</tr>
+<tr>
+<td>Refund rate</td>
+<td>Refund dibagi enroll</td>
+<td>3%</td>
+<td>&gt;6%</td>
+<td>Mingguan</td>
+</tr>
+<tr>
+<td>NPS</td>
+<td>Promoter minus detractor</td>
+<td>45</td>
+<td>&lt;30</td>
+<td>Bulanan</td>
+</tr>
+<tr>
+<td>Referal share</td>
+<td>Enroll dari referal</td>
+<td>18%</td>
+<td>&lt;10%</td>
+<td>Bulanan</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="cara-baca-kpi">Cara Baca KPI</h3>
+<p>Leads naik tapi enrollment turun berarti ada mismatch kualitas lead. CPA naik tajam berarti kemungkinan fatigue kreatif atau targeting melebar. Retention minggu 2 turun berarti onboarding awal belum kuat. NPS turun berarti ada gap janji iklan dan pengalaman kelas.</p>
+<h2 id="north-star-dan-guardrail">North Star dan Guardrail</h2>
+<p>North Star: jumlah siswa aktif yang bertahan sampai akhir batch. Guardrail 1: CPA tidak boleh merah dua hari beruntun. Guardrail 2: enrollment rate tidak boleh turun tiga hari berturut. Guardrail 3: retention minggu 2 harus stabil di zona aman. Guardrail 4: NPS tidak boleh stagnan dua bulan beruntun.</p>
+<h2 id="struktur-tim-dan-peran">Struktur Tim dan Peran</h2>
+<h3 id="core-team">Core Team</h3>
+<p>Performance Lead memegang target, prioritas, dan keputusan akhir. Media Buyer mengelola setup, optimasi, dan alokasi budget. Creative Strategist merancang angle, format, dan iterasi kreatif. Copywriter menyiapkan naskah iklan, script chat, dan micro-copy. CRM &amp; Admin Lead menjaga SLA respons dan pipeline follow-up. Academic Liaison membawa insight kelas ke tim marketing. Data Analyst menjaga dashboard tetap bersih dan akurat.</p>
+<h3 id="raci-ringkas">RACI Ringkas</h3>
+<div class="table-scroll"><table>
+<thead><tr>
+<th>Aktivitas</th>
+<th>Responsible</th>
+<th>Accountable</th>
+<th>Consulted</th>
+<th>Informed</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Set target mingguan</td>
+<td>Performance Lead</td>
+<td>Head Growth</td>
+<td>Data Analyst</td>
+<td>Semua tim</td>
+</tr>
+<tr>
+<td>Setup kampanye baru</td>
+<td>Media Buyer</td>
+<td>Performance Lead</td>
+<td>Creative Strategist</td>
+<td>CRM Lead</td>
+</tr>
+<tr>
+<td>Produksi aset iklan</td>
+<td>Creative Strategist</td>
+<td>Performance Lead</td>
+<td>Copywriter</td>
+<td>Media Buyer</td>
+</tr>
+<tr>
+<td>Follow-up lead cepat</td>
+<td>CRM Lead</td>
+<td>Performance Lead</td>
+<td>Sales mentor</td>
+<td>Academic Liaison</td>
+</tr>
+<tr>
+<td>Review retensi kelas</td>
+<td>Academic Liaison</td>
+<td>Head Program</td>
+<td>CRM Lead</td>
+<td>Performance Lead</td>
+</tr>
+<tr>
+<td>Update dashboard</td>
+<td>Data Analyst</td>
+<td>Performance Lead</td>
+<td>Media Buyer</td>
+<td>Semua tim</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="sop-manajemen-iklan">SOP Manajemen Iklan</h2>
+<h3 id="sop-1-persiapan-kampanye">SOP 1 — Persiapan Kampanye</h3>
+<p>Tetapkan satu objective utama per kampanye. Pilih satu ICP prioritas per ad set. Pastikan pixel, event, dan UTM aktif. Siapkan satu offer inti per cluster kreatif.</p>
+<h3 id="sop-2-struktur-kampanye">SOP 2 — Struktur Kampanye</h3>
+<p>Pisahkan prospecting dan remarketing. Pisahkan berdasarkan produk utama. Gunakan naming convention konsisten. Batasi variasi awal agar sinyal cepat terbaca.</p>
+<h3 id="sop-3-quality-gate-kreatif">SOP 3 — Quality Gate Kreatif</h3>
+<p>Setiap kreatif wajib punya satu angle. Hook harus jelas dalam tiga detik awal. Pesan wajib membawa diferensiasi brand. CTA harus singkat dan langsung.</p>
+<h3 id="sop-4-launch-checklist">SOP 4 — Launch Checklist</h3>
+<p>Targeting sesuai ICP. Budget sesuai batas risiko. Tracking event lulus uji. Landing dan form berjalan normal di mobile.</p>
+<h3 id="sop-5-monitoring-harian">SOP 5 — Monitoring Harian</h3>
+<p>Pantau spend, leads, CPA, CTR, CVR. Catat anomali harian di log tim. Matikan unit saat dua indikator kritis merah. Naikkan budget pada unit sehat secara bertahap.</p>
+<h3 id="sop-6-optimasi-kreatif">SOP 6 — Optimasi Kreatif</h3>
+<p>Refresh kreatif saat frequency melewati ambang. Iterasi berdasar komentar dan chat lead. Pertahankan angle pemenang, ubah format eksekusi. Simpan aset pemenang di library terpusat.</p>
+<h3 id="sop-7-sinkronisasi-crm">SOP 7 — Sinkronisasi CRM</h3>
+<p>Lead baru masuk pipeline otomatis. Admin wajib kontak dalam 60 menit. Lead dingin masuk sequence WA bertahap. Lead panas diutamakan untuk slot konsultasi.</p>
+<h2 id="sop-follow-up-dan-enrollment">SOP Follow-up dan Enrollment</h2>
+<h3 id="tahap-1-respon-awal">Tahap 1 — Respon Awal</h3>
+<p>Sapa personal dan ramah. Konfirmasi tujuan belajar calon siswa. Arahkan ke kelas sesuai kebutuhan.</p>
+<h3 id="tahap-2-edukasi-singkat">Tahap 2 — Edukasi Singkat</h3>
+<p>Jelaskan metode kelas kecil dan tutor Pare. Jelaskan format kelas, jadwal, dan target realistis. Jawab keberatan dengan bukti yang relevan.</p>
+<h3 id="tahap-3-ajakan-tindakan">Tahap 3 — Ajakan Tindakan</h3>
+<p>Tawarkan batch terdekat. Tegaskan batas kursi kelas kecil. Pandukan langkah pembayaran sampai tuntas.</p>
+<h3 id="tahap-4-onboarding">Tahap 4 — Onboarding</h3>
+<p>Masukkan siswa ke grup orientasi. Kirim panduan minggu pertama. Kirim pengingat jadwal pertemuan pertama.</p>
+<h2 id="weekly-review-cadence">Weekly Review Cadence</h2>
+<h3 id="review-harian-20-menit">Review Harian 20 Menit</h3>
+<p>Pantau KPI inti dan status kampanye aktif. Tentukan tindakan yang selesai di hari itu. Catat blocker untuk ditangani sebelum besok.</p>
+<h3 id="review-mingguan-90-menit">Review Mingguan 90 Menit</h3>
+<p>Bandingkan performa antar angle dan ICP. Audit funnel dari klik sampai enroll. Audit SLA respons dan kualitas percakapan admin. Audit retensi minggu 1 dan minggu 2. Putuskan eksperimen prioritas minggu depan.</p>
+<h3 id="review-bulanan-2-jam">Review Bulanan 2 Jam</h3>
+<p>Evaluasi tren KPI bulanan penuh. Hitung kontribusi channel terhadap revenue. Tinjau kapasitas tim saat volume naik. Tetapkan arah scale untuk bulan berikutnya.</p>
+<h2 id="format-scorecard-mingguan">Format Scorecard Mingguan</h2>
+<div class="table-scroll"><table>
+<thead><tr>
+<th>Area</th>
+<th>Indikator</th>
+<th>Hasil minggu ini</th>
+<th>Status</th>
+<th>Aksi minggu depan</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Akuisisi</td>
+<td>Leads/day</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Efisiensi</td>
+<td>CPA</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Funnel</td>
+<td>Enrollment rate</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CRM</td>
+<td>Contact &lt;1 jam</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Produk</td>
+<td>Retention minggu 2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Kepuasan</td>
+<td>NPS</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="scaling-decision-framework">Scaling Decision Framework</h2>
+<h3 id="rule-scale-up">Rule Scale Up</h3>
+<p>Scale jika CPA sehat 5-7 hari. Scale jika enrollment rate stabil di atas target. Scale jika SLA respons CRM tetap terjaga. Scale jika retention minggu 2 tidak menurun.</p>
+<h3 id="rule-hold">Rule Hold</h3>
+<p>Hold jika volume naik tapi kualitas lead turun. Hold jika CTR bagus namun CVR landing melemah. Hold jika fatigue kreatif mulai tampak.</p>
+<h3 id="rule-cut">Rule Cut</h3>
+<p>Cut jika CPA merah tiga hari beruntun. Cut jika enrollment rate di bawah ambang kritis. Cut jika refund naik tanpa penyebab teknis jelas.</p>
+<h3 id="cara-scale-aman">Cara Scale Aman</h3>
+<p>Naikkan budget 15-25% tiap 24-48 jam. Duplikasi ad set pemenang ke audiens sejenis. Jangan ubah banyak variabel sekaligus. Simpan satu control campaign untuk pembanding.</p>
+<h2 id="risk-mitigation">Risk Mitigation</h2>
+<h3 id="risiko-1-cpa-naik-cepat">Risiko 1 — CPA Naik Cepat</h3>
+<p>Mitigasi: refresh kreatif mingguan dan audit audience overlap.</p>
+<h3 id="risiko-2-lead-banyak-closing-rendah">Risiko 2 — Lead Banyak, Closing Rendah</h3>
+<p>Mitigasi: audit script chat dan roleplay admin mingguan.</p>
+<h3 id="risiko-3-retensi-awal-turun">Risiko 3 — Retensi Awal Turun</h3>
+<p>Mitigasi: perkuat onboarding dan reminder kehadiran.</p>
+<h3 id="risiko-4-tim-kewalahan-saat-scale">Risiko 4 — Tim Kewalahan Saat Scale</h3>
+<p>Mitigasi: tambah automasi dan buffer admin part-time.</p>
+<h3 id="risiko-5-pesan-iklan-tidak-konsisten">Risiko 5 — Pesan Iklan Tidak Konsisten</h3>
+<p>Mitigasi: gunakan playbook pesan tunggal lintas kanal.</p>
+<h3 id="risiko-6-data-dashboard-tidak-rapi">Risiko 6 — Data Dashboard Tidak Rapi</h3>
+<p>Mitigasi: tetapkan owner data dan audit validasi harian.</p>
+<h3 id="risiko-7-ketergantungan-satu-channel">Risiko 7 — Ketergantungan Satu Channel</h3>
+<p>Mitigasi: bangun kombinasi paid, organik, dan referal.</p>
+<h3 id="risiko-8-komplain-publik-meningkat">Risiko 8 — Komplain Publik Meningkat</h3>
+<p>Mitigasi: SOP respon cepat dan alur eskalasi terukur.</p>
+<h2 id="90-day-execution-roadmap">90-Day Execution Roadmap</h2>
+<h3 id="fase-1-minggu-1-4-fondasi">FASE 1 — MINGGU 1-4 (Fondasi)</h3>
+<p>Finalkan KPI, dashboard, dan naming kampanye. Rapikan tracking pixel, event, dan UTM. Luncurkan tiga angle iklan per ICP prioritas. Aktifkan SOP follow-up 60 menit pertama. Latih admin dengan skrip keberatan standar.</p>
+<h3 id="fase-2-minggu-5-8-optimasi">FASE 2 — MINGGU 5-8 (Optimasi)</h3>
+<p>Matikan unit boros, scale unit sehat. Tambah dua kreatif baru dari angle pemenang. Perbaiki landing berdasar data drop-off. Aktifkan sequence WA untuk lead dingin. Sinkronkan insight kelas ke materi kampanye.</p>
+<h3 id="fase-3-minggu-9-12-scale">FASE 3 — MINGGU 9-12 (Scale)</h3>
+<p>Scale budget bertahap pada ICP paling profitabel. Perluas remarketing per tahap funnel. Perkuat retensi minggu pertama lewat touchpoint. Audit NPS dan kontribusi referal. Dokumentasikan playbook pemenang kuartal.</p>
+<h2 id="automation-opportunities">Automation Opportunities</h2>
+<h3 id="automasi-routing-lead">Automasi Routing Lead</h3>
+<p>Lead masuk otomatis ke pipeline sesuai sumber. Lead panas diprioritaskan ke admin dengan SLA terbaik.</p>
+<h3 id="automasi-respons-pertama">Automasi Respons Pertama</h3>
+<p>Kirim sambutan semi-otomatis yang personal. Sertakan opsi jadwal konsultasi cepat.</p>
+<h3 id="automasi-reminder">Automasi Reminder</h3>
+<p>Kirim reminder trial di H-1 dan H-0. Kirim reminder pembayaran untuk calon siswa aktif.</p>
+<h3 id="automasi-pelaporan">Automasi Pelaporan</h3>
+<p>Tarik data harian ke dashboard otomatis. Kirim ringkasan mingguan ke grup tim.</p>
+<h3 id="automasi-retensi">Automasi Retensi</h3>
+<p>Trigger pesan motivasi saat kehadiran menurun. Trigger check-in tutor saat siswa pasif.</p>
+<h2 id="hook-library-untuk-iklan-performance">Hook Library untuk Iklan Performance</h2>
+<p>Kelas kecil bikin kamu lebih sering praktik. Belajar ala Pare sekarang lebih dekat. Mulai dari tujuanmu, bukan materi acak. Sibuk kerja tetap bisa naik level. Tutor aktif koreksi di setiap sesi. Program jelas bikin progres lebih kebaca. Belajar online tetap interaktif. Pilih kelas sesuai kebutuhanmu sekarang. Bukan sekadar nonton, kamu ikut latihan. Dari minder jadi lebih pede, pelan tapi nyata. Izin resmi dan jejak alumni kuat. Metode terarah bantu konsistensi belajar. Bawa English ke level yang siap pakai. TOEFL dan IELTS dibimbing bertahap. Mulai batch terdekat sebelum slot habis.</p>
+<h2 id="cta-library-untuk-funnel">CTA Library untuk Funnel</h2>
+<p>Cek kelas yang pas untukmu. Mulai dari batch terdekat. Pilih jadwalmu hari ini. Konsultasi gratis sekarang. Amankan kursi kelas kecil. Daftar sebelum slot penuh. Tanya admin, respon cepat. Masuk grup orientasi sekarang. Mulai latihan minggu ini. Lihat detail program di sini. Pilih jalur TOEFL atau IELTS. Mulai speaking dari nol.</p>
+<h2 id="faq-operasional-tim">FAQ Operasional Tim</h2>
+<p>Berapa waktu respon ideal lead baru? Maksimal 60 menit sejak lead masuk. Kapan iklan harus dimatikan? Saat dua indikator kritis merah beruntun. Berapa kenaikan budget yang aman? Sekitar 15-25% per 24-48 jam. Siapa pemilik dashboard data? Data Analyst di bawah pengawasan Performance Lead. Kapan review retensi dilakukan? Minimal satu kali setiap minggu. Apa prioritas saat tim kewalahan? Jaga respons lead panas dan onboarding awal. Bagaimana jika kreatif cepat lelah? Putar format baru dari angle pemenang. Apa sinyal funnel sehat? CPA stabil, enrollment naik, retensi aman. Kapan automasi wajib ditambah? Saat volume lead naik dan SLA mulai turun. Apa indikator janji brand terpenuhi? NPS naik dan komplain publik menurun.</p>
+<h2 id="checklist-eksekusi-mingguan">Checklist Eksekusi Mingguan</h2>
+<ul>
+<li>Dashboard KPI ter-update setiap hari.</li>
+<li>Semua lead baru dihubungi dalam 60 menit.</li>
+<li>Kampanye boros dipotong sesuai rule cut.</li>
+<li>Kampanye sehat dinaikkan bertahap.</li>
+<li>Minimal dua kreatif baru diuji tiap minggu.</li>
+<li>Scorecard mingguan diisi lengkap lintas tim.</li>
+<li>Feedback kelas masuk ke rapat performance.</li>
+<li>SOP chat admin dipakai konsisten.</li>
+<li>Audit landing dilakukan minimal mingguan.</li>
+<li>Reminder trial berjalan otomatis.</li>
+<li>Retensi minggu 2 punya owner jelas.</li>
+<li>NPS bulanan diukur dan ditindaklanjuti.</li>
+<li>Kontribusi referal dipantau rutin.</li>
+<li>Dokumentasi eksperimen tersimpan rapi.</li>
+<li>Tone komunikasi tetap friendly dan suportif.</li>
+</ul>
+<h2 id="penutup">Penutup</h2>
+<p>Performa yang stabil lahir dari disiplin harian. Saat data, tim, dan SOP berjalan searah, Bahasakuinggris bisa scale lebih aman. Target akhirnya bukan sekadar enroll tinggi. Target akhirnya adalah siswa aktif yang bertahan dan merekomendasikan.</p></section></article></main>
+</div>
+<button aria-label="Kembali ke atas" class="back-to-top" id="backToTop" type="button">&#8593;</button>
+<script>
+    (function () {
+      'use strict';
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      var toggle = document.getElementById('sidebarToggle');
+      var backBtn = document.getElementById('backToTop');
+      var progressBar = document.getElementById('readingProgress');
+      var tocLinks = Array.from(document.querySelectorAll('.toc-list a'));
+      var sections = tocLinks
+        .map(function (a) { return document.getElementById(a.dataset.target); })
+        .filter(Boolean);
+
+      /* --- Sidebar open/close with overlay --- */
+      function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          if (sidebar.classList.contains('open')) { closeSidebar(); }
+          else { openSidebar(); }
+        });
+      }
+      if (overlay) {
+        overlay.addEventListener('click', closeSidebar);
+      }
+
+      /* --- Swipe to close sidebar --- */
+      var touchStartX = 0;
+      var touchStartY = 0;
+      sidebar.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      sidebar.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        var dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+        if (dx < -60 && dy < 80) { closeSidebar(); }
+      }, { passive: true });
+
+      /* --- TOC link click closes sidebar on mobile --- */
+      tocLinks.forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (window.innerWidth <= 1024) { closeSidebar(); }
+        });
+      });
+
+      /* --- Scroll spy --- */
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var id = entry.target.id;
+            tocLinks.forEach(function (link) {
+              if (link.dataset.target === id) {
+                link.classList.add('active');
+                /* Auto-scroll TOC to active item on desktop */
+                if (window.innerWidth > 1024 && sidebar.scrollHeight > sidebar.clientHeight) {
+                  link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                }
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          });
+        },
+        { rootMargin: '-30% 0px -55% 0px', threshold: 0.1 }
+      );
+      sections.forEach(function (sec) { observer.observe(sec); });
+
+      /* --- Reading progress bar + back-to-top --- */
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            var scrollTop = window.scrollY || document.documentElement.scrollTop;
+            var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight > 0) {
+              progressBar.style.width = Math.min((scrollTop / docHeight) * 100, 100) + '%';
+            }
+            if (scrollTop > 400) { backBtn.classList.add('show'); }
+            else { backBtn.classList.remove('show'); }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      backBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      /* --- Profile accordion on mobile --- */
+      function initAccordion() {
+        var isMobile = window.innerWidth <= 768;
+        var profiles = document.querySelectorAll('h3[id]');
+        profiles.forEach(function (h3) {
+          /* Only profile headings (G0-x, numbered, S-x, T-x) */
+          var text = h3.textContent || '';
+          if (!/^(G0-|[0-9]+\.|S[0-9]|T-[0-9])/.test(text.trim())) return;
+
+          var existingBtn = h3.querySelector('.profile-collapse-btn');
+          if (!existingBtn) {
+            var btn = document.createElement('button');
+            btn.className = 'profile-collapse-btn';
+            btn.textContent = '▼';
+            btn.setAttribute('aria-label', 'Buka/tutup profil');
+            h3.appendChild(btn);
+          }
+
+          var btn = h3.querySelector('.profile-collapse-btn');
+          /* Collect siblings until next h3 or h2 */
+          var body = h3.nextElementSibling;
+          if (body && body.classList.contains('profile-body')) {
+            /* Already wrapped */
+            if (isMobile && !body.classList.contains('collapsed')) {
+              body.classList.add('collapsed');
+              btn.textContent = '▶';
+            } else if (!isMobile) {
+              body.classList.remove('collapsed');
+              btn.textContent = '▼';
+            }
+            return;
+          }
+
+          /* Wrap profile content in a div */
+          var wrapper = document.createElement('div');
+          wrapper.className = 'profile-body';
+          var sibling = h3.nextElementSibling;
+          while (sibling && sibling.tagName !== 'H3' && sibling.tagName !== 'H2') {
+            var next = sibling.nextElementSibling;
+            wrapper.appendChild(sibling);
+            sibling = next;
+          }
+          h3.parentNode.insertBefore(wrapper, sibling);
+
+          if (isMobile) {
+            wrapper.classList.add('collapsed');
+            btn.textContent = '▶';
+          }
+        });
+      }
+
+      /* Toggle accordion on click */
+      document.addEventListener('click', function (e) {
+        if (!e.target.classList.contains('profile-collapse-btn')) return;
+        var h3 = e.target.closest('h3');
+        if (!h3) return;
+        var body = h3.nextElementSibling;
+        if (body && body.classList.contains('profile-body')) {
+          body.classList.toggle('collapsed');
+          e.target.textContent = body.classList.contains('collapsed') ? '▶' : '▼';
+        }
+      });
+
+      /* Init accordion on load and resize */
+      initAccordion();
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(initAccordion, 250);
+      });
+
+      /* --- Keyboard: Escape closes sidebar --- */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+          closeSidebar();
+        }
+      });
+    })();
+    
+</script>
+</body>
+</html>

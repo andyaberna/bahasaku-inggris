@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Direct Response &amp; Performance Marketing — Bahasakuinggris</title>
+<style>
+    :root { --bg:#fff; --text:#1f2937; --heading:#1a365d; --accent:#d69e2e; --danger:#e53e3e; --line:#e5e7eb; --muted:#64748b; --soft:#f8fafc; --bridge:#f0f4f8; --lesson:#fffbeb; --whatif:#f5f0ff; }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:"Segoe UI", system-ui, -apple-system, sans-serif; line-height:1.65; }
+    h1,h2,h3,h4,h5 { font-family:Georgia, "Times New Roman", serif; color:var(--heading); line-height:1.3; scroll-margin-top:80px; }
+    .cover { min-height:100vh; display:grid; place-items:center; text-align:center; padding:2rem; border-bottom:1px solid var(--line); }
+    .cover h1 { font-size:clamp(2rem,4vw,3.3rem); margin:.25rem 0; }
+    .cover .subtitle { color:var(--heading); font-size:1.1rem; } .cover .meta { color:var(--muted); margin-top:1rem; }
+    .layout { display:flex; }
+    .sidebar-toggle { display:none; position:fixed; top:12px; left:12px; z-index:1200; border:1px solid var(--line); background:white; border-radius:8px; padding:.45rem .65rem; }
+    aside { position:sticky; top:0; align-self:flex-start; width:310px; max-height:100vh; overflow:auto; border-right:1px solid var(--line); background:#fff; padding:1rem; }
+    .toc-list,.toc-list ul { list-style:none; margin:0; padding-left:.8rem; } .toc-list>li { margin:.24rem 0; }
+    .toc-list a { text-decoration:none; color:#334155; font-size:.92rem; display:block; padding:.16rem .4rem; border-left:2px solid transparent; border-radius:4px; }
+    .toc-list a.active { color:var(--heading); border-left-color:var(--accent); background:#f8fafc; font-weight:600; }
+    main { flex:1; padding:1.2rem clamp(1rem,3vw,2.5rem) 3rem; } .ebook-content { max-width:980px; margin:auto; }
+    .major-section { padding:1rem 0; border-bottom:1px solid var(--line); } .section-alt { background:var(--soft); padding:1.1rem; border-radius:10px; border:1px solid #edf2f7; }
+    .table-scroll { overflow-x:auto; margin:1rem 0; } table { width:100%; border-collapse:collapse; min-width:640px; background:#fff; }
+    th,td { border:1px solid #dbe1e8; padding:.58rem .6rem; vertical-align:top; } th { background:#f8fafc; font-weight:700; }
+    .scorecard-table th::after { content:" ⇅"; color:#94a3b8; font-size:.78em; } .scorecard-table tbody tr:nth-child(even) { background:#fcfdff; }
+    .status-green { background:#e6ffed; } .status-yellow { background:#fffbea; } .status-red { background:#ffe8e8; } .status-gray { background:#f3f4f6; }
+    .warning-marker { color:var(--danger); font-weight:700; font-size:1.12em; } .controversial-heading { border-left:4px solid var(--danger); padding-left:.55rem; }
+    blockquote { margin:1rem 0; border-left:4px solid #cbd5e1; padding:.6rem .85rem; background:#f8fafc; }
+    .archetype-box { display:flex; flex-wrap:wrap; align-items:center; gap:.45rem; margin:.8rem 0 1rem; } .archetype-label { font-weight:700; color:#475569; }
+    .archetype-pill { background:#ebf4ff; border:1px solid #bfdbfe; color:#1e40af; padding:.22rem .55rem; border-radius:999px; font-size:.86rem; }
+    .lesson-box { background:var(--lesson); border-left:4px solid var(--accent); padding:.7rem .8rem; margin:.9rem 0 1.1rem; font-size:.95rem; } .lesson-title { margin:.2rem 0 .45rem; font-weight:700; }
+    .narrative-bridge { background:var(--bridge); border:1px solid #d7e0ea; border-radius:10px; padding:.75rem .9rem; margin:1rem 0; } .narrative-bridge p { font-style:italic; color:#334155; }
+    .timeline-scroll { overflow-x:auto; padding-bottom:.5rem; margin:.9rem 0 1.2rem; } .timeline-track { display:grid; grid-auto-flow:column; grid-auto-columns:minmax(180px,1fr); gap:.65rem; min-width:max-content; }
+    .timeline-col { border:1px solid #dbe4ee; border-radius:10px; background:#fff; padding:.55rem; } .timeline-year { font-weight:700; color:var(--heading); border-bottom:1px solid #e2e8f0; padding-bottom:.35rem; margin-bottom:.45rem; }
+    .timeline-event { font-size:.9rem; padding:.42rem .5rem; border-radius:7px; margin:.36rem 0; border:1px solid transparent; } .timeline-event.positive { background:#ecfdf3; border-color:#b7efcc; } .timeline-event.negative { background:#fff1f1; border-color:#f6c2c2; }
+    .pattern-chain { display:flex; flex-direction:column; gap:.4rem; margin:1rem 0 1.2rem; } .chain-card { border:1px solid #dbe4ee; border-radius:9px; background:#fff; padding:.6rem .7rem; } .chain-arrow { text-align:center; color:#64748b; font-size:1.2rem; }
+    .juxtaposition-wrap { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; margin:.75rem 0 1rem; } .juxta-card { border-radius:10px; border:1px solid #e2e8f0; padding:.65rem .75rem; }
+    .juxta-card.positive { background:#f0fff4; border-color:#bbf7d0; } .juxta-card.positive h5 { color:#166534; } .juxta-card.negative { background:#fff1f2; border-color:#fecdd3; } .juxta-card.negative h5 { color:#991b1b; }
+    .whatif-card { background:var(--whatif); border-left:4px solid #7c3aed; padding:.65rem .8rem; border-radius:8px; margin:.6rem 0; }
+    .checklist-table tbody tr td:first-child { font-weight:700; text-align:center; width:48px; } .fake-checkbox { display:inline-block; border:1px solid #cbd5e1; border-radius:6px; padding:.14rem .38rem; background:#fff; font-family:ui-monospace,monospace; }
+    .retro-score-table td:nth-child(2) { font-weight:700; text-align:center; } .score-safe { background:#ecfdf3; color:#166534; } .score-low { background:#fffbea; color:#92400e; } .score-mid { background:#fff7ed; color:#9a3412; } .score-high { background:#fee2e2; color:#991b1b; }
+    .back-to-top { position:fixed; right:16px; bottom:18px; border:none; background:var(--heading); color:#fff; width:42px; height:42px; border-radius:999px; cursor:pointer; opacity:0; transform:translateY(8px); transition:.2s; } .back-to-top.show { opacity:1; transform:translateY(0); }
+    /* --- Overlay backdrop --- */
+    .sidebar-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:1050; opacity:0; transition:opacity .24s; }
+    .sidebar-overlay.show { display:block; opacity:1; }
+
+    /* --- Reading progress bar --- */
+    .reading-progress { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--accent),#f59e0b); z-index:1300; width:0; transition:width .12s linear; }
+
+    /* --- Accordion for mobile profiles --- */
+    .profile-collapse-btn { display:none; }
+
+    /* ===== TABLET: ≤1024px ===== */
+    @media (max-width:1024px) {
+      .sidebar-toggle { display:block; }
+      aside { position:fixed; top:0; left:0; transform:translateX(-105%); transition:.24s; z-index:1100; width:min(82vw,320px); box-shadow:0 10px 30px rgba(2,6,23,.18); }
+      aside.open { transform:translateX(0); }
+      main { padding-top:3.8rem; }
+      .juxtaposition-wrap { grid-template-columns:1fr; }
+      .toc-list a { padding:.4rem .5rem; min-height:36px; display:flex; align-items:center; }
+    }
+
+    /* ===== MOBILE: ≤768px ===== */
+    @media (max-width:768px) {
+      body { font-size:15px; line-height:1.7; -webkit-text-size-adjust:100%; }
+      h1 { font-size:1.6rem; } h2 { font-size:1.35rem; scroll-margin-top:56px; } h3 { font-size:1.15rem; scroll-margin-top:56px; } h4 { font-size:1.05rem; }
+      main { padding:3.2rem .75rem 4rem; }
+      .cover { min-height:80vh; padding:1.5rem 1rem; }
+      .cover h1 { font-size:1.6rem; }
+      .cover .subtitle { font-size:.95rem; }
+
+      /* Tables: scroll hint + shadow */
+      .table-scroll { position:relative; }
+      .table-scroll::after { content:"← geser →"; display:block; text-align:center; font-size:.78rem; color:var(--muted); padding:.3rem 0; }
+      table { min-width:520px; font-size:.85rem; }
+      th,td { padding:.4rem .45rem; }
+
+      /* TOC touch targets */
+      .toc-list a { padding:.5rem .55rem; min-height:44px; font-size:.95rem; border-radius:6px; }
+      .toc-list>li { margin:.12rem 0; }
+
+      /* Sidebar wider on mobile */
+      aside { width:min(88vw,340px); padding:.8rem .6rem; }
+
+      /* Lesson box, bridge, whatif — full width */
+      .lesson-box, .narrative-bridge, .whatif-card { padding:.6rem .65rem; font-size:.9rem; }
+      blockquote { padding:.5rem .65rem; font-size:.93rem; }
+
+      /* Timeline: smaller columns */
+      .timeline-track { grid-auto-columns:minmax(150px,1fr); }
+      .timeline-event { font-size:.82rem; padding:.35rem .4rem; }
+
+      /* Pattern chain */
+      .chain-card { padding:.5rem .55rem; font-size:.9rem; }
+
+      /* Archetype pills */
+      .archetype-pill { font-size:.8rem; padding:.18rem .45rem; }
+
+      /* Back to top: larger touch target */
+      .back-to-top { width:48px; height:48px; font-size:1.2rem; right:12px; bottom:14px; }
+
+      /* Hamburger: larger */
+      .sidebar-toggle { padding:.55rem .75rem; font-size:1.15rem; top:8px; left:8px; }
+
+      /* Profile accordion */
+      .profile-collapse-btn { display:inline-block; background:none; border:1px solid var(--line); border-radius:6px; padding:.3rem .6rem; font-size:.82rem; color:var(--muted); cursor:pointer; margin-left:.5rem; vertical-align:middle; }
+      .profile-body.collapsed { display:none; }
+
+      /* Juxtaposition cards stacked */
+      .juxta-card { padding:.55rem .6rem; font-size:.9rem; }
+
+      /* Checklist table */
+      .checklist-table { min-width:400px; }
+
+      /* Scorecard table */
+      .scorecard-table { min-width:700px; font-size:.8rem; }
+    }
+
+    /* ===== SMALL PHONE: ≤480px ===== */
+    @media (max-width:480px) {
+      body { font-size:14px; }
+      h1 { font-size:1.4rem; } h2 { font-size:1.2rem; } h3 { font-size:1.08rem; }
+      main { padding:3rem .5rem 4rem; }
+      .cover { min-height:70vh; padding:1.2rem .8rem; }
+      .cover h1 { font-size:1.35rem; }
+      .cover .subtitle { font-size:.88rem; }
+      .section-alt { padding:.7rem; border-radius:8px; }
+      .lesson-box, .narrative-bridge, .whatif-card { margin:.6rem -.15rem; border-radius:6px; }
+      table { min-width:440px; font-size:.78rem; }
+      th,td { padding:.32rem .35rem; }
+      .timeline-track { grid-auto-columns:minmax(130px,1fr); gap:.45rem; }
+      .archetype-box { gap:.3rem; }
+      .archetype-pill { font-size:.75rem; }
+      aside { width:min(92vw,300px); }
+      .toc-list a { font-size:.9rem; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print { @page { margin:2cm; } .sidebar-toggle,aside,.back-to-top,.reading-progress,.sidebar-overlay,.profile-collapse-btn { display:none !important; } main { padding:0; } .major-section,.section-alt { break-inside:avoid; page-break-inside:avoid; border:none; background:#fff; } h2 { break-before:page; page-break-before:always; } a { color:#000; text-decoration:none; } .profile-body.collapsed { display:block !important; } }
+  
+.back-home { padding:.8rem 1.5rem .2rem; }
+.back-home a { display:inline-flex; align-items:center; gap:.4rem; color:#4a5568; text-decoration:none; font-size:.9rem; font-weight:500; padding:.4rem .8rem; border-radius:6px; border:1px solid #e2e8f0; background:#fff; transition:all .15s; }
+.back-home a:hover { color:#1a365d; border-color:#1a365d; background:#f7fafc; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+@media(max-width:600px) { .back-home { padding:.6rem 1rem .2rem; } .back-home a { font-size:.82rem; } }
+</style>
+</head>
+<body>
+<header class="cover">
+<div>
+<h1>Direct Response &amp; Performance Marketing — Bahasakuinggris</h1>
+<p class="subtitle">Dokumen Blueprint</p>
+<p class="meta">Regenerasi HTML &#8226; 28 April 2026</p>
+</div>
+</header>
+<div class="reading-progress" id="readingProgress"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<button aria-label="Buka/Tutup Daftar Isi" class="sidebar-toggle" id="sidebarToggle" type="button">&#9776;</button>
+<div class="layout">
+<aside id="sidebar"><h2>Daftar Isi</h2><ul class="toc-list">
+<li><a data-target="ringkas-tujuan-eksekusi" href="#ringkas-tujuan-eksekusi">Ringkas Tujuan Eksekusi</a></li>
+<li><a data-target="north-star-kpi-dan-batas-biaya" href="#north-star-kpi-dan-batas-biaya">North Star, KPI, dan Batas Biaya</a></li>
+<li><a data-target="offer-stack-yang-dibawa-ke-iklan" href="#offer-stack-yang-dibawa-ke-iklan">Offer Stack yang Dibawa ke Iklan</a></li>
+<li><a data-target="struktur-campaign-meta-ads-abo-ke-cbo" href="#struktur-campaign-meta-ads-abo-ke-cbo">Struktur Campaign Meta Ads: ABO ke CBO</a></li>
+<li><a data-target="arsitektur-fase-1-abo-testing" href="#arsitektur-fase-1-abo-testing">Arsitektur FASE 1 — ABO Testing</a></li>
+<li><a data-target="arsitektur-fase-2-cbo-scaling" href="#arsitektur-fase-2-cbo-scaling">Arsitektur FASE 2 — CBO Scaling</a></li>
+<li><a data-target="audience-targeting-framework" href="#audience-targeting-framework">Audience Targeting Framework</a></li>
+<li><a data-target="interest-sets-untuk-cold-audience" href="#interest-sets-untuk-cold-audience">Interest Sets untuk Cold Audience</a></li>
+<li><a data-target="segmentasi-persona-di-level-ad-set" href="#segmentasi-persona-di-level-ad-set">Segmentasi Persona di Level Ad Set</a></li>
+<li><a data-target="lookalike-strategy" href="#lookalike-strategy">Lookalike Strategy</a></li>
+<li><a data-target="retargeting-stack" href="#retargeting-stack">Retargeting Stack</a></li>
+<li><a data-target="creative-strategy-pilar-konten-iklan" href="#creative-strategy-pilar-konten-iklan">Creative Strategy: Pilar Konten Iklan</a></li>
+<li><a data-target="format-iklan-utama" href="#format-iklan-utama">Format Iklan Utama</a></li>
+<li><a data-target="hook-video-bank-maksimal-30" href="#hook-video-bank-maksimal-30">Hook Video Bank (maksimal 30)</a></li>
+<li><a data-target="struktur-script-video-30-detik" href="#struktur-script-video-30-detik">Struktur Script Video 30 Detik</a></li>
+<li><a data-target="carousel-angle-plan" href="#carousel-angle-plan">Carousel Angle Plan</a></li>
+<li><a data-target="ugc-brief-untuk-talent" href="#ugc-brief-untuk-talent">UGC Brief untuk Talent</a></li>
+<li><a data-target="budget-allocation-per-fase" href="#budget-allocation-per-fase">Budget Allocation per Fase</a></li>
+<li><a data-target="simulasi-budget-harian-operasional" href="#simulasi-budget-harian-operasional">Simulasi Budget Harian Operasional</a></li>
+<li><a data-target="cpa-targets-per-produk" href="#cpa-targets-per-produk">CPA Targets per Produk</a></li>
+<li><a data-target="roas-benchmarks-per-tahap" href="#roas-benchmarks-per-tahap">ROAS Benchmarks per Tahap</a></li>
+<li><a data-target="ab-testing-plan-maksimal-15-item" href="#ab-testing-plan-maksimal-15-item">A/B Testing Plan (maksimal 15 item)</a></li>
+<li><a data-target="rule-evaluasi-ab-test" href="#rule-evaluasi-ab-test">Rule Evaluasi A/B Test</a></li>
+<li><a data-target="roadmap-8-minggu-faseminggu" href="#roadmap-8-minggu-faseminggu">Roadmap 8 Minggu (FASE/MINGGU)</a></li>
+<li><a data-target="ad-copy-angles-per-persona" href="#ad-copy-angles-per-persona">Ad Copy Angles per Persona</a></li>
+<li><a data-target="contoh-copy-siap-pakai" href="#contoh-copy-siap-pakai">Contoh Copy Siap Pakai</a></li>
+<li><a data-target="cta-bank-maksimal-15" href="#cta-bank-maksimal-15">CTA Bank (maksimal 15)</a></li>
+<li><a data-target="struktur-tracking-6-pixel-aktif" href="#struktur-tracking-6-pixel-aktif">Struktur Tracking 6 Pixel Aktif</a></li>
+<li><a data-target="dashboard-harian-tim-performance" href="#dashboard-harian-tim-performance">Dashboard Harian Tim Performance</a></li>
+<li><a data-target="checklist-optimasi-harian-maksimal-15-item" href="#checklist-optimasi-harian-maksimal-15-item">Checklist Optimasi Harian (maksimal 15 item)</a></li>
+<li><a data-target="checklist-optimasi-mingguan-maksimal-15-item" href="#checklist-optimasi-mingguan-maksimal-15-item">Checklist Optimasi Mingguan (maksimal 15 item)</a></li>
+<li><a data-target="risk-mitigation" href="#risk-mitigation">Risk Mitigation</a></li>
+<li><a data-target="integrasi-iklan-ke-tim-wa" href="#integrasi-iklan-ke-tim-wa">Integrasi Iklan ke Tim WA</a></li>
+<li><a data-target="aturan-keputusan-scale" href="#aturan-keputusan-scale">Aturan Keputusan Scale</a></li>
+<li><a data-target="penutup-eksekusi" href="#penutup-eksekusi">Penutup Eksekusi</a></li>
+</ul></aside>
+<main><nav class="back-home"><a href="../index.html">&larr; Back to Home Page</a></nav><article class="ebook-content"><section class="major-section"><h1>Direct Response &amp; Performance Marketing — Bahasakuinggris</h1>
+<h2 id="ringkas-tujuan-eksekusi">Ringkas Tujuan Eksekusi</h2>
+<ul>
+<li>Dokumen ini jadi panduan eksekusi Meta Ads 8 minggu.</li>
+<li>Fokus utama: lead WhatsApp yang siap daftar.</li>
+<li>Semua strategi diarahkan ke CTA WhatsApp 0812-1633-0704.</li>
+<li>Brand voice wajib ramah, suportif, dan energik.</li>
+<li>Positioning: kursus online Kampung Inggris Pare yang terjangkau dan kredibel.</li>
+</ul>
+<h2 id="north-star-kpi-dan-batas-biaya">North Star, KPI, dan Batas Biaya</h2>
+<ul>
+<li>North Star: pendaftar berbayar dari WA chat.</li>
+<li>KPI 1: Cost per WhatsApp Chat (CPWC).</li>
+<li>KPI 2: Cost per Qualified Chat (CPQChat).</li>
+<li>KPI 3: Cost per Enrollment (CPA).</li>
+<li>KPI 4: Revenue per Enrollment.</li>
+<li>KPI 5: ROAS harian dan mingguan.</li>
+<li>Target CPWC awal: Rp8.000–Rp18.000.</li>
+<li>Target CPQChat awal: Rp20.000–Rp40.000.</li>
+<li>Target CPA awal kelas Rp79K: Rp45.000–Rp95.000.</li>
+<li>Target CPA awal kelas TOEFL/IELTS: Rp90.000–Rp220.000.</li>
+<li>ROAS minimum fase uji: 1,3.</li>
+<li>ROAS target fase scale: 2,2–3,5.</li>
+</ul>
+<h2 id="offer-stack-yang-dibawa-ke-iklan">Offer Stack yang Dibawa ke Iklan</h2>
+<ul>
+<li>Entry Offer: Kelas Speaking/Grammar Rp79K, 10x meeting.</li>
+<li>Mid Offer: TOEFL Prep Rp299K, 20x meeting.</li>
+<li>Mid Offer: IELTS Prep Rp359K, 20x meeting.</li>
+<li>Add-on Offer: TOEFL Scoring Rp45K.</li>
+<li>Bonus taktis: placement level sederhana via chat.</li>
+<li>Bonus taktis: reminder jadwal otomatis via WA.</li>
+<li>Value anchor: pengajar teruji Kampung Inggris Pare.</li>
+<li>Trust anchor: izin Diknas.</li>
+<li>Proof anchor: 100K+ alumni.</li>
+<li>Urgency anchor: kelas kecil, kursi per batch terbatas.</li>
+</ul>
+<h2 id="struktur-campaign-meta-ads-abo-ke-cbo">Struktur Campaign Meta Ads: ABO ke CBO</h2>
+<ul>
+<li>FASE 1 pakai ABO untuk validasi angle, audience, dan creative.</li>
+<li>FASE 2 pakai CBO untuk scale pemenang dengan kontrol biaya.</li>
+<li>Objective utama: Sales/Leads dengan destination WhatsApp.</li>
+<li>Optimasi event: Conversations Started.</li>
+<li>Semua ad set wajib pakai UTM berbeda.</li>
+</ul>
+<h2 id="arsitektur-fase-1-abo-testing">Arsitektur FASE 1 — ABO Testing</h2>
+<ul>
+<li>Durasi: Minggu 1 sampai Minggu 3.</li>
+<li>Campaign 1: ABO Prospecting Cold.</li>
+<li>Campaign 2: ABO Warm Retargeting.</li>
+<li>Campaign 3: ABO Offer Specific (TOEFL/IELTS heavy intent).</li>
+<li>Tiap campaign maksimal 4 ad set aktif awal.</li>
+<li>Tiap ad set mulai dari 2–3 ads.</li>
+<li>Jaga budget supaya tiap ads dapat data dalam 48 jam.</li>
+<li>Matikan ads tanpa sinyal chat dalam 2–3 hari.</li>
+</ul>
+<h2 id="arsitektur-fase-2-cbo-scaling">Arsitektur FASE 2 — CBO Scaling</h2>
+<ul>
+<li>Durasi: Minggu 4 sampai Minggu 8.</li>
+<li>Campaign 1: CBO Prospecting Winner.</li>
+<li>Campaign 2: CBO Retargeting Winner.</li>
+<li>Campaign 3: CBO High Intent Product Split.</li>
+<li>Masukkan hanya kombinasi terbukti dari ABO.</li>
+<li>Naikkan budget bertahap 20–30% per 24 jam.</li>
+<li>Duplikasi ad set pemenang jika learning terbatas.</li>
+<li>Pisahkan audience overlap tinggi.</li>
+<li>Pertahankan creative cadangan untuk anti-fatigue.</li>
+</ul>
+<h2 id="audience-targeting-framework">Audience Targeting Framework</h2>
+<ul>
+<li>Layer 1: Interest set berbasis tujuan belajar.</li>
+<li>Layer 2: Lookalike dari sumber data internal.</li>
+<li>Layer 3: Retargeting engagement dan traffic.</li>
+<li>Layer 4: Retargeting warm chat non-enroll.</li>
+</ul>
+<h2 id="interest-sets-untuk-cold-audience">Interest Sets untuk Cold Audience</h2>
+<ul>
+<li>Set 1: Belajar Bahasa Inggris + TOEFL + IELTS.</li>
+<li>Set 2: Beasiswa luar negeri + LPDP + Kampus.</li>
+<li>Set 3: Karier + Interview kerja + CV profesional.</li>
+<li>Set 4: Fresh graduate + Job seeker + LinkedIn.</li>
+<li>Set 5: Parenting education + pendidikan anak.</li>
+<li>Set 6: Kursus online + e-learning + webinar edukasi.</li>
+<li>Set 7: Travel + study abroad + international culture.</li>
+<li>Set 8: Productivity + self-development + public speaking.</li>
+</ul>
+<h2 id="segmentasi-persona-di-level-ad-set">Segmentasi Persona di Level Ad Set</h2>
+<ul>
+<li>Persona A: Pelajar/Mahasiswa 15–25, fokus percaya diri dan nilai.</li>
+<li>Persona B: Pekerja 23–40, fokus karier, promosi, dan sertifikasi.</li>
+<li>Persona C: Orang tua 30–50, fokus keamanan dan progres anak.</li>
+<li>Gunakan materi visual dan copy yang berbeda per persona.</li>
+<li>Satu ad set hanya satu persona dominan.</li>
+</ul>
+<h2 id="lookalike-strategy">Lookalike Strategy</h2>
+<ul>
+<li>LLA 1% dari daftar alumni aktif.</li>
+<li>LLA 1% dari pembeli TOEFL/IELTS.</li>
+<li>LLA 1% dari pengguna yang chat &gt;2 menit.</li>
+<li>LLA 2% dari video viewers 75%.</li>
+<li>LLA 3% dari website visitor 30 hari.</li>
+<li>Mulai dari 1%, lalu ekspansi bertahap.</li>
+<li>Hindari overlap antar LLA dalam campaign sama.</li>
+</ul>
+<h2 id="retargeting-stack">Retargeting Stack</h2>
+<ul>
+<li>RT1: Engagers IG/FB 30 hari.</li>
+<li>RT2: Video viewers 50% 14 hari.</li>
+<li>RT3: Website visitors 30 hari.</li>
+<li>RT4: Add to cart/form open tanpa submit 14 hari.</li>
+<li>RT5: WhatsApp clickers belum chat 14 hari.</li>
+<li>RT6: Chat masuk belum transfer 7 hari.</li>
+<li>Untuk RT6, gunakan offer clarifier dan jadwal alternatif.</li>
+</ul>
+<h2 id="creative-strategy-pilar-konten-iklan">Creative Strategy: Pilar Konten Iklan</h2>
+<ul>
+<li>Pilar 1: Bukti hasil dan testimoni konkret.</li>
+<li>Pilar 2: Edukasi mini yang langsung terasa manfaatnya.</li>
+<li>Pilar 3: Klarifikasi kualitas meski harga terjangkau.</li>
+<li>Pilar 4: Transparansi proses belajar online.</li>
+<li>Pilar 5: Urgency batch dan kursi kelas kecil.</li>
+</ul>
+<h2 id="format-iklan-utama">Format Iklan Utama</h2>
+<ul>
+<li>Video pendek 15–35 detik untuk hook cepat.</li>
+<li>Carousel 4–6 kartu untuk value breakdown.</li>
+<li>UGC style talking head untuk kepercayaan.</li>
+<li>Static image untuk retargeting cepat.</li>
+<li>Story/Reels vertical khusus mobile-first.</li>
+</ul>
+<h2 id="hook-video-bank-maksimal-30">Hook Video Bank (maksimal 30)</h2>
+<ul>
+<li>&quot;Biaya kursus Inggris sering bikin mundur?&quot;</li>
+<li>&quot;Mulai ngomong Inggris dari kelas Rp79K.&quot;</li>
+<li>&quot;Ragu kelas online efektif? Lihat cara belajarnya.&quot;</li>
+<li>&quot;Kelas kecil bikin kamu lebih kebagian praktik.&quot;</li>
+<li>&quot;Belajar bareng pengajar Kampung Inggris Pare.&quot;</li>
+<li>&quot;Banyak yang kira murah itu kualitas rendah.&quot;</li>
+<li>&quot;Di sini, kamu cek metode dulu sebelum daftar.&quot;</li>
+<li>&quot;Pekerja sibuk tetap bisa ikut lewat jadwal fleksibel.&quot;</li>
+<li>&quot;Orang tua, tenang. Progress anak dipantau jelas.&quot;</li>
+<li>&quot;TOEFL target? Kita latih strategi, bukan tebak-tebakan.&quot;</li>
+<li>&quot;IELTS target? Fokus speaking dan writing terarah.&quot;</li>
+<li>&quot;Takut tertipu kursus online? Cek bukti legalitasnya.&quot;</li>
+<li>&quot;Sudah 100K+ alumni, sekarang giliran kamu.&quot;</li>
+<li>&quot;10x meeting cukup untuk dorong keberanian bicara.&quot;</li>
+<li>&quot;Mulai dari satu chat, lanjut ke kelas yang pas.&quot;</li>
+</ul>
+<h2 id="struktur-script-video-30-detik">Struktur Script Video 30 Detik</h2>
+<ul>
+<li>Detik 0–3: Hook problem spesifik.</li>
+<li>Detik 4–10: Jelaskan kenapa masalah sering terjadi.</li>
+<li>Detik 11–18: Tunjukkan metode Bahasakuinggris.</li>
+<li>Detik 19–24: Masukkan bukti, mitra, atau testimoni.</li>
+<li>Detik 25–30: CTA chat WhatsApp.</li>
+</ul>
+<h2 id="carousel-angle-plan">Carousel Angle Plan</h2>
+<ul>
+<li>Kartu 1: masalah umum calon siswa.</li>
+<li>Kartu 2: solusi lewat kelas kecil.</li>
+<li>Kartu 3: profil pengajar Kampung Inggris Pare.</li>
+<li>Kartu 4: paket harga dan jumlah pertemuan.</li>
+<li>Kartu 5: social proof 100K+ alumni.</li>
+<li>Kartu 6: CTA chat + jadwal batch terdekat.</li>
+</ul>
+<h2 id="ugc-brief-untuk-talent">UGC Brief untuk Talent</h2>
+<ul>
+<li>Buka dengan pengalaman pribadi sebelum ikut kelas.</li>
+<li>Ceritakan hambatan utama secara jujur.</li>
+<li>Sebut detail program yang diikuti.</li>
+<li>Jelaskan perubahan perilaku belajar.</li>
+<li>Tampilkan hasil yang masuk akal.</li>
+<li>Akhiri dengan ajakan chat tanpa memaksa.</li>
+</ul>
+<h2 id="budget-allocation-per-fase">Budget Allocation per Fase</h2>
+<div class="table-scroll"><table>
+<thead><tr>
+<th>Pos Alokasi</th>
+<th>FASE 1 Minggu 1-3</th>
+<th>FASE 2 Minggu 4-8</th>
+<th>Catatan Eksekusi</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Prospecting Cold</td>
+<td>55%</td>
+<td>50%</td>
+<td>Driver volume chat baru</td>
+</tr>
+<tr>
+<td>Lookalike</td>
+<td>15%</td>
+<td>20%</td>
+<td>Digenjot saat CPA stabil</td>
+</tr>
+<tr>
+<td>Retargeting Warm</td>
+<td>20%</td>
+<td>20%</td>
+<td>Fokus close non-enroll</td>
+</tr>
+<tr>
+<td>Offer TOEFL/IELTS</td>
+<td>10%</td>
+<td>10%</td>
+<td>Tangkap intent skor</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="simulasi-budget-harian-operasional">Simulasi Budget Harian Operasional</h2>
+<ul>
+<li>Hari 1–7: Rp350.000 per hari total.</li>
+<li>Hari 8–14: Rp450.000 per hari total.</li>
+<li>Hari 15–21: Rp600.000 per hari total.</li>
+<li>Hari 22–35: Rp800.000 per hari total.</li>
+<li>Hari 36–56: Rp1.000.000–Rp1.400.000 per hari.</li>
+<li>Tambahan hanya jika CPA tetap dalam target.</li>
+</ul>
+<h2 id="cpa-targets-per-produk">CPA Targets per Produk</h2>
+<div class="table-scroll"><table>
+<thead><tr>
+<th>Produk</th>
+<th>Harga</th>
+<th>Target CPA Ideal</th>
+<th>Target CPA Maks</th>
+<th>ROAS Minimum</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Speaking/Grammar</td>
+<td>Rp79.000</td>
+<td>Rp55.000</td>
+<td>Rp95.000</td>
+<td>1,3</td>
+</tr>
+<tr>
+<td>TOEFL Prep</td>
+<td>Rp299.000</td>
+<td>Rp120.000</td>
+<td>Rp220.000</td>
+<td>2,0</td>
+</tr>
+<tr>
+<td>IELTS Prep</td>
+<td>Rp359.000</td>
+<td>Rp140.000</td>
+<td>Rp240.000</td>
+<td>2,1</td>
+</tr>
+<tr>
+<td>TOEFL Scoring</td>
+<td>Rp45.000</td>
+<td>Rp20.000</td>
+<td>Rp35.000</td>
+<td>1,5</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="roas-benchmarks-per-tahap">ROAS Benchmarks per Tahap</h2>
+<div class="table-scroll"><table>
+<thead><tr>
+<th>Tahap</th>
+<th>Patokan Lulus</th>
+<th>Patokan Mantap</th>
+<th>Aksi Tim</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Minggu 1-2</td>
+<td>1,1</td>
+<td>1,5</td>
+<td>Cari kombinasi menang</td>
+</tr>
+<tr>
+<td>Minggu 3-4</td>
+<td>1,4</td>
+<td>2,0</td>
+<td>Pangkas ad set lemah</td>
+</tr>
+<tr>
+<td>Minggu 5-6</td>
+<td>1,8</td>
+<td>2,7</td>
+<td>Scale budget bertahap</td>
+</tr>
+<tr>
+<td>Minggu 7-8</td>
+<td>2,2</td>
+<td>3,5</td>
+<td>Stabilkan volume dan margin</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="ab-testing-plan-maksimal-15-item">A/B Testing Plan (maksimal 15 item)</h2>
+<ul>
+<li>Uji hook pain versus aspiration.</li>
+<li>Uji opening talent pria versus wanita.</li>
+<li>Uji subtitle tebal versus minimal.</li>
+<li>Uji CTA &quot;Chat sekarang&quot; versus &quot;Cek jadwal&quot;.</li>
+<li>Uji persona-specific copy versus copy umum.</li>
+<li>Uji proof legalitas di awal versus akhir video.</li>
+<li>Uji format 15 detik versus 30 detik.</li>
+<li>Uji carousel 4 kartu versus 6 kartu.</li>
+<li>Uji mention harga di frame pertama versus ketiga.</li>
+<li>Uji angle pengajar versus angle alumni.</li>
+<li>Uji objective leads versus sales to WhatsApp.</li>
+<li>Uji broad interest versus layered interest.</li>
+</ul>
+<h2 id="rule-evaluasi-ab-test">Rule Evaluasi A/B Test</h2>
+<ul>
+<li>Minimal 3.000 impresi per ads sebelum vonis.</li>
+<li>Atau minimal 25 chat per varian sebelum cutoff.</li>
+<li>Menang jika CPWC lebih rendah dan quality chat bagus.</li>
+<li>Jangan ganti lebih dari satu variabel besar sekaligus.</li>
+<li>Catat hasil harian dalam sheet tunggal tim.</li>
+</ul>
+<h2 id="roadmap-8-minggu-faseminggu">Roadmap 8 Minggu (FASE/MINGGU)</h2>
+<h3 id="fase-1-validasi-dasar">FASE 1 — Validasi Dasar</h3>
+<h4 id="minggu-1">Minggu 1</h4>
+<ul>
+<li>Luncurkan 3 campaign ABO dengan 8–10 ads.</li>
+<li>Pantau biaya chat, CTR, dan kualitas chat.</li>
+<li>Kumpulkan komentar untuk insight copy.</li>
+</ul>
+<h4 id="minggu-2">Minggu 2</h4>
+<ul>
+<li>Matikan 30% ads performa terlemah.</li>
+<li>Tambah 4 creative baru dari pola pemenang.</li>
+<li>Mulai retargeting video viewers dan engagers.</li>
+</ul>
+<h4 id="minggu-3">Minggu 3</h4>
+<ul>
+<li>Kunci 3 kombinasi audience x creative terbaik.</li>
+<li>Buat struktur transisi ke CBO.</li>
+<li>Siapkan script WA sesuai pain point dominan.</li>
+</ul>
+<h3 id="fase-2-scale-terkontrol">FASE 2 — Scale Terkontrol</h3>
+<h4 id="minggu-4">Minggu 4</h4>
+<ul>
+<li>Aktifkan CBO Prospecting Winner.</li>
+<li>Pindahkan pemenang ABO ke CBO bertahap.</li>
+<li>Naikkan budget 20% jika CPA aman.</li>
+</ul>
+<h4 id="minggu-5">Minggu 5</h4>
+<ul>
+<li>Tambah Lookalike 2% dari sumber kuat.</li>
+<li>Luncurkan creative anti-fatigue batch kedua.</li>
+<li>Perkuat retargeting chat belum daftar.</li>
+</ul>
+<h4 id="minggu-6">Minggu 6</h4>
+<ul>
+<li>Buat campaign khusus TOEFL/IELTS intent tinggi.</li>
+<li>Uji pricing anchor di copy dan visual.</li>
+<li>Optimasi jam tayang berdasarkan chat response.</li>
+</ul>
+<h4 id="minggu-7">Minggu 7</h4>
+<ul>
+<li>Scale ad set pemenang via duplikasi terkontrol.</li>
+<li>Perketat exclusion antar audience.</li>
+<li>Jalankan promo batch limit dengan countdown ringan.</li>
+</ul>
+<h4 id="minggu-8">Minggu 8</h4>
+<ul>
+<li>Stabilkan kombinasi terbaik untuk always-on.</li>
+<li>Susun playbook pemenang per persona.</li>
+<li>Lock dashboard KPI untuk siklus bulan berikutnya.</li>
+</ul>
+<h2 id="ad-copy-angles-per-persona">Ad Copy Angles per Persona</h2>
+<h3 id="persona-pelajarmahasiswa-1525">Persona Pelajar/Mahasiswa 15–25</h3>
+<ul>
+<li>Angle 1: Berani ngomong di kelas dan organisasi.</li>
+<li>Angle 2: Persiapan beasiswa dan skor tes.</li>
+<li>Angle 3: Upgrade CV sejak dini.</li>
+<li>Angle 4: Harga masuk akal untuk kantong pelajar.</li>
+</ul>
+<h3 id="persona-pekerja-2340">Persona Pekerja 23–40</h3>
+<ul>
+<li>Angle 1: Naik level komunikasi kerja.</li>
+<li>Angle 2: Persiapan interview dan promosi.</li>
+<li>Angle 3: Jadwal fleksibel setelah jam kantor.</li>
+<li>Angle 4: Outcome praktis, bukan teori panjang.</li>
+</ul>
+<h3 id="persona-orang-tua-3050">Persona Orang Tua 30–50</h3>
+<ul>
+<li>Angle 1: Lingkungan belajar aman dan terarah.</li>
+<li>Angle 2: Pengajar teruji plus legalitas jelas.</li>
+<li>Angle 3: Progress anak bisa dipantau.</li>
+<li>Angle 4: Investasi belajar yang rasional.</li>
+</ul>
+<h2 id="contoh-copy-siap-pakai">Contoh Copy Siap Pakai</h2>
+<ul>
+<li>&quot;Mulai berani speaking tanpa nunggu sempurna. Coba kelas kecil Bahasakuinggris. Chat WA sekarang.&quot;</li>
+<li>&quot;Ragu online efektif? Di sini praktik rutin dan pendampingan jelas. Cek jadwal batch via WA.&quot;</li>
+<li>&quot;Untuk pekerja sibuk, kami siapkan ritme belajar yang realistis. Tanya kelas malam di WhatsApp.&quot;</li>
+<li>&quot;Orang tua bisa cek alur belajar sebelum daftar. Tim kami jelaskan detail lewat chat.&quot;</li>
+<li>&quot;TOEFL/IELTS bukan soal hafal. Kami latih strategi dan konsistensi. Konsultasi dulu di WA.&quot;</li>
+</ul>
+<h2 id="cta-bank-maksimal-15">CTA Bank (maksimal 15)</h2>
+<ul>
+<li>Chat jadwal kelas sekarang.</li>
+<li>Cek kelas yang paling cocok.</li>
+<li>Tanya slot batch terdekat.</li>
+<li>Konsultasi target belajarmu.</li>
+<li>Minta rekomendasi paket via WA.</li>
+<li>Mulai dari kelas Rp79K.</li>
+<li>Cek opsi TOEFL/IELTS hari ini.</li>
+<li>Lihat alur belajarnya dulu.</li>
+<li>Minta detail jam belajarnya.</li>
+<li>Tanya promo batch aktif.</li>
+</ul>
+<h2 id="struktur-tracking-6-pixel-aktif">Struktur Tracking 6 Pixel Aktif</h2>
+<ul>
+<li>Pixel 1: Page View.</li>
+<li>Pixel 2: View Content.</li>
+<li>Pixel 3: Initiate Contact WhatsApp.</li>
+<li>Pixel 4: Lead Qualified.</li>
+<li>Pixel 5: Purchase.</li>
+<li>Pixel 6: Repeat Purchase/Upsell.</li>
+<li>Pastikan CAPI aktif untuk sinyal stabil.</li>
+<li>Samakan naming event di dashboard iklan dan CRM.</li>
+</ul>
+<h2 id="dashboard-harian-tim-performance">Dashboard Harian Tim Performance</h2>
+<ul>
+<li>Spend harian per campaign.</li>
+<li>CPWC per ad set.</li>
+<li>CPQChat per persona.</li>
+<li>CPA per produk.</li>
+<li>ROAS per campaign.</li>
+<li>Frequency per creative.</li>
+<li>CTR dan CPC per placement.</li>
+<li>Rasio chat ke transfer.</li>
+</ul>
+<h2 id="checklist-optimasi-harian-maksimal-15-item">Checklist Optimasi Harian (maksimal 15 item)</h2>
+<ul>
+<li>Cek spend pacing pukul 10.00.</li>
+<li>Cek ads yang tidak deliver.</li>
+<li>Cek frequency di atas 2,8.</li>
+<li>Cek komentar negatif untuk insight copy.</li>
+<li>Pause ads CPWC di atas batas.</li>
+<li>Geser budget ke pemenang ringan.</li>
+<li>Update sheet uji A/B.</li>
+<li>Sinkron data chat dari WA admin.</li>
+<li>Cek jam aktif respons admin.</li>
+<li>Audit UTM dan event tracking.</li>
+<li>Catat hipotesis besok pagi.</li>
+</ul>
+<h2 id="checklist-optimasi-mingguan-maksimal-15-item">Checklist Optimasi Mingguan (maksimal 15 item)</h2>
+<ul>
+<li>Review winning angle per persona.</li>
+<li>Review creative fatigue dan refresh rate.</li>
+<li>Review overlap audience antarcampaign.</li>
+<li>Review kualitas lead per produk.</li>
+<li>Review kinerja retargeting windows.</li>
+<li>Review script WA terhadap conversion.</li>
+<li>Review ROAS blended semua produk.</li>
+<li>Putuskan scale, hold, atau cut.</li>
+</ul>
+<h2 id="risk-mitigation">Risk Mitigation</h2>
+<ul>
+<li>Risiko &quot;murah = jelek&quot; dilawan dengan bukti metode.</li>
+<li>Risiko &quot;online tidak efektif&quot; dilawan lewat demo alur kelas.</li>
+<li>Risiko &quot;takut tipu&quot; dilawan legalitas dan partner nyata.</li>
+<li>Risiko &quot;jadwal bentrok&quot; dilawan opsi jadwal alternatif.</li>
+<li>Selalu respon komentar skeptis dengan sopan dan fakta.</li>
+</ul>
+<h2 id="integrasi-iklan-ke-tim-wa">Integrasi Iklan ke Tim WA</h2>
+<ul>
+<li>Format lead masuk harus menyimpan persona.</li>
+<li>Admin WA harus terima konteks iklan yang diklik.</li>
+<li>Gunakan label: Mahasiswa, Pekerja, Orang Tua.</li>
+<li>Gunakan label: New Chat, Qualified, Pending, Closed.</li>
+<li>Kecepatan respon ideal di bawah 5 menit.</li>
+<li>Jika lewat 10 menit, trigger follow-up otomatis.</li>
+</ul>
+<h2 id="aturan-keputusan-scale">Aturan Keputusan Scale</h2>
+<ul>
+<li>Scale hanya bila CPA stabil 3 hari.</li>
+<li>Scale hanya bila quality chat tetap baik.</li>
+<li>Hindari scale saat admin WA overload.</li>
+<li>Jika quality turun, turunkan budget dulu.</li>
+<li>Jangan tambah variabel saat sinyal belum jelas.</li>
+</ul>
+<h2 id="penutup-eksekusi">Penutup Eksekusi</h2>
+<ul>
+<li>Strategi ini menang jika disiplin data dan eksekusi harian.</li>
+<li>Kunci sukses ada pada sinkron iklan dan closing WA.</li>
+<li>Fokuskan tim pada kombinasi yang terbukti menghasilkan enroll.</li>
+<li>Jalankan ritme 8 minggu tanpa lompat-lompat strategi.</li>
+</ul></section></article></main>
+</div>
+<button aria-label="Kembali ke atas" class="back-to-top" id="backToTop" type="button">&#8593;</button>
+<script>
+    (function () {
+      'use strict';
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      var toggle = document.getElementById('sidebarToggle');
+      var backBtn = document.getElementById('backToTop');
+      var progressBar = document.getElementById('readingProgress');
+      var tocLinks = Array.from(document.querySelectorAll('.toc-list a'));
+      var sections = tocLinks
+        .map(function (a) { return document.getElementById(a.dataset.target); })
+        .filter(Boolean);
+
+      /* --- Sidebar open/close with overlay --- */
+      function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          if (sidebar.classList.contains('open')) { closeSidebar(); }
+          else { openSidebar(); }
+        });
+      }
+      if (overlay) {
+        overlay.addEventListener('click', closeSidebar);
+      }
+
+      /* --- Swipe to close sidebar --- */
+      var touchStartX = 0;
+      var touchStartY = 0;
+      sidebar.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      sidebar.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        var dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+        if (dx < -60 && dy < 80) { closeSidebar(); }
+      }, { passive: true });
+
+      /* --- TOC link click closes sidebar on mobile --- */
+      tocLinks.forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (window.innerWidth <= 1024) { closeSidebar(); }
+        });
+      });
+
+      /* --- Scroll spy --- */
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var id = entry.target.id;
+            tocLinks.forEach(function (link) {
+              if (link.dataset.target === id) {
+                link.classList.add('active');
+                /* Auto-scroll TOC to active item on desktop */
+                if (window.innerWidth > 1024 && sidebar.scrollHeight > sidebar.clientHeight) {
+                  link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                }
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          });
+        },
+        { rootMargin: '-30% 0px -55% 0px', threshold: 0.1 }
+      );
+      sections.forEach(function (sec) { observer.observe(sec); });
+
+      /* --- Reading progress bar + back-to-top --- */
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            var scrollTop = window.scrollY || document.documentElement.scrollTop;
+            var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight > 0) {
+              progressBar.style.width = Math.min((scrollTop / docHeight) * 100, 100) + '%';
+            }
+            if (scrollTop > 400) { backBtn.classList.add('show'); }
+            else { backBtn.classList.remove('show'); }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      backBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      /* --- Profile accordion on mobile --- */
+      function initAccordion() {
+        var isMobile = window.innerWidth <= 768;
+        var profiles = document.querySelectorAll('h3[id]');
+        profiles.forEach(function (h3) {
+          /* Only profile headings (G0-x, numbered, S-x, T-x) */
+          var text = h3.textContent || '';
+          if (!/^(G0-|[0-9]+\.|S[0-9]|T-[0-9])/.test(text.trim())) return;
+
+          var existingBtn = h3.querySelector('.profile-collapse-btn');
+          if (!existingBtn) {
+            var btn = document.createElement('button');
+            btn.className = 'profile-collapse-btn';
+            btn.textContent = '▼';
+            btn.setAttribute('aria-label', 'Buka/tutup profil');
+            h3.appendChild(btn);
+          }
+
+          var btn = h3.querySelector('.profile-collapse-btn');
+          /* Collect siblings until next h3 or h2 */
+          var body = h3.nextElementSibling;
+          if (body && body.classList.contains('profile-body')) {
+            /* Already wrapped */
+            if (isMobile && !body.classList.contains('collapsed')) {
+              body.classList.add('collapsed');
+              btn.textContent = '▶';
+            } else if (!isMobile) {
+              body.classList.remove('collapsed');
+              btn.textContent = '▼';
+            }
+            return;
+          }
+
+          /* Wrap profile content in a div */
+          var wrapper = document.createElement('div');
+          wrapper.className = 'profile-body';
+          var sibling = h3.nextElementSibling;
+          while (sibling && sibling.tagName !== 'H3' && sibling.tagName !== 'H2') {
+            var next = sibling.nextElementSibling;
+            wrapper.appendChild(sibling);
+            sibling = next;
+          }
+          h3.parentNode.insertBefore(wrapper, sibling);
+
+          if (isMobile) {
+            wrapper.classList.add('collapsed');
+            btn.textContent = '▶';
+          }
+        });
+      }
+
+      /* Toggle accordion on click */
+      document.addEventListener('click', function (e) {
+        if (!e.target.classList.contains('profile-collapse-btn')) return;
+        var h3 = e.target.closest('h3');
+        if (!h3) return;
+        var body = h3.nextElementSibling;
+        if (body && body.classList.contains('profile-body')) {
+          body.classList.toggle('collapsed');
+          e.target.textContent = body.classList.contains('collapsed') ? '▶' : '▼';
+        }
+      });
+
+      /* Init accordion on load and resize */
+      initAccordion();
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(initAccordion, 250);
+      });
+
+      /* --- Keyboard: Escape closes sidebar --- */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+          closeSidebar();
+        }
+      });
+    })();
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sales Scale &amp; Revenue Expansion — Bahasakuinggris</title>
+<style>
+    :root { --bg:#fff; --text:#1f2937; --heading:#1a365d; --accent:#d69e2e; --danger:#e53e3e; --line:#e5e7eb; --muted:#64748b; --soft:#f8fafc; --bridge:#f0f4f8; --lesson:#fffbeb; --whatif:#f5f0ff; }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:"Segoe UI", system-ui, -apple-system, sans-serif; line-height:1.65; }
+    h1,h2,h3,h4,h5 { font-family:Georgia, "Times New Roman", serif; color:var(--heading); line-height:1.3; scroll-margin-top:80px; }
+    .cover { min-height:100vh; display:grid; place-items:center; text-align:center; padding:2rem; border-bottom:1px solid var(--line); }
+    .cover h1 { font-size:clamp(2rem,4vw,3.3rem); margin:.25rem 0; }
+    .cover .subtitle { color:var(--heading); font-size:1.1rem; } .cover .meta { color:var(--muted); margin-top:1rem; }
+    .layout { display:flex; }
+    .sidebar-toggle { display:none; position:fixed; top:12px; left:12px; z-index:1200; border:1px solid var(--line); background:white; border-radius:8px; padding:.45rem .65rem; }
+    aside { position:sticky; top:0; align-self:flex-start; width:310px; max-height:100vh; overflow:auto; border-right:1px solid var(--line); background:#fff; padding:1rem; }
+    .toc-list,.toc-list ul { list-style:none; margin:0; padding-left:.8rem; } .toc-list>li { margin:.24rem 0; }
+    .toc-list a { text-decoration:none; color:#334155; font-size:.92rem; display:block; padding:.16rem .4rem; border-left:2px solid transparent; border-radius:4px; }
+    .toc-list a.active { color:var(--heading); border-left-color:var(--accent); background:#f8fafc; font-weight:600; }
+    main { flex:1; padding:1.2rem clamp(1rem,3vw,2.5rem) 3rem; } .ebook-content { max-width:980px; margin:auto; }
+    .major-section { padding:1rem 0; border-bottom:1px solid var(--line); } .section-alt { background:var(--soft); padding:1.1rem; border-radius:10px; border:1px solid #edf2f7; }
+    .table-scroll { overflow-x:auto; margin:1rem 0; } table { width:100%; border-collapse:collapse; min-width:640px; background:#fff; }
+    th,td { border:1px solid #dbe1e8; padding:.58rem .6rem; vertical-align:top; } th { background:#f8fafc; font-weight:700; }
+    .scorecard-table th::after { content:" ⇅"; color:#94a3b8; font-size:.78em; } .scorecard-table tbody tr:nth-child(even) { background:#fcfdff; }
+    .status-green { background:#e6ffed; } .status-yellow { background:#fffbea; } .status-red { background:#ffe8e8; } .status-gray { background:#f3f4f6; }
+    .warning-marker { color:var(--danger); font-weight:700; font-size:1.12em; } .controversial-heading { border-left:4px solid var(--danger); padding-left:.55rem; }
+    blockquote { margin:1rem 0; border-left:4px solid #cbd5e1; padding:.6rem .85rem; background:#f8fafc; }
+    .archetype-box { display:flex; flex-wrap:wrap; align-items:center; gap:.45rem; margin:.8rem 0 1rem; } .archetype-label { font-weight:700; color:#475569; }
+    .archetype-pill { background:#ebf4ff; border:1px solid #bfdbfe; color:#1e40af; padding:.22rem .55rem; border-radius:999px; font-size:.86rem; }
+    .lesson-box { background:var(--lesson); border-left:4px solid var(--accent); padding:.7rem .8rem; margin:.9rem 0 1.1rem; font-size:.95rem; } .lesson-title { margin:.2rem 0 .45rem; font-weight:700; }
+    .narrative-bridge { background:var(--bridge); border:1px solid #d7e0ea; border-radius:10px; padding:.75rem .9rem; margin:1rem 0; } .narrative-bridge p { font-style:italic; color:#334155; }
+    .timeline-scroll { overflow-x:auto; padding-bottom:.5rem; margin:.9rem 0 1.2rem; } .timeline-track { display:grid; grid-auto-flow:column; grid-auto-columns:minmax(180px,1fr); gap:.65rem; min-width:max-content; }
+    .timeline-col { border:1px solid #dbe4ee; border-radius:10px; background:#fff; padding:.55rem; } .timeline-year { font-weight:700; color:var(--heading); border-bottom:1px solid #e2e8f0; padding-bottom:.35rem; margin-bottom:.45rem; }
+    .timeline-event { font-size:.9rem; padding:.42rem .5rem; border-radius:7px; margin:.36rem 0; border:1px solid transparent; } .timeline-event.positive { background:#ecfdf3; border-color:#b7efcc; } .timeline-event.negative { background:#fff1f1; border-color:#f6c2c2; }
+    .pattern-chain { display:flex; flex-direction:column; gap:.4rem; margin:1rem 0 1.2rem; } .chain-card { border:1px solid #dbe4ee; border-radius:9px; background:#fff; padding:.6rem .7rem; } .chain-arrow { text-align:center; color:#64748b; font-size:1.2rem; }
+    .juxtaposition-wrap { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; margin:.75rem 0 1rem; } .juxta-card { border-radius:10px; border:1px solid #e2e8f0; padding:.65rem .75rem; }
+    .juxta-card.positive { background:#f0fff4; border-color:#bbf7d0; } .juxta-card.positive h5 { color:#166534; } .juxta-card.negative { background:#fff1f2; border-color:#fecdd3; } .juxta-card.negative h5 { color:#991b1b; }
+    .whatif-card { background:var(--whatif); border-left:4px solid #7c3aed; padding:.65rem .8rem; border-radius:8px; margin:.6rem 0; }
+    .checklist-table tbody tr td:first-child { font-weight:700; text-align:center; width:48px; } .fake-checkbox { display:inline-block; border:1px solid #cbd5e1; border-radius:6px; padding:.14rem .38rem; background:#fff; font-family:ui-monospace,monospace; }
+    .retro-score-table td:nth-child(2) { font-weight:700; text-align:center; } .score-safe { background:#ecfdf3; color:#166534; } .score-low { background:#fffbea; color:#92400e; } .score-mid { background:#fff7ed; color:#9a3412; } .score-high { background:#fee2e2; color:#991b1b; }
+    .back-to-top { position:fixed; right:16px; bottom:18px; border:none; background:var(--heading); color:#fff; width:42px; height:42px; border-radius:999px; cursor:pointer; opacity:0; transform:translateY(8px); transition:.2s; } .back-to-top.show { opacity:1; transform:translateY(0); }
+    /* --- Overlay backdrop --- */
+    .sidebar-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:1050; opacity:0; transition:opacity .24s; }
+    .sidebar-overlay.show { display:block; opacity:1; }
+
+    /* --- Reading progress bar --- */
+    .reading-progress { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--accent),#f59e0b); z-index:1300; width:0; transition:width .12s linear; }
+
+    /* --- Accordion for mobile profiles --- */
+    .profile-collapse-btn { display:none; }
+
+    /* ===== TABLET: ≤1024px ===== */
+    @media (max-width:1024px) {
+      .sidebar-toggle { display:block; }
+      aside { position:fixed; top:0; left:0; transform:translateX(-105%); transition:.24s; z-index:1100; width:min(82vw,320px); box-shadow:0 10px 30px rgba(2,6,23,.18); }
+      aside.open { transform:translateX(0); }
+      main { padding-top:3.8rem; }
+      .juxtaposition-wrap { grid-template-columns:1fr; }
+      .toc-list a { padding:.4rem .5rem; min-height:36px; display:flex; align-items:center; }
+    }
+
+    /* ===== MOBILE: ≤768px ===== */
+    @media (max-width:768px) {
+      body { font-size:15px; line-height:1.7; -webkit-text-size-adjust:100%; }
+      h1 { font-size:1.6rem; } h2 { font-size:1.35rem; scroll-margin-top:56px; } h3 { font-size:1.15rem; scroll-margin-top:56px; } h4 { font-size:1.05rem; }
+      main { padding:3.2rem .75rem 4rem; }
+      .cover { min-height:80vh; padding:1.5rem 1rem; }
+      .cover h1 { font-size:1.6rem; }
+      .cover .subtitle { font-size:.95rem; }
+
+      /* Tables: scroll hint + shadow */
+      .table-scroll { position:relative; }
+      .table-scroll::after { content:"← geser →"; display:block; text-align:center; font-size:.78rem; color:var(--muted); padding:.3rem 0; }
+      table { min-width:520px; font-size:.85rem; }
+      th,td { padding:.4rem .45rem; }
+
+      /* TOC touch targets */
+      .toc-list a { padding:.5rem .55rem; min-height:44px; font-size:.95rem; border-radius:6px; }
+      .toc-list>li { margin:.12rem 0; }
+
+      /* Sidebar wider on mobile */
+      aside { width:min(88vw,340px); padding:.8rem .6rem; }
+
+      /* Lesson box, bridge, whatif — full width */
+      .lesson-box, .narrative-bridge, .whatif-card { padding:.6rem .65rem; font-size:.9rem; }
+      blockquote { padding:.5rem .65rem; font-size:.93rem; }
+
+      /* Timeline: smaller columns */
+      .timeline-track { grid-auto-columns:minmax(150px,1fr); }
+      .timeline-event { font-size:.82rem; padding:.35rem .4rem; }
+
+      /* Pattern chain */
+      .chain-card { padding:.5rem .55rem; font-size:.9rem; }
+
+      /* Archetype pills */
+      .archetype-pill { font-size:.8rem; padding:.18rem .45rem; }
+
+      /* Back to top: larger touch target */
+      .back-to-top { width:48px; height:48px; font-size:1.2rem; right:12px; bottom:14px; }
+
+      /* Hamburger: larger */
+      .sidebar-toggle { padding:.55rem .75rem; font-size:1.15rem; top:8px; left:8px; }
+
+      /* Profile accordion */
+      .profile-collapse-btn { display:inline-block; background:none; border:1px solid var(--line); border-radius:6px; padding:.3rem .6rem; font-size:.82rem; color:var(--muted); cursor:pointer; margin-left:.5rem; vertical-align:middle; }
+      .profile-body.collapsed { display:none; }
+
+      /* Juxtaposition cards stacked */
+      .juxta-card { padding:.55rem .6rem; font-size:.9rem; }
+
+      /* Checklist table */
+      .checklist-table { min-width:400px; }
+
+      /* Scorecard table */
+      .scorecard-table { min-width:700px; font-size:.8rem; }
+    }
+
+    /* ===== SMALL PHONE: ≤480px ===== */
+    @media (max-width:480px) {
+      body { font-size:14px; }
+      h1 { font-size:1.4rem; } h2 { font-size:1.2rem; } h3 { font-size:1.08rem; }
+      main { padding:3rem .5rem 4rem; }
+      .cover { min-height:70vh; padding:1.2rem .8rem; }
+      .cover h1 { font-size:1.35rem; }
+      .cover .subtitle { font-size:.88rem; }
+      .section-alt { padding:.7rem; border-radius:8px; }
+      .lesson-box, .narrative-bridge, .whatif-card { margin:.6rem -.15rem; border-radius:6px; }
+      table { min-width:440px; font-size:.78rem; }
+      th,td { padding:.32rem .35rem; }
+      .timeline-track { grid-auto-columns:minmax(130px,1fr); gap:.45rem; }
+      .archetype-box { gap:.3rem; }
+      .archetype-pill { font-size:.75rem; }
+      aside { width:min(92vw,300px); }
+      .toc-list a { font-size:.9rem; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print { @page { margin:2cm; } .sidebar-toggle,aside,.back-to-top,.reading-progress,.sidebar-overlay,.profile-collapse-btn { display:none !important; } main { padding:0; } .major-section,.section-alt { break-inside:avoid; page-break-inside:avoid; border:none; background:#fff; } h2 { break-before:page; page-break-before:always; } a { color:#000; text-decoration:none; } .profile-body.collapsed { display:block !important; } }
+  
+.back-home { padding:.8rem 1.5rem .2rem; }
+.back-home a { display:inline-flex; align-items:center; gap:.4rem; color:#4a5568; text-decoration:none; font-size:.9rem; font-weight:500; padding:.4rem .8rem; border-radius:6px; border:1px solid #e2e8f0; background:#fff; transition:all .15s; }
+.back-home a:hover { color:#1a365d; border-color:#1a365d; background:#f7fafc; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+@media(max-width:600px) { .back-home { padding:.6rem 1rem .2rem; } .back-home a { font-size:.82rem; } }
+</style>
+</head>
+<body>
+<header class="cover">
+<div>
+<h1>Sales Scale &amp; Revenue Expansion — Bahasakuinggris</h1>
+<p class="subtitle">Dokumen Blueprint</p>
+<p class="meta">Regenerasi HTML &#8226; 28 April 2026</p>
+</div>
+</header>
+<div class="reading-progress" id="readingProgress"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<button aria-label="Buka/Tutup Daftar Isi" class="sidebar-toggle" id="sidebarToggle" type="button">&#9776;</button>
+<div class="layout">
+<aside id="sidebar"><h2>Daftar Isi</h2><ul class="toc-list">
+<li><a data-target="tujuan-blueprint" href="#tujuan-blueprint">Tujuan Blueprint</a></li>
+<li><a data-target="snapshot-bisnis-saat-ini" href="#snapshot-bisnis-saat-ini">Snapshot Bisnis Saat Ini</a></li>
+<li><a data-target="north-star-revenue" href="#north-star-revenue">North Star Revenue</a></li>
+<li><a data-target="arsitektur-revenue-ladder" href="#arsitektur-revenue-ladder">Arsitektur Revenue Ladder</a></li>
+<li><a data-target="segmentasi-icp-dan-jalur-monetisasi" href="#segmentasi-icp-dan-jalur-monetisasi">Segmentasi ICP dan Jalur Monetisasi</a></li>
+<li><a data-target="model-unit-economics-dasar" href="#model-unit-economics-dasar">Model Unit Economics Dasar</a></li>
+<li><a data-target="prinsip-pricing-yang-dipakai" href="#prinsip-pricing-yang-dipakai">Prinsip Pricing yang Dipakai</a></li>
+<li><a data-target="pricing-optimization-playbook" href="#pricing-optimization-playbook">Pricing Optimization Playbook</a></li>
+<li><a data-target="strategi-upsell-berbasis-momen" href="#strategi-upsell-berbasis-momen">Strategi Upsell Berbasis Momen</a></li>
+<li><a data-target="strategi-cross-sell-non-kelas" href="#strategi-cross-sell-non-kelas">Strategi Cross-Sell Non-Kelas</a></li>
+<li><a data-target="retention-engine-antar-batch" href="#retention-engine-antar-batch">Retention Engine antar Batch</a></li>
+<li><a data-target="kpi-retention-dan-monetisasi" href="#kpi-retention-dan-monetisasi">KPI Retention dan Monetisasi</a></li>
+<li><a data-target="dashboard-minimum-yang-wajib-ada" href="#dashboard-minimum-yang-wajib-ada">Dashboard Minimum yang Wajib Ada</a></li>
+<li><a data-target="mekanisme-batchcohort-model" href="#mekanisme-batchcohort-model">Mekanisme Batch/Cohort Model</a></li>
+<li><a data-target="lead-scoring-untuk-whatsapp-team" href="#lead-scoring-untuk-whatsapp-team">Lead Scoring untuk WhatsApp Team</a></li>
+<li><a data-target="sales-script-kerangka-ringkas" href="#sales-script-kerangka-ringkas">Sales Script Kerangka Ringkas</a></li>
+<li><a data-target="strategi-scale-meta-ads-ke-revenue" href="#strategi-scale-meta-ads-ke-revenue">Strategi Scale Meta Ads ke Revenue</a></li>
+<li><a data-target="rencana-scale-ke-corporate-training" href="#rencana-scale-ke-corporate-training">Rencana Scale ke Corporate Training</a></li>
+<li><a data-target="tahap-revenue-expansion-12-bulan" href="#tahap-revenue-expansion-12-bulan">Tahap Revenue Expansion 12 Bulan</a></li>
+<li><a data-target="framework-ltv-maximization" href="#framework-ltv-maximization">Framework LTV Maximization</a></li>
+<li><a data-target="program-referral-berbasis-komunitas" href="#program-referral-berbasis-komunitas">Program Referral Berbasis Komunitas</a></li>
+<li><a data-target="partner-leverage-strategy" href="#partner-leverage-strategy">Partner Leverage Strategy</a></li>
+<li><a data-target="risk-map-dan-mitigasi" href="#risk-map-dan-mitigasi">Risk Map dan Mitigasi</a></li>
+<li><a data-target="checklist-implementasi-mingguan" href="#checklist-implementasi-mingguan">Checklist Implementasi Mingguan</a></li>
+<li><a data-target="sop-eksperimen-growth" href="#sop-eksperimen-growth">SOP Eksperimen Growth</a></li>
+<li><a data-target="lampiran-a-hook-iklan-sales-scale" href="#lampiran-a-hook-iklan-sales-scale">Lampiran A — Hook Iklan Sales Scale</a></li>
+<li><a data-target="lampiran-b-cta-whatsapp" href="#lampiran-b-cta-whatsapp">Lampiran B — CTA WhatsApp</a></li>
+<li><a data-target="lampiran-c-faq-sales-scale" href="#lampiran-c-faq-sales-scale">Lampiran C — FAQ Sales Scale</a></li>
+<li><a data-target="penutup-eksekusi" href="#penutup-eksekusi">Penutup Eksekusi</a></li>
+</ul></aside>
+<main><nav class="back-home"><a href="../index.html">&larr; Back to Home Page</a></nav><article class="ebook-content"><section class="major-section"><h1>Sales Scale &amp; Revenue Expansion — Bahasakuinggris</h1>
+<h2 id="tujuan-blueprint">Tujuan Blueprint</h2>
+<ul>
+<li>Dokumen ini jadi peta scale revenue Bahasakuinggris.</li>
+<li>Fokus utamanya dari front-end Rp79K ke nilai pelanggan jangka panjang.</li>
+<li>Arah akhirnya: revenue stabil, margin sehat, dan jalur ke corporate training.</li>
+<li>Semua CTA diarahkan ke WhatsApp 0812-1633-0704.</li>
+</ul>
+<h2 id="snapshot-bisnis-saat-ini">Snapshot Bisnis Saat Ini</h2>
+<ul>
+<li>Brand: Bahasakuinggris, tagline Click Your English.</li>
+<li>Basis reputasi: Kampung Inggris Pare Kediri.</li>
+<li>Delivery utama: online class lintas kota.</li>
+<li>Produk inti low ticket: Speaking atau Grammar Rp79K, 10x meeting.</li>
+<li>Produk anak: Kelas Anak Rp99K, 10x meeting.</li>
+<li>Produk mid ticket: TOEFL Prep Rp299K, 20x meeting.</li>
+<li>Produk mid-high ticket: IELTS Prep Rp359K, 20x meeting.</li>
+<li>Produk assessment: TOEFL Scoring Rp45K.</li>
+<li>Produk premium: Private Class, harga custom.</li>
+<li>Produk pendukung: E-Book dan Kaos.</li>
+<li>Social proof: 100K+ alumni.</li>
+<li>Kredibilitas: izin Diknas.</li>
+<li>Kualitas delivery: kelas kecil 3-10 orang.</li>
+<li>Kontrol hasil: laporan progress berkala.</li>
+</ul>
+<h2 id="north-star-revenue">North Star Revenue</h2>
+<ul>
+<li>North star metric: Monthly Net Revenue dari cohort aktif.</li>
+<li>Metric utama kedua: blended LTV per lead.</li>
+<li>Metric ketiga: upgrade rate dari reguler ke level berikutnya.</li>
+<li>Metric keempat: retention rate antar batch.</li>
+<li>Target jangka 12 bulan: dominasi revenue dari repeat buyer.</li>
+<li>Front-end tetap agresif untuk akuisisi.</li>
+<li>Margin dipulihkan lewat ladder upsell.</li>
+</ul>
+<h2 id="arsitektur-revenue-ladder">Arsitektur Revenue Ladder</h2>
+<ul>
+<li>Entry point: Speaking atau Grammar Rp79K.</li>
+<li>Step 2: TOEFL Scoring Rp45K sebagai quick diagnostic.</li>
+<li>Step 3: TOEFL Prep Rp299K untuk target akademik dan karir.</li>
+<li>Step 4: IELTS Prep Rp359K untuk target global.</li>
+<li>Step 5: Private Class untuk kebutuhan personal intensif.</li>
+<li>Step 6: Corporate training untuk kontrak B2B.</li>
+<li>Add-on di semua step: E-Book, worksheet, kaos komunitas.</li>
+</ul>
+<h2 id="segmentasi-icp-dan-jalur-monetisasi">Segmentasi ICP dan Jalur Monetisasi</h2>
+<ul>
+<li>ICP 1: Pelajar dan mahasiswa usia 15-25.</li>
+<li>Pain utama: TOEFL kampus, interview, dan speaking confidence.</li>
+<li>Offer masuk: Rp79K + challenge speaking mingguan.</li>
+<li>Upgrade logis: TOEFL Scoring lalu TOEFL Prep.</li>
+<li>Lanjutan: IELTS untuk beasiswa atau studi luar.</li>
+<li>ICP 2: Pekerja usia 23-40.</li>
+<li>Pain utama: promosi, syarat skor, presentasi kerja.</li>
+<li>Offer masuk: Rp79K kelas malam.</li>
+<li>Upgrade logis: TOEFL Prep atau IELTS Prep sesuai target.</li>
+<li>Lanjutan: Private untuk role-play kerja.</li>
+<li>ICP 3: Orang tua usia 30-50.</li>
+<li>Pain utama: anak butuh English habit dan percaya diri.</li>
+<li>Offer masuk: Kelas Anak Rp99K.</li>
+<li>Upgrade logis: paket lanjutan per level.</li>
+<li>Lanjutan: private mentoring saat ujian sekolah.</li>
+</ul>
+<h2 id="model-unit-economics-dasar">Model Unit Economics Dasar</h2>
+<div class="table-scroll"><table>
+<thead><tr>
+<th>Komponen</th>
+<th>Angka Asumsi</th>
+<th>Catatan</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Harga front-end</td>
+<td>Rp79.000</td>
+<td>Promo dari anchor Rp150.000</td>
+</tr>
+<tr>
+<td>COGS pengajar per seat</td>
+<td>Rp22.000</td>
+<td>Disesuaikan durasi 10x meeting</td>
+</tr>
+<tr>
+<td>COGS operasional per seat</td>
+<td>Rp11.000</td>
+<td>Admin, tools, support</td>
+</tr>
+<tr>
+<td>Gross margin front-end</td>
+<td>Rp46.000</td>
+<td>58% per peserta</td>
+</tr>
+<tr>
+<td>Rata-rata peserta per kelas</td>
+<td>8 orang</td>
+<td>Rentang 3-10</td>
+</tr>
+<tr>
+<td>Gross margin per kelas</td>
+<td>Rp368.000</td>
+<td>Belum termasuk iklan</td>
+</tr>
+<tr>
+<td>CAC target Meta Ads</td>
+<td>Rp35.000</td>
+<td>Per pembeli front-end</td>
+</tr>
+<tr>
+<td>Contribution margin awal</td>
+<td>Rp11.000</td>
+<td>Tipis, wajar untuk lead buyer</td>
+</tr>
+<tr>
+<td>Attach rate TOEFL Scoring</td>
+<td>22%</td>
+<td>Dalam 14 hari pasca kelas</td>
+</tr>
+<tr>
+<td>Upgrade rate TOEFL Prep</td>
+<td>18%</td>
+<td>Dari buyer front-end</td>
+</tr>
+<tr>
+<td>Upgrade rate IELTS Prep</td>
+<td>10%</td>
+<td>Dari alumni TOEFL/reguler</td>
+</tr>
+<tr>
+<td>Take rate Private</td>
+<td>6%</td>
+<td>Dari alumni aktif</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="prinsip-pricing-yang-dipakai">Prinsip Pricing yang Dipakai</h2>
+<ul>
+<li>Jangan perang harga.</li>
+<li>Mainkan value stack dan progression path.</li>
+<li>Anchor tetap Rp150K untuk menjaga persepsi nilai.</li>
+<li>Promo Rp79K diposisikan sebagai entry mission.</li>
+<li>TOEFL dan IELTS dijaga sebagai growth engine margin.</li>
+<li>Private diposisikan sebagai accelerator plan.</li>
+<li>Corporate diposisikan sebagai partnership plan.</li>
+</ul>
+<h2 id="pricing-optimization-playbook">Pricing Optimization Playbook</h2>
+<h3 id="layer-1-price-presentation">Layer 1: Price Presentation</h3>
+<ul>
+<li>Tampilkan harga core dulu, lalu harga promo.</li>
+<li>Tampilkan benefit terukur per 10x atau 20x meeting.</li>
+<li>Tampilkan kapasitas kelas kecil sebagai alasan harga.</li>
+<li>Gunakan framing &quot;mulai dari Rp79K&quot; untuk lead cold.</li>
+</ul>
+<h3 id="layer-2-bundle-mechanics">Layer 2: Bundle Mechanics</h3>
+<ul>
+<li>Bundle Reguler + TOEFL Scoring dengan diskon kecil.</li>
+<li>Bundle TOEFL Prep + Speaking Drill untuk hasil praktis.</li>
+<li>Bundle IELTS Prep + Mock Interview untuk confidence.</li>
+<li>Bundle Parent Pack untuk kelas anak plus progress report.</li>
+</ul>
+<h3 id="layer-3-payment-plan">Layer 3: Payment Plan</h3>
+<ul>
+<li>Sediakan DP ringan untuk program 20x meeting.</li>
+<li>Sediakan cicilan dua termin untuk private package.</li>
+<li>Hindari cicilan terlalu panjang agar cashflow aman.</li>
+</ul>
+<h2 id="strategi-upsell-berbasis-momen">Strategi Upsell Berbasis Momen</h2>
+<ul>
+<li>Momen onboarding: tawarkan TOEFL Scoring hari pertama.</li>
+<li>Momen week 2: tawarkan roadmap skor personal.</li>
+<li>Momen mid-class: kirim progress mini-report.</li>
+<li>Momen kelulusan: tawarkan paket next level.</li>
+<li>Momen 14 hari pasca lulus: retarget alumni warm.</li>
+<li>Momen target khusus: offer private coaching.</li>
+</ul>
+<h2 id="strategi-cross-sell-non-kelas">Strategi Cross-Sell Non-Kelas</h2>
+<ul>
+<li>E-Book dipakai sebagai booster latihan harian.</li>
+<li>Kaos dipakai untuk identitas komunitas alumni.</li>
+<li>Worksheet premium dipakai untuk exam drill.</li>
+<li>Add-on dijual saat checkout dan after-class follow-up.</li>
+<li>Fokus cross-sell untuk menaikkan AOV ringan.</li>
+</ul>
+<h2 id="retention-engine-antar-batch">Retention Engine antar Batch</h2>
+<ul>
+<li>Setiap kelas ditutup dengan rekomendasi jalur lanjut.</li>
+<li>Progress report memicu rasa kemajuan nyata.</li>
+<li>Alumni group dipakai untuk challenge mingguan.</li>
+<li>Reminder target dikirim tiap awal bulan.</li>
+<li>Success story alumni dipakai sebagai nudge sosial.</li>
+<li>Mentor follow-up dilakukan personal lewat WhatsApp.</li>
+</ul>
+<h2 id="kpi-retention-dan-monetisasi">KPI Retention dan Monetisasi</h2>
+<ul>
+<li>Repeat purchase rate 30 hari.</li>
+<li>Repeat purchase rate 90 hari.</li>
+<li>Upgrade rate per jenjang produk.</li>
+<li>Average order value per pelanggan.</li>
+<li>Time to second purchase.</li>
+<li>Churn reason top 5 per ICP.</li>
+<li>Reactivation rate alumni dorman.</li>
+<li>NPS pasca kelas.</li>
+</ul>
+<h2 id="dashboard-minimum-yang-wajib-ada">Dashboard Minimum yang Wajib Ada</h2>
+<ul>
+<li>Lead masuk per channel Meta Ads.</li>
+<li>CPL per creative cluster.</li>
+<li>CPA front-end per adset.</li>
+<li>Attendance rate per cohort.</li>
+<li>Completion rate per cohort.</li>
+<li>Upsell acceptance rate per mentor.</li>
+<li>Revenue per cohort usia 30 hari.</li>
+<li>Revenue per cohort usia 90 hari.</li>
+<li>LTV by source campaign.</li>
+<li>ROAS 7 hari dan 30 hari.</li>
+</ul>
+<h2 id="mekanisme-batchcohort-model">Mekanisme Batch/Cohort Model</h2>
+<ul>
+<li>Buka batch dengan tema tujuan yang jelas.</li>
+<li>Contoh tema: TOEFL Starter, Speaking for Campus, English for Work.</li>
+<li>Setiap batch punya deadline pendaftaran tegas.</li>
+<li>Kuota kelas 3-10 orang harus terlihat real-time.</li>
+<li>Gunakan waitlist untuk batch penuh.</li>
+<li>Pindahkan waitlist ke batch berikutnya dengan bonus kecil.</li>
+<li>Terapkan onboarding script yang konsisten.</li>
+<li>Terapkan graduation script yang mendorong upsell.</li>
+</ul>
+<h2 id="lead-scoring-untuk-whatsapp-team">Lead Scoring untuk WhatsApp Team</h2>
+<ul>
+<li>Skor A: sudah tanya jadwal dan harga.</li>
+<li>Skor B: tanya manfaat tapi belum pilih program.</li>
+<li>Skor C: hanya lihat promo.</li>
+<li>Skor A dapat follow-up &lt;10 menit.</li>
+<li>Skor B dapat edukasi kebutuhan berdasarkan goal.</li>
+<li>Skor C masuk nurture sequence 7 hari.</li>
+<li>Semua chat ditutup dengan CTA ke booking slot.</li>
+</ul>
+<h2 id="sales-script-kerangka-ringkas">Sales Script Kerangka Ringkas</h2>
+<ul>
+<li>Buka dengan pertanyaan target English user.</li>
+<li>Validasi konteks: sekolah, kerja, atau anak.</li>
+<li>Pilihkan jalur produk yang paling relevan.</li>
+<li>Tawarkan satu opsi utama dan satu opsi alternatif.</li>
+<li>Beri urgensi kuota kelas kecil.</li>
+<li>Tutup dengan ajakan transfer booking fee.</li>
+</ul>
+<h2 id="strategi-scale-meta-ads-ke-revenue">Strategi Scale Meta Ads ke Revenue</h2>
+<h3 id="struktur-campaign">Struktur Campaign</h3>
+<ul>
+<li>Campaign 1: Prospecting untuk Rp79K.</li>
+<li>Campaign 2: Retargeting untuk buyer dan warm leads.</li>
+<li>Campaign 3: Upsell TOEFL atau IELTS ke alumni.</li>
+</ul>
+<h3 id="struktur-audience">Struktur Audience</h3>
+<ul>
+<li>Broad audience usia sesuai ICP.</li>
+<li>Lookalike buyer front-end.</li>
+<li>Lookalike alumni TOEFL dan IELTS.</li>
+<li>Retarget penonton video testimoni.</li>
+<li>Retarget pengunjung landing page.</li>
+<li>Retarget chat WhatsApp belum closing.</li>
+</ul>
+<h3 id="struktur-creative">Struktur Creative</h3>
+<ul>
+<li>Creative hook pain spesifik per ICP.</li>
+<li>Creative proof: alumni, partner, dan progress report.</li>
+<li>Creative CTA: klik WA dan pilih batch.</li>
+<li>Creative offer: anchor Rp150K ke promo Rp79K.</li>
+</ul>
+<h2 id="rencana-scale-ke-corporate-training">Rencana Scale ke Corporate Training</h2>
+<ul>
+<li>Mulai dari B2C alumni yang bekerja di perusahaan.</li>
+<li>Kumpulkan testimoni pekerja dengan hasil terukur.</li>
+<li>Bangun paket corporate dasar 8 sesi.</li>
+<li>Bangun paket corporate intensif 16 sesi.</li>
+<li>Sediakan pre-test dan post-test untuk HR.</li>
+<li>Tawarkan laporan progres tim ke HR bulanan.</li>
+<li>Tetapkan PIC khusus untuk akun corporate.</li>
+</ul>
+<h2 id="tahap-revenue-expansion-12-bulan">Tahap Revenue Expansion 12 Bulan</h2>
+<h3 id="fase-1-minggu-1-4-stabilkan-akuisisi-front-end">FASE 1 (Minggu 1-4): Stabilkan Akuisisi Front-End</h3>
+<ul>
+<li>Rapikan message per ICP di ads dan WA.</li>
+<li>Standarkan script closing untuk Rp79K.</li>
+<li>Target utama: CPA stabil dan attendance naik.</li>
+</ul>
+<h3 id="fase-2-minggu-5-8-bangun-mesin-upsell">FASE 2 (Minggu 5-8): Bangun Mesin Upsell</h3>
+<ul>
+<li>Terapkan offer TOEFL Scoring di onboarding.</li>
+<li>Terapkan mini consultation di week 2.</li>
+<li>Target utama: upgrade ke TOEFL Prep meningkat.</li>
+</ul>
+<h3 id="fase-3-minggu-9-12-percepat-mid-ticket">FASE 3 (Minggu 9-12): Percepat Mid Ticket</h3>
+<ul>
+<li>Segmentasi alumni TOEFL untuk jalur IELTS.</li>
+<li>Launch bundle TOEFL plus speaking drill.</li>
+<li>Target utama: AOV cohort naik konsisten.</li>
+</ul>
+<h3 id="fase-4-minggu-13-16-premium-dan-private">FASE 4 (Minggu 13-16): Premium dan Private</h3>
+<ul>
+<li>Buat pitch private berdasarkan pain personal.</li>
+<li>Buat kalender slot mentor premium.</li>
+<li>Target utama: margin per siswa meningkat.</li>
+</ul>
+<h3 id="fase-5-minggu-17-24-validasi-corporate">FASE 5 (Minggu 17-24): Validasi Corporate</h3>
+<ul>
+<li>Uji 3 pilot corporate dari jaringan alumni.</li>
+<li>Kumpulkan data before-after kemampuan tim.</li>
+<li>Target utama: 1 kontrak corporate berulang.</li>
+</ul>
+<h2 id="framework-ltv-maximization">Framework LTV Maximization</h2>
+<ul>
+<li>LTV = frekuensi beli x AOV x durasi relasi.</li>
+<li>Naikkan frekuensi lewat roadmap kelas bertahap.</li>
+<li>Naikkan AOV lewat bundle dan add-on relevan.</li>
+<li>Panjangkan durasi lewat komunitas alumni aktif.</li>
+<li>Turunkan churn lewat progress report jelas.</li>
+<li>Percepat repeat lewat follow-up terjadwal.</li>
+</ul>
+<h2 id="program-referral-berbasis-komunitas">Program Referral Berbasis Komunitas</h2>
+<ul>
+<li>Nama program: Click Circle Referral.</li>
+<li>Pemberi referral dapat kredit kelas.</li>
+<li>Penerima referral dapat bonus e-book starter.</li>
+<li>Referral link unik per alumni.</li>
+<li>Reward bertingkat tiap 1, 3, dan 5 referral.</li>
+<li>Leaderboard bulanan diposting di grup alumni.</li>
+<li>Klaim reward disederhanakan via WhatsApp.</li>
+</ul>
+<h2 id="partner-leverage-strategy">Partner Leverage Strategy</h2>
+<ul>
+<li>Tampilkan partner logos di landing page.</li>
+<li>Gunakan case mini bersama partner untuk trust.</li>
+<li>Buat webinar kolaborasi dengan institusi kampus.</li>
+<li>Buat kelas trial untuk komunitas partner.</li>
+<li>Gunakan partner untuk pintu masuk B2B.</li>
+</ul>
+<h2 id="risk-map-dan-mitigasi">Risk Map dan Mitigasi</h2>
+<h3 id="risiko-1-margin-front-end-terlalu-tipis">Risiko 1: Margin front-end terlalu tipis</h3>
+<ul>
+<li>Mitigasi: wajibkan upsell window 14 hari.</li>
+<li>Mitigasi: turunkan CAC lewat creative testing rutin.</li>
+</ul>
+<h3 id="risiko-2-attendance-turun-di-kelas-online">Risiko 2: Attendance turun di kelas online</h3>
+<ul>
+<li>Mitigasi: reminder otomatis H-1 dan H-2 jam.</li>
+<li>Mitigasi: gamification kehadiran.</li>
+</ul>
+<h3 id="risiko-3-tim-wa-lambat-respon">Risiko 3: Tim WA lambat respon</h3>
+<ul>
+<li>Mitigasi: SLA respon &lt;10 menit jam kerja.</li>
+<li>Mitigasi: template chat per skenario.</li>
+</ul>
+<h3 id="risiko-4-alumni-tidak-lanjut-program">Risiko 4: Alumni tidak lanjut program</h3>
+<ul>
+<li>Mitigasi: graduation mapping ke next class.</li>
+<li>Mitigasi: offer personal berdasarkan score report.</li>
+</ul>
+<h2 id="checklist-implementasi-mingguan">Checklist Implementasi Mingguan</h2>
+<ul>
+<li>[ ] Update dashboard revenue cohort.</li>
+<li>[ ] Review top 5 creative berdasarkan CPA.</li>
+<li>[ ] Review quality lead dari chat WA.</li>
+<li>[ ] Audit script closing tim.</li>
+<li>[ ] Audit offer upsell week 2.</li>
+<li>[ ] Audit attendance dan completion rate.</li>
+<li>[ ] Audit performa mentor per cohort.</li>
+<li>[ ] Kirim testimoni baru ke tim ads.</li>
+<li>[ ] Jalankan campaign reactivation alumni.</li>
+<li>[ ] Review pipeline private class.</li>
+<li>[ ] Review pipeline corporate lead.</li>
+<li>[ ] Review churn reason dan perbaikan cepat.</li>
+</ul>
+<h2 id="sop-eksperimen-growth">SOP Eksperimen Growth</h2>
+<ul>
+<li>Jalankan maksimal 3 eksperimen per minggu.</li>
+<li>Satu eksperimen hanya ubah satu variabel.</li>
+<li>Simpan baseline 2 minggu terakhir.</li>
+<li>Putuskan scale, hold, atau kill dalam 7 hari.</li>
+<li>Dokumentasikan insight di growth log.</li>
+<li>Share insight ke tim sales dan mentor.</li>
+</ul>
+<h2 id="lampiran-a-hook-iklan-sales-scale">Lampiran A — Hook Iklan Sales Scale</h2>
+<ul>
+<li>Dari nol speaking ke lebih pede dalam 10 pertemuan.</li>
+<li>Kelas kecil bikin kamu berani praktik tiap sesi.</li>
+<li>Mulai Rp79K, kelas online dari Kampung Inggris.</li>
+<li>Target TOEFL kamu butuh roadmap yang jelas.</li>
+<li>Jangan cuma niat, mulai batch minggu ini.</li>
+<li>Buat pekerja sibuk, jadwal tetap fleksibel.</li>
+<li>Orang tua, ini kelas English yang ramah anak.</li>
+<li>Belajar bareng mentor berpengalaman Pare Kediri.</li>
+<li>Sudah 100K+ alumni, sekarang giliran kamu.</li>
+<li>Klik WhatsApp, pilih kelas sesuai targetmu.</li>
+<li>Harga promo ada, kuota kelas tetap terbatas.</li>
+<li>Rapor progress bikin kamu tahu kemajuan nyata.</li>
+<li>Dari reguler, lanjut TOEFL sampai IELTS.</li>
+<li>Karir naik, confidence ikut naik.</li>
+<li>Private class untuk target super spesifik.</li>
+<li>Corporate training untuk tim yang mau upgrade.</li>
+<li>Kelas online, feel belajar tetap intens.</li>
+<li>Speaking practice bukan teori doang.</li>
+<li>Grammar jadi lebih kepakai dalam komunikasi.</li>
+<li>Mulai kecil, hasilkan progress besar.</li>
+<li>Satu langkah hari ini, dampak jangka panjang.</li>
+<li>Cek jadwal terbaru lewat WhatsApp sekarang.</li>
+<li>Batch baru buka, seat cepat penuh.</li>
+<li>Bukan sekadar kursus, ini jalur growth English.</li>
+</ul>
+<h2 id="lampiran-b-cta-whatsapp">Lampiran B — CTA WhatsApp</h2>
+<ul>
+<li>Chat WA sekarang, pilih batch kamu.</li>
+<li>Klik untuk konsultasi kelas gratis.</li>
+<li>Amankan seat kamu hari ini.</li>
+<li>Cek jadwal dan mulai minggu ini.</li>
+<li>Tanya mentor, tentukan jalur belajarmu.</li>
+<li>Mulai dari Rp79K sekarang.</li>
+<li>Booking kelas via WhatsApp sekarang.</li>
+<li>Dapatkan roadmap English kamu.</li>
+<li>Join batch terdekat, seat terbatas.</li>
+<li>Upgrade skill English mulai hari ini.</li>
+<li>Konsultasi target TOEFL kamu sekarang.</li>
+<li>Siapkan IELTS plan dari sekarang.</li>
+</ul>
+<h2 id="lampiran-c-faq-sales-scale">Lampiran C — FAQ Sales Scale</h2>
+<ul>
+<li>Apakah kelasnya online penuh?</li>
+<li>Berapa jumlah siswa tiap kelas?</li>
+<li>Kalau pemula, boleh ikut Rp79K?</li>
+<li>Kapan waktu terbaik ambil TOEFL Prep?</li>
+<li>Apa bedanya TOEFL Scoring dan TOEFL Prep?</li>
+<li>Apakah ada laporan progress belajar?</li>
+<li>Bagaimana cara daftar lewat WhatsApp?</li>
+<li>Bisa lanjut private setelah kelas reguler?</li>
+<li>Ada kelas untuk anak usia sekolah?</li>
+<li>Bisa minta rekomendasi kelas sesuai tujuan?</li>
+</ul>
+<h2 id="penutup-eksekusi">Penutup Eksekusi</h2>
+<ul>
+<li>Jaga front-end tetap kuat sebagai pintu masuk.</li>
+<li>Menangkan revenue lewat upsell berurutan.</li>
+<li>Rawat alumni agar LTV tumbuh stabil.</li>
+<li>Dorong private dan corporate sebagai margin booster.</li>
+<li>Bantu lebih banyak orang click their English.</li>
+</ul></section></article></main>
+</div>
+<button aria-label="Kembali ke atas" class="back-to-top" id="backToTop" type="button">&#8593;</button>
+<script>
+    (function () {
+      'use strict';
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      var toggle = document.getElementById('sidebarToggle');
+      var backBtn = document.getElementById('backToTop');
+      var progressBar = document.getElementById('readingProgress');
+      var tocLinks = Array.from(document.querySelectorAll('.toc-list a'));
+      var sections = tocLinks
+        .map(function (a) { return document.getElementById(a.dataset.target); })
+        .filter(Boolean);
+
+      /* --- Sidebar open/close with overlay --- */
+      function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          if (sidebar.classList.contains('open')) { closeSidebar(); }
+          else { openSidebar(); }
+        });
+      }
+      if (overlay) {
+        overlay.addEventListener('click', closeSidebar);
+      }
+
+      /* --- Swipe to close sidebar --- */
+      var touchStartX = 0;
+      var touchStartY = 0;
+      sidebar.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      sidebar.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        var dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+        if (dx < -60 && dy < 80) { closeSidebar(); }
+      }, { passive: true });
+
+      /* --- TOC link click closes sidebar on mobile --- */
+      tocLinks.forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (window.innerWidth <= 1024) { closeSidebar(); }
+        });
+      });
+
+      /* --- Scroll spy --- */
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var id = entry.target.id;
+            tocLinks.forEach(function (link) {
+              if (link.dataset.target === id) {
+                link.classList.add('active');
+                /* Auto-scroll TOC to active item on desktop */
+                if (window.innerWidth > 1024 && sidebar.scrollHeight > sidebar.clientHeight) {
+                  link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                }
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          });
+        },
+        { rootMargin: '-30% 0px -55% 0px', threshold: 0.1 }
+      );
+      sections.forEach(function (sec) { observer.observe(sec); });
+
+      /* --- Reading progress bar + back-to-top --- */
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            var scrollTop = window.scrollY || document.documentElement.scrollTop;
+            var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight > 0) {
+              progressBar.style.width = Math.min((scrollTop / docHeight) * 100, 100) + '%';
+            }
+            if (scrollTop > 400) { backBtn.classList.add('show'); }
+            else { backBtn.classList.remove('show'); }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      backBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      /* --- Profile accordion on mobile --- */
+      function initAccordion() {
+        var isMobile = window.innerWidth <= 768;
+        var profiles = document.querySelectorAll('h3[id]');
+        profiles.forEach(function (h3) {
+          /* Only profile headings (G0-x, numbered, S-x, T-x) */
+          var text = h3.textContent || '';
+          if (!/^(G0-|[0-9]+\.|S[0-9]|T-[0-9])/.test(text.trim())) return;
+
+          var existingBtn = h3.querySelector('.profile-collapse-btn');
+          if (!existingBtn) {
+            var btn = document.createElement('button');
+            btn.className = 'profile-collapse-btn';
+            btn.textContent = '▼';
+            btn.setAttribute('aria-label', 'Buka/tutup profil');
+            h3.appendChild(btn);
+          }
+
+          var btn = h3.querySelector('.profile-collapse-btn');
+          /* Collect siblings until next h3 or h2 */
+          var body = h3.nextElementSibling;
+          if (body && body.classList.contains('profile-body')) {
+            /* Already wrapped */
+            if (isMobile && !body.classList.contains('collapsed')) {
+              body.classList.add('collapsed');
+              btn.textContent = '▶';
+            } else if (!isMobile) {
+              body.classList.remove('collapsed');
+              btn.textContent = '▼';
+            }
+            return;
+          }
+
+          /* Wrap profile content in a div */
+          var wrapper = document.createElement('div');
+          wrapper.className = 'profile-body';
+          var sibling = h3.nextElementSibling;
+          while (sibling && sibling.tagName !== 'H3' && sibling.tagName !== 'H2') {
+            var next = sibling.nextElementSibling;
+            wrapper.appendChild(sibling);
+            sibling = next;
+          }
+          h3.parentNode.insertBefore(wrapper, sibling);
+
+          if (isMobile) {
+            wrapper.classList.add('collapsed');
+            btn.textContent = '▶';
+          }
+        });
+      }
+
+      /* Toggle accordion on click */
+      document.addEventListener('click', function (e) {
+        if (!e.target.classList.contains('profile-collapse-btn')) return;
+        var h3 = e.target.closest('h3');
+        if (!h3) return;
+        var body = h3.nextElementSibling;
+        if (body && body.classList.contains('profile-body')) {
+          body.classList.toggle('collapsed');
+          e.target.textContent = body.classList.contains('collapsed') ? '▶' : '▼';
+        }
+      });
+
+      /* Init accordion on load and resize */
+      initAccordion();
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(initAccordion, 250);
+      });
+
+      /* --- Keyboard: Escape closes sidebar --- */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+          closeSidebar();
+        }
+      });
+    })();
+    
+</script>
+</body>
+</html>

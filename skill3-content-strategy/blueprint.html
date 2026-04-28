@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Content Strategy &amp; Attention Growth — Bahasakuinggris</title>
+<style>
+    :root { --bg:#fff; --text:#1f2937; --heading:#1a365d; --accent:#d69e2e; --danger:#e53e3e; --line:#e5e7eb; --muted:#64748b; --soft:#f8fafc; --bridge:#f0f4f8; --lesson:#fffbeb; --whatif:#f5f0ff; }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:"Segoe UI", system-ui, -apple-system, sans-serif; line-height:1.65; }
+    h1,h2,h3,h4,h5 { font-family:Georgia, "Times New Roman", serif; color:var(--heading); line-height:1.3; scroll-margin-top:80px; }
+    .cover { min-height:100vh; display:grid; place-items:center; text-align:center; padding:2rem; border-bottom:1px solid var(--line); }
+    .cover h1 { font-size:clamp(2rem,4vw,3.3rem); margin:.25rem 0; }
+    .cover .subtitle { color:var(--heading); font-size:1.1rem; } .cover .meta { color:var(--muted); margin-top:1rem; }
+    .layout { display:flex; }
+    .sidebar-toggle { display:none; position:fixed; top:12px; left:12px; z-index:1200; border:1px solid var(--line); background:white; border-radius:8px; padding:.45rem .65rem; }
+    aside { position:sticky; top:0; align-self:flex-start; width:310px; max-height:100vh; overflow:auto; border-right:1px solid var(--line); background:#fff; padding:1rem; }
+    .toc-list,.toc-list ul { list-style:none; margin:0; padding-left:.8rem; } .toc-list>li { margin:.24rem 0; }
+    .toc-list a { text-decoration:none; color:#334155; font-size:.92rem; display:block; padding:.16rem .4rem; border-left:2px solid transparent; border-radius:4px; }
+    .toc-list a.active { color:var(--heading); border-left-color:var(--accent); background:#f8fafc; font-weight:600; }
+    main { flex:1; padding:1.2rem clamp(1rem,3vw,2.5rem) 3rem; } .ebook-content { max-width:980px; margin:auto; }
+    .major-section { padding:1rem 0; border-bottom:1px solid var(--line); } .section-alt { background:var(--soft); padding:1.1rem; border-radius:10px; border:1px solid #edf2f7; }
+    .table-scroll { overflow-x:auto; margin:1rem 0; } table { width:100%; border-collapse:collapse; min-width:640px; background:#fff; }
+    th,td { border:1px solid #dbe1e8; padding:.58rem .6rem; vertical-align:top; } th { background:#f8fafc; font-weight:700; }
+    .scorecard-table th::after { content:" ⇅"; color:#94a3b8; font-size:.78em; } .scorecard-table tbody tr:nth-child(even) { background:#fcfdff; }
+    .status-green { background:#e6ffed; } .status-yellow { background:#fffbea; } .status-red { background:#ffe8e8; } .status-gray { background:#f3f4f6; }
+    .warning-marker { color:var(--danger); font-weight:700; font-size:1.12em; } .controversial-heading { border-left:4px solid var(--danger); padding-left:.55rem; }
+    blockquote { margin:1rem 0; border-left:4px solid #cbd5e1; padding:.6rem .85rem; background:#f8fafc; }
+    .archetype-box { display:flex; flex-wrap:wrap; align-items:center; gap:.45rem; margin:.8rem 0 1rem; } .archetype-label { font-weight:700; color:#475569; }
+    .archetype-pill { background:#ebf4ff; border:1px solid #bfdbfe; color:#1e40af; padding:.22rem .55rem; border-radius:999px; font-size:.86rem; }
+    .lesson-box { background:var(--lesson); border-left:4px solid var(--accent); padding:.7rem .8rem; margin:.9rem 0 1.1rem; font-size:.95rem; } .lesson-title { margin:.2rem 0 .45rem; font-weight:700; }
+    .narrative-bridge { background:var(--bridge); border:1px solid #d7e0ea; border-radius:10px; padding:.75rem .9rem; margin:1rem 0; } .narrative-bridge p { font-style:italic; color:#334155; }
+    .timeline-scroll { overflow-x:auto; padding-bottom:.5rem; margin:.9rem 0 1.2rem; } .timeline-track { display:grid; grid-auto-flow:column; grid-auto-columns:minmax(180px,1fr); gap:.65rem; min-width:max-content; }
+    .timeline-col { border:1px solid #dbe4ee; border-radius:10px; background:#fff; padding:.55rem; } .timeline-year { font-weight:700; color:var(--heading); border-bottom:1px solid #e2e8f0; padding-bottom:.35rem; margin-bottom:.45rem; }
+    .timeline-event { font-size:.9rem; padding:.42rem .5rem; border-radius:7px; margin:.36rem 0; border:1px solid transparent; } .timeline-event.positive { background:#ecfdf3; border-color:#b7efcc; } .timeline-event.negative { background:#fff1f1; border-color:#f6c2c2; }
+    .pattern-chain { display:flex; flex-direction:column; gap:.4rem; margin:1rem 0 1.2rem; } .chain-card { border:1px solid #dbe4ee; border-radius:9px; background:#fff; padding:.6rem .7rem; } .chain-arrow { text-align:center; color:#64748b; font-size:1.2rem; }
+    .juxtaposition-wrap { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; margin:.75rem 0 1rem; } .juxta-card { border-radius:10px; border:1px solid #e2e8f0; padding:.65rem .75rem; }
+    .juxta-card.positive { background:#f0fff4; border-color:#bbf7d0; } .juxta-card.positive h5 { color:#166534; } .juxta-card.negative { background:#fff1f2; border-color:#fecdd3; } .juxta-card.negative h5 { color:#991b1b; }
+    .whatif-card { background:var(--whatif); border-left:4px solid #7c3aed; padding:.65rem .8rem; border-radius:8px; margin:.6rem 0; }
+    .checklist-table tbody tr td:first-child { font-weight:700; text-align:center; width:48px; } .fake-checkbox { display:inline-block; border:1px solid #cbd5e1; border-radius:6px; padding:.14rem .38rem; background:#fff; font-family:ui-monospace,monospace; }
+    .retro-score-table td:nth-child(2) { font-weight:700; text-align:center; } .score-safe { background:#ecfdf3; color:#166534; } .score-low { background:#fffbea; color:#92400e; } .score-mid { background:#fff7ed; color:#9a3412; } .score-high { background:#fee2e2; color:#991b1b; }
+    .back-to-top { position:fixed; right:16px; bottom:18px; border:none; background:var(--heading); color:#fff; width:42px; height:42px; border-radius:999px; cursor:pointer; opacity:0; transform:translateY(8px); transition:.2s; } .back-to-top.show { opacity:1; transform:translateY(0); }
+    /* --- Overlay backdrop --- */
+    .sidebar-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:1050; opacity:0; transition:opacity .24s; }
+    .sidebar-overlay.show { display:block; opacity:1; }
+
+    /* --- Reading progress bar --- */
+    .reading-progress { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--accent),#f59e0b); z-index:1300; width:0; transition:width .12s linear; }
+
+    /* --- Accordion for mobile profiles --- */
+    .profile-collapse-btn { display:none; }
+
+    /* ===== TABLET: ≤1024px ===== */
+    @media (max-width:1024px) {
+      .sidebar-toggle { display:block; }
+      aside { position:fixed; top:0; left:0; transform:translateX(-105%); transition:.24s; z-index:1100; width:min(82vw,320px); box-shadow:0 10px 30px rgba(2,6,23,.18); }
+      aside.open { transform:translateX(0); }
+      main { padding-top:3.8rem; }
+      .juxtaposition-wrap { grid-template-columns:1fr; }
+      .toc-list a { padding:.4rem .5rem; min-height:36px; display:flex; align-items:center; }
+    }
+
+    /* ===== MOBILE: ≤768px ===== */
+    @media (max-width:768px) {
+      body { font-size:15px; line-height:1.7; -webkit-text-size-adjust:100%; }
+      h1 { font-size:1.6rem; } h2 { font-size:1.35rem; scroll-margin-top:56px; } h3 { font-size:1.15rem; scroll-margin-top:56px; } h4 { font-size:1.05rem; }
+      main { padding:3.2rem .75rem 4rem; }
+      .cover { min-height:80vh; padding:1.5rem 1rem; }
+      .cover h1 { font-size:1.6rem; }
+      .cover .subtitle { font-size:.95rem; }
+
+      /* Tables: scroll hint + shadow */
+      .table-scroll { position:relative; }
+      .table-scroll::after { content:"← geser →"; display:block; text-align:center; font-size:.78rem; color:var(--muted); padding:.3rem 0; }
+      table { min-width:520px; font-size:.85rem; }
+      th,td { padding:.4rem .45rem; }
+
+      /* TOC touch targets */
+      .toc-list a { padding:.5rem .55rem; min-height:44px; font-size:.95rem; border-radius:6px; }
+      .toc-list>li { margin:.12rem 0; }
+
+      /* Sidebar wider on mobile */
+      aside { width:min(88vw,340px); padding:.8rem .6rem; }
+
+      /* Lesson box, bridge, whatif — full width */
+      .lesson-box, .narrative-bridge, .whatif-card { padding:.6rem .65rem; font-size:.9rem; }
+      blockquote { padding:.5rem .65rem; font-size:.93rem; }
+
+      /* Timeline: smaller columns */
+      .timeline-track { grid-auto-columns:minmax(150px,1fr); }
+      .timeline-event { font-size:.82rem; padding:.35rem .4rem; }
+
+      /* Pattern chain */
+      .chain-card { padding:.5rem .55rem; font-size:.9rem; }
+
+      /* Archetype pills */
+      .archetype-pill { font-size:.8rem; padding:.18rem .45rem; }
+
+      /* Back to top: larger touch target */
+      .back-to-top { width:48px; height:48px; font-size:1.2rem; right:12px; bottom:14px; }
+
+      /* Hamburger: larger */
+      .sidebar-toggle { padding:.55rem .75rem; font-size:1.15rem; top:8px; left:8px; }
+
+      /* Profile accordion */
+      .profile-collapse-btn { display:inline-block; background:none; border:1px solid var(--line); border-radius:6px; padding:.3rem .6rem; font-size:.82rem; color:var(--muted); cursor:pointer; margin-left:.5rem; vertical-align:middle; }
+      .profile-body.collapsed { display:none; }
+
+      /* Juxtaposition cards stacked */
+      .juxta-card { padding:.55rem .6rem; font-size:.9rem; }
+
+      /* Checklist table */
+      .checklist-table { min-width:400px; }
+
+      /* Scorecard table */
+      .scorecard-table { min-width:700px; font-size:.8rem; }
+    }
+
+    /* ===== SMALL PHONE: ≤480px ===== */
+    @media (max-width:480px) {
+      body { font-size:14px; }
+      h1 { font-size:1.4rem; } h2 { font-size:1.2rem; } h3 { font-size:1.08rem; }
+      main { padding:3rem .5rem 4rem; }
+      .cover { min-height:70vh; padding:1.2rem .8rem; }
+      .cover h1 { font-size:1.35rem; }
+      .cover .subtitle { font-size:.88rem; }
+      .section-alt { padding:.7rem; border-radius:8px; }
+      .lesson-box, .narrative-bridge, .whatif-card { margin:.6rem -.15rem; border-radius:6px; }
+      table { min-width:440px; font-size:.78rem; }
+      th,td { padding:.32rem .35rem; }
+      .timeline-track { grid-auto-columns:minmax(130px,1fr); gap:.45rem; }
+      .archetype-box { gap:.3rem; }
+      .archetype-pill { font-size:.75rem; }
+      aside { width:min(92vw,300px); }
+      .toc-list a { font-size:.9rem; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print { @page { margin:2cm; } .sidebar-toggle,aside,.back-to-top,.reading-progress,.sidebar-overlay,.profile-collapse-btn { display:none !important; } main { padding:0; } .major-section,.section-alt { break-inside:avoid; page-break-inside:avoid; border:none; background:#fff; } h2 { break-before:page; page-break-before:always; } a { color:#000; text-decoration:none; } .profile-body.collapsed { display:block !important; } }
+  
+.back-home { padding:.8rem 1.5rem .2rem; }
+.back-home a { display:inline-flex; align-items:center; gap:.4rem; color:#4a5568; text-decoration:none; font-size:.9rem; font-weight:500; padding:.4rem .8rem; border-radius:6px; border:1px solid #e2e8f0; background:#fff; transition:all .15s; }
+.back-home a:hover { color:#1a365d; border-color:#1a365d; background:#f7fafc; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+@media(max-width:600px) { .back-home { padding:.6rem 1rem .2rem; } .back-home a { font-size:.82rem; } }
+</style>
+</head>
+<body>
+<header class="cover">
+<div>
+<h1>Content Strategy &amp; Attention Growth — Bahasakuinggris</h1>
+<p class="subtitle">Dokumen Blueprint</p>
+<p class="meta">Regenerasi HTML &#8226; 28 April 2026</p>
+</div>
+</header>
+<div class="reading-progress" id="readingProgress"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<button aria-label="Buka/Tutup Daftar Isi" class="sidebar-toggle" id="sidebarToggle" type="button">&#9776;</button>
+<div class="layout">
+<aside id="sidebar"><h2>Daftar Isi</h2><ul class="toc-list">
+<li><a data-target="header-dokumen" href="#header-dokumen">Header Dokumen</a></li>
+<li><a data-target="north-star-dan-outcome-90-hari" href="#north-star-dan-outcome-90-hari">North Star dan Outcome 90 Hari</a></li>
+<li><a data-target="konteks-produk-yang-harus-muncul-berulang" href="#konteks-produk-yang-harus-muncul-berulang">Konteks Produk yang Harus Muncul Berulang</a></li>
+<li><a data-target="persona-inti-dan-trigger-konten" href="#persona-inti-dan-trigger-konten">Persona Inti dan Trigger Konten</a></li>
+<li><a data-target="messaging-matrix-singkat" href="#messaging-matrix-singkat">Messaging Matrix Singkat</a></li>
+<li><a data-target="pilar-konten-utama" href="#pilar-konten-utama">Pilar Konten Utama</a></li>
+<li><a data-target="komposisi-konten-mingguan" href="#komposisi-konten-mingguan">Komposisi Konten Mingguan</a></li>
+<li><a data-target="strategi-platform-per-channel" href="#strategi-platform-per-channel">Strategi Platform Per Channel</a></li>
+<li><a data-target="blueprint-produksi-konten-harian" href="#blueprint-produksi-konten-harian">Blueprint Produksi Konten Harian</a></li>
+<li><a data-target="roadmap-faseminggu-12-minggu" href="#roadmap-faseminggu-12-minggu">Roadmap FASE/MINGGU — 12 Minggu</a></li>
+<li><a data-target="framework-kalender-konten" href="#framework-kalender-konten">Framework Kalender Konten</a></li>
+<li><a data-target="hook-formulas-untuk-niche-edukasi" href="#hook-formulas-untuk-niche-edukasi">Hook Formulas untuk Niche Edukasi</a></li>
+<li><a data-target="pola-konten-viral-yang-relevan" href="#pola-konten-viral-yang-relevan">Pola Konten Viral yang Relevan</a></li>
+<li><a data-target="ugc-strategy-dari-alumni" href="#ugc-strategy-dari-alumni">UGC Strategy dari Alumni</a></li>
+<li><a data-target="cta-library-untuk-semua-konten" href="#cta-library-untuk-semua-konten">CTA Library untuk Semua Konten</a></li>
+<li><a data-target="seo-strategy-kursus-bahasa-inggris-online" href="#seo-strategy-kursus-bahasa-inggris-online">SEO Strategy: &quot;kursus bahasa Inggris online&quot;</a></li>
+<li><a data-target="faq-konten-yang-sering-muncul" href="#faq-konten-yang-sering-muncul">FAQ Konten yang Sering Muncul</a></li>
+<li><a data-target="dashboard-metrik-mingguan" href="#dashboard-metrik-mingguan">Dashboard Metrik Mingguan</a></li>
+<li><a data-target="risiko-eksekusi-dan-mitigasi" href="#risiko-eksekusi-dan-mitigasi">Risiko Eksekusi dan Mitigasi</a></li>
+<li><a data-target="sop-ringkas-balas-komentar-ke-whatsapp" href="#sop-ringkas-balas-komentar-ke-whatsapp">SOP Ringkas Balas Komentar ke WhatsApp</a></li>
+<li><a data-target="checklist-eksekusi-mingguan" href="#checklist-eksekusi-mingguan">Checklist Eksekusi Mingguan</a></li>
+<li><a data-target="penutup-operasional" href="#penutup-operasional">Penutup Operasional</a></li>
+</ul></aside>
+<main><nav class="back-home"><a href="../index.html">&larr; Back to Home Page</a></nav><article class="ebook-content"><section class="major-section"><h1>Content Strategy &amp; Attention Growth — Bahasakuinggris</h1>
+<h2 id="header-dokumen">Header Dokumen</h2>
+<ul>
+<li>Tujuan file: jadi panduan eksekusi konten 90 hari yang menambah perhatian, DM, dan chat WhatsApp.</li>
+<li>Dipakai oleh: tim konten, talent video, admin WhatsApp, media buyer, dan owner.</li>
+</ul>
+<ul>
+<li>Fungsi public/utama: pilar konten, strategi kanal, roadmap fase-minggu, hook, UGC, dan SEO dasar.</li>
+</ul>
+<h2 id="north-star-dan-outcome-90-hari">North Star dan Outcome 90 Hari</h2>
+<ul>
+<li>Fokus utama: naikkan perhatian yang relevan, bukan sekadar views kosong.</li>
+<li>Outcome 1: stabilkan lead masuk WhatsApp dari konten organik dan ads.</li>
+<li>Outcome 2: dorong pendaftaran front-end Rp79K sebagai pintu produk lanjutan.</li>
+<li>Outcome 3: bangun trust lewat bukti hasil, bukan janji berlebihan.</li>
+<li>Outcome 4: perkuat asosiasi Bahasakuinggris dengan Kampung Inggris Pare Kediri.</li>
+</ul>
+<h2 id="konteks-produk-yang-harus-muncul-berulang">Konteks Produk yang Harus Muncul Berulang</h2>
+<ul>
+<li>Front-end utama: Kelas Speaking/Grammar Rp79K, 10x meeting.</li>
+<li>Mid-tier: TOEFL Prep Rp299K, 20x meeting.</li>
+<li>Mid-tier: IELTS Prep Rp359K, 20x meeting.</li>
+<li>Entry test service: TOEFL Scoring Rp45K.</li>
+<li>High-ticket: Private Class untuk kebutuhan spesifik.</li>
+<li>USP wajib disebut natural: pengajar teruji Pare, izin Diknas, 100K+ alumni.</li>
+<li>USP wajib disebut natural: kelas kecil 3-10 peserta.</li>
+<li>Kredibilitas tambahan: partner Grab Indonesia, STIE Semarang, My Idea School Jakarta.</li>
+</ul>
+<h2 id="persona-inti-dan-trigger-konten">Persona Inti dan Trigger Konten</h2>
+<h3 id="persona-1-pelajarmahasiswa-15-25">Persona 1 — Pelajar/Mahasiswa 15-25</h3>
+<ul>
+<li>Goal: pede ngomong Inggris di kelas, organisasi, dan interview kampus.</li>
+<li>Pain: takut salah grammar saat speaking.</li>
+<li>Pain: bingung mulai dari mana karena materi terlalu luas.</li>
+<li>Trigger: progress cepat terlihat dalam minggu pertama.</li>
+<li>Trigger: format latihan ringan, tidak bikin takut.</li>
+<li>Angle utama: belajar bareng kelas kecil, suasana suportif.</li>
+</ul>
+<h3 id="persona-2-pekerja-23-40">Persona 2 — Pekerja 23-40</h3>
+<ul>
+<li>Goal: naik level karier, lancar meeting, dan email profesional.</li>
+<li>Pain: waktu terbatas setelah jam kerja.</li>
+<li>Pain: pernah ikut kursus tapi sulit konsisten.</li>
+<li>Trigger: jadwal jelas, tugas praktis, dan latihan konteks kerja.</li>
+<li>Trigger: hasil bisa dipakai langsung besok pagi.</li>
+<li>Angle utama: hemat waktu, latihan tepat guna.</li>
+</ul>
+<h3 id="persona-3-orang-tua-30-50">Persona 3 — Orang Tua 30-50</h3>
+<ul>
+<li>Goal: cari kelas aman untuk anak atau remaja.</li>
+<li>Pain: khawatir kelas terlalu besar dan anak tidak terpantau.</li>
+<li>Pain: bingung memilih lembaga yang kredibel.</li>
+<li>Trigger: bukti legalitas, testimoni orang tua, dan pendampingan jelas.</li>
+<li>Trigger: laporan progres sederhana dan rutin.</li>
+<li>Angle utama: kelas kecil, mentor teruji, lingkungan positif.</li>
+</ul>
+<h2 id="messaging-matrix-singkat">Messaging Matrix Singkat</h2>
+<div class="table-scroll"><table>
+<thead><tr>
+<th>Persona</th>
+<th>Janji Nilai</th>
+<th>Bukti Utama</th>
+<th>CTA</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Pelajar/Mahasiswa</td>
+<td>Berani ngomong tanpa takut</td>
+<td>100K+ alumni, kelas kecil 3-10</td>
+<td>Chat WhatsApp sekarang</td>
+</tr>
+<tr>
+<td>Pekerja</td>
+<td>Inggris kerja yang kepakai</td>
+<td>Pengajar teruji Pare, modul terarah</td>
+<td>Konsultasi via WhatsApp</td>
+</tr>
+<tr>
+<td>Orang Tua</td>
+<td>Anak belajar aman dan terpantau</td>
+<td>Izin Diknas, testimoni wali murid</td>
+<td>Tanya jadwal di WhatsApp</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="pilar-konten-utama">Pilar Konten Utama</h2>
+<h3 id="pilar-1-tips-bahasa-inggris">Pilar 1 — Tips Bahasa Inggris</h3>
+<ul>
+<li>Tujuan: tarik perhatian cold audience dengan manfaat cepat.</li>
+<li>Format: micro lesson 20-45 detik.</li>
+<li>Contoh topik: kalimat harian, koreksi kesalahan umum, pronunciation mini drill.</li>
+<li>Pola CTA: ajak kirim kata &quot;MAU&quot; ke WhatsApp.</li>
+<li>KPI: watch time, save, share, klik profil.</li>
+</ul>
+<h3 id="pilar-2-testimoni-dan-bukti-hasil">Pilar 2 — Testimoni dan Bukti Hasil</h3>
+<ul>
+<li>Tujuan: ubah ragu jadi percaya.</li>
+<li>Format: before-after speaking clip, chat capture, hasil score.</li>
+<li>Tekankan perubahan spesifik, bukan klaim bombastis.</li>
+<li>Pola CTA: minta audiens tanya program cocok lewat WhatsApp.</li>
+<li>KPI: komentar intent, DM, dan reply story.</li>
+</ul>
+<h3 id="pilar-3-behind-the-scenes">Pilar 3 — Behind The Scenes</h3>
+<ul>
+<li>Tujuan: bikin brand terasa dekat dan manusiawi.</li>
+<li>Format: cuplikan kelas, briefing tutor, evaluasi tugas.</li>
+<li>Tunjukkan proses belajar yang realistis.</li>
+<li>Pola CTA: ajak trial info kelas Rp79K via WhatsApp.</li>
+<li>KPI: completion rate dan profile visit.</li>
+</ul>
+<h3 id="pilar-4-motivasi-belajar">Pilar 4 — Motivasi Belajar</h3>
+<ul>
+<li>Tujuan: tahan audiens agar tidak drop di tengah jalan.</li>
+<li>Format: cerita alumni, reframing mindset, mini challenge 7 hari.</li>
+<li>Sorot dukungan kelas kecil dan mentor yang responsif.</li>
+<li>Pola CTA: minta audiens join challenge lewat WhatsApp.</li>
+<li>KPI: share rate dan jumlah partisipan challenge.</li>
+</ul>
+<h3 id="pilar-5-promo-dan-offer-clarity">Pilar 5 — Promo dan Offer Clarity</h3>
+<ul>
+<li>Tujuan: dorong aksi cepat saat momentum tinggi.</li>
+<li>Format: penjelasan paket, bonus, jadwal batch, seat tersisa.</li>
+<li>Selalu jelas: siapa cocok, hasil realistis, dan langkah daftar.</li>
+<li>Pola CTA: direct ke WhatsApp tanpa langkah rumit.</li>
+<li>KPI: chat per konten dan rasio daftar.</li>
+</ul>
+<h2 id="komposisi-konten-mingguan">Komposisi Konten Mingguan</h2>
+<ul>
+<li>35% tips praktis bahasa Inggris.</li>
+<li>25% testimoni dan bukti hasil.</li>
+<li>15% behind the scenes.</li>
+<li>15% motivasi belajar.</li>
+<li>10% promo dan urgency.</li>
+<li>Rasio ini fleksibel berdasarkan performa 14 hari terakhir.</li>
+</ul>
+<h2 id="strategi-platform-per-channel">Strategi Platform Per Channel</h2>
+<h3 id="tiktok">TikTok</h3>
+<ul>
+<li>Peran: mesin reach dan awareness tercepat.</li>
+<li>Format utama: hook 2 detik, body 20 detik, CTA 5 detik.</li>
+<li>Gunakan subtitle tebal dan cut cepat setiap 1-2 detik.</li>
+<li>Prioritaskan topik problem-solution.</li>
+<li>Target output: 2 video per hari.</li>
+<li>CTA wajib: arahkan ke WhatsApp di bio.</li>
+</ul>
+<h3 id="instagram-reels">Instagram Reels</h3>
+<ul>
+<li>Peran: social proof dan komunitas.</li>
+<li>Format utama: edukasi singkat, carousel reels cover, repost testimoni.</li>
+<li>Gunakan story untuk polling kebutuhan belajar.</li>
+<li>Simpan highlight: hasil alumni, jadwal batch, FAQ.</li>
+<li>Target output: 1-2 reels per hari dan 5-10 story.</li>
+<li>CTA wajib: sticker WhatsApp dan link bio.</li>
+</ul>
+<h3 id="facebook-ads">Facebook Ads</h3>
+<ul>
+<li>Peran: akuisisi lead intensi tinggi.</li>
+<li>Gunakan video testimoni 15-30 detik dan static offer.</li>
+<li>Segmentasi: pelajar, pekerja, orang tua berdasarkan minat.</li>
+<li>Uji angle: takut salah, butuh score, butuh confidence.</li>
+<li>Objective: Click to WhatsApp untuk lead cepat.</li>
+<li>CTA wajib: tombol WhatsApp dengan naskah pembuka.</li>
+</ul>
+<h3 id="youtube-shorts">YouTube Shorts</h3>
+<ul>
+<li>Peran: discovery jangka menengah dan trust library.</li>
+<li>Format: tips yang bisa dipakai hari ini.</li>
+<li>Gunakan judul problem-first.</li>
+<li>Sisipkan pinned comment ke WhatsApp.</li>
+<li>Target output: 1 short per hari.</li>
+<li>CTA wajib: &quot;Mau template latihan? Chat WhatsApp&quot;.</li>
+</ul>
+<h2 id="blueprint-produksi-konten-harian">Blueprint Produksi Konten Harian</h2>
+<ul>
+<li>Riset komentar dan pertanyaan audiens 30 menit.</li>
+<li>Pilih 3 ide berdasarkan pain tertinggi.</li>
+<li>Tulis hook, poin inti, dan CTA singkat.</li>
+<li>Rekam batch 3-5 video sekaligus.</li>
+<li>Edit ringan dengan subtitle jelas.</li>
+<li>Posting sesuai prime time tiap platform.</li>
+<li>Balas komentar 60 menit setelah tayang.</li>
+<li>Catat metrik utama di sheet harian.</li>
+</ul>
+<h2 id="roadmap-faseminggu-12-minggu">Roadmap FASE/MINGGU — 12 Minggu</h2>
+<h3 id="fase-1-minggu-1-4-bangun-fondasi-atensi">FASE 1 (MINGGU 1-4) — Bangun Fondasi Atensi</h3>
+<ul>
+<li>MINGGU 1: tetapkan pesan inti per persona.</li>
+<li>MINGGU 1: produksi 20 aset video pendek.</li>
+<li>MINGGU 2: mulai seri &quot;Salah Umum Harian&quot;.</li>
+<li>MINGGU 2: aktifkan SOP balas komentar ke WhatsApp.</li>
+<li>MINGGU 3: rilis 5 testimoni dengan format before-after.</li>
+<li>MINGGU 3: uji 3 tipe CTA ke WhatsApp.</li>
+<li>MINGGU 4: evaluasi pilar dengan data retention.</li>
+<li>MINGGU 4: gandakan format dengan save rate tertinggi.</li>
+</ul>
+<h3 id="fase-2-minggu-5-8-percepat-growth">FASE 2 (MINGGU 5-8) — Percepat Growth</h3>
+<ul>
+<li>MINGGU 5: kolaborasi mikro dengan alumni aktif.</li>
+<li>MINGGU 5: jalankan challenge speaking 7 hari.</li>
+<li>MINGGU 6: dorong UGC dengan insentif non-tunai.</li>
+<li>MINGGU 6: integrasikan partner mention secara natural.</li>
+<li>MINGGU 7: scale konten testimoni berbasis role persona.</li>
+<li>MINGGU 7: retarget viewers 50% lewat FB Ads.</li>
+<li>MINGGU 8: optimasi jam posting tiap kanal.</li>
+<li>MINGGU 8: refresh opening 2 detik paling efektif.</li>
+</ul>
+<h3 id="fase-3-minggu-9-12-konsolidasi-konversi">FASE 3 (MINGGU 9-12) — Konsolidasi Konversi</h3>
+<ul>
+<li>MINGGU 9: buat playlist konten per kebutuhan belajar.</li>
+<li>MINGGU 9: dorong konten perbandingan paket program.</li>
+<li>MINGGU 10: publikasikan studi kasus progres alumni.</li>
+<li>MINGGU 10: sinkronkan promo batch dengan konten organik.</li>
+<li>MINGGU 11: push seri FAQ berbasis chat WhatsApp.</li>
+<li>MINGGU 11: scale budget iklan kreatif pemenang.</li>
+<li>MINGGU 12: audit 90 hari dan reset backlog ide.</li>
+<li>MINGGU 12: tetapkan 5 format evergreen kuartal berikutnya.</li>
+</ul>
+<h2 id="framework-kalender-konten">Framework Kalender Konten</h2>
+<h3 id="struktur-mingguan">Struktur Mingguan</h3>
+<ul>
+<li>Senin: tips grammar praktis.</li>
+<li>Selasa: speaking drill.</li>
+<li>Rabu: testimoni alumni.</li>
+<li>Kamis: behind the scenes kelas.</li>
+<li>Jumat: motivasi dan mindset.</li>
+<li>Sabtu: promo batch dan QnA live.</li>
+<li>Minggu: recap mingguan dan ajakan konsultasi.</li>
+</ul>
+<h3 id="struktur-harian-3-slot">Struktur Harian 3 Slot</h3>
+<ul>
+<li>Slot 1: konten edukasi inti.</li>
+<li>Slot 2: bukti sosial atau BTS.</li>
+<li>Slot 3: reminder CTA ke WhatsApp.</li>
+</ul>
+<h2 id="hook-formulas-untuk-niche-edukasi">Hook Formulas untuk Niche Edukasi</h2>
+<h3 id="formula-hook">Formula Hook</h3>
+<ul>
+<li>Problem tajam + akibat nyata.</li>
+<li>Mitos populer + bantahan singkat.</li>
+<li>Kesalahan umum + cara benar.</li>
+<li>Target persona + hasil yang diinginkan.</li>
+<li>Tantangan 7 hari + langkah pertama.</li>
+</ul>
+<h3 id="contoh-hook-siap-pakai">Contoh Hook Siap Pakai</h3>
+<ul>
+<li>&quot;Masih takut speaking karena grammar? Coba pola ini dulu.&quot;</li>
+<li>&quot;Kamu sering blank saat interview Inggris? Ini penyebab utamanya.&quot;</li>
+<li>&quot;Tiga kata ini bikin sounding kamu lebih natural.&quot;</li>
+<li>&quot;Bukan kurang pintar, kamu cuma pakai metode yang salah.&quot;</li>
+<li>&quot;Kalau kamu pelajar, mulai dari latihan 10 menit ini.&quot;</li>
+<li>&quot;Pekerja sibuk, ini format latihan yang hemat waktu.&quot;</li>
+<li>&quot;Anakmu pasif di kelas Inggris? Coba pendekatan ini.&quot;</li>
+<li>&quot;Jangan hafal semua tenses dulu. Fokus ini dulu.&quot;</li>
+<li>&quot;Kebanyakan orang salah ucap tiga kata dasar ini.&quot;</li>
+<li>&quot;Mau score TOEFL naik? Hindari kebiasaan ini.&quot;</li>
+<li>&quot;IELTS speaking kamu mentok? Perbaiki struktur jawaban ini.&quot;</li>
+<li>&quot;Belajar sendirian sering mentok di sini.&quot;</li>
+<li>&quot;Satu teknik ini bikin kamu lebih pede ngomong.&quot;</li>
+<li>&quot;Stop terjemah kata per kata saat speaking.&quot;</li>
+<li>&quot;Kamu sudah belajar lama, tapi belum lancar?&quot;</li>
+</ul>
+<h2 id="pola-konten-viral-yang-relevan">Pola Konten Viral yang Relevan</h2>
+<ul>
+<li>Pattern 1: &quot;Salah vs Benar&quot; dalam 20 detik.</li>
+<li>Pattern 2: duet reaction kesalahan speaking populer.</li>
+<li>Pattern 3: tantangan pengucapan 3 kata sulit.</li>
+<li>Pattern 4: transformasi alumni dari rekaman awal ke terbaru.</li>
+<li>Pattern 5: roleplay interview kerja singkat.</li>
+<li>Pattern 6: mini quiz dengan jawaban di komentar.</li>
+<li>Pattern 7: cerita gagal lalu bangkit belajar.</li>
+<li>Pattern 8: list &quot;3 hal yang bikin progress lambat&quot;.</li>
+</ul>
+<h2 id="ugc-strategy-dari-alumni">UGC Strategy dari Alumni</h2>
+<h3 id="tujuan-ugc">Tujuan UGC</h3>
+<ul>
+<li>Naikkan trust tanpa biaya produksi tinggi.</li>
+<li>Tampilkan bukti nyata lintas persona.</li>
+</ul>
+<h3 id="mekanisme-ugc">Mekanisme UGC</h3>
+<ul>
+<li>Minta alumni kirim video 20-40 detik.</li>
+<li>Beri panduan skrip 3 bagian: sebelum, proses, sesudah.</li>
+<li>Sediakan format caption siap pakai.</li>
+<li>Repost di semua kanal dengan kredit jelas.</li>
+<li>Simpan UGC terbaik di highlight &quot;Hasil Alumni&quot;.</li>
+</ul>
+<h3 id="skrip-ugc-singkat-untuk-alumni">Skrip UGC Singkat untuk Alumni</h3>
+<ul>
+<li>&quot;Dulu aku takut speaking saat presentasi.&quot;</li>
+<li>&quot;Setelah ikut kelas kecil, aku jadi lebih berani.&quot;</li>
+<li>&quot;Latihan yang paling bantu itu roleplay harian.&quot;</li>
+<li>&quot;Kalau kamu bingung mulai, tanya admin WhatsApp dulu.&quot;</li>
+</ul>
+<h3 id="insentif-ugc">Insentif UGC</h3>
+<ul>
+<li>E-certificate kontributor komunitas.</li>
+<li>Kesempatan live bareng mentor.</li>
+<li>Voucher diskon upgrade program.</li>
+<li>Akses materi bonus mingguan.</li>
+</ul>
+<h2 id="cta-library-untuk-semua-konten">CTA Library untuk Semua Konten</h2>
+<ul>
+<li>&quot;Mau jadwal batch? Chat WhatsApp sekarang.&quot;</li>
+<li>&quot;Butuh saran kelas? Konsultasi via WhatsApp.&quot;</li>
+<li>&quot;Kirim kata MAU ke WhatsApp, kami bantu pilih kelas.&quot;</li>
+<li>&quot;Mau cek level dulu? Tanya admin WhatsApp.&quot;</li>
+<li>&quot;Seat terbatas, amankan lewat WhatsApp.&quot;</li>
+<li>&quot;Pengen template latihan? Minta di WhatsApp.&quot;</li>
+<li>&quot;Konsultasi gratis, klik WhatsApp di bio.&quot;</li>
+<li>&quot;Orang tua bisa tanya progres anak via WhatsApp.&quot;</li>
+<li>&quot;Pilih TOEFL atau IELTS? Diskusi di WhatsApp.&quot;</li>
+<li>&quot;Mau private class? Chat WhatsApp sekarang.&quot;</li>
+</ul>
+<h2 id="seo-strategy-kursus-bahasa-inggris-online">SEO Strategy: &quot;kursus bahasa Inggris online&quot;</h2>
+<h3 id="prinsip-seo-konten">Prinsip SEO Konten</h3>
+<ul>
+<li>Fokus intent belajar, bukan sekadar volume kata kunci.</li>
+<li>Pakai artikel pendukung untuk menguatkan video pendek.</li>
+<li>Jadikan WhatsApp sebagai konversi utama dari konten SEO.</li>
+</ul>
+<h3 id="cluster-kata-kunci-prioritas">Cluster Kata Kunci Prioritas</h3>
+<div class="table-scroll"><table>
+<thead><tr>
+<th>Cluster</th>
+<th>Keyword Inti</th>
+<th>Intent</th>
+<th>Aset Konten</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Brand + Course</td>
+<td>kursus bahasa inggris online</td>
+<td>Komersial</td>
+<td>Landing + artikel pilar</td>
+</tr>
+<tr>
+<td>Speaking</td>
+<td>kursus speaking online</td>
+<td>Komersial</td>
+<td>Video tips + halaman program</td>
+</tr>
+<tr>
+<td>Grammar</td>
+<td>kelas grammar online</td>
+<td>Komersial</td>
+<td>Reels edukasi + FAQ</td>
+</tr>
+<tr>
+<td>TOEFL</td>
+<td>kursus toefl online</td>
+<td>Komersial</td>
+<td>Halaman TOEFL Prep</td>
+</tr>
+<tr>
+<td>IELTS</td>
+<td>kursus ielts online</td>
+<td>Komersial</td>
+<td>Halaman IELTS Prep</td>
+</tr>
+<tr>
+<td>Harga</td>
+<td>kursus bahasa inggris online murah berkualitas</td>
+<td>Komersial</td>
+<td>Artikel perbandingan nilai</td>
+</tr>
+<tr>
+<td>Lokalitas</td>
+<td>kursus bahasa inggris pare online</td>
+<td>Komersial</td>
+<td>Konten USP Pare</td>
+</tr>
+<tr>
+<td>Orang tua</td>
+<td>kursus bahasa inggris online untuk anak remaja</td>
+<td>Komersial</td>
+<td>Artikel persona orang tua</td>
+</tr>
+<tr>
+<td>Pekerja</td>
+<td>kursus bahasa inggris online untuk karyawan</td>
+<td>Komersial</td>
+<td>Artikel karier</td>
+</tr>
+<tr>
+<td>Bukti</td>
+<td>testimoni kursus bahasa inggris online</td>
+<td>Evaluasi</td>
+<td>Halaman testimoni</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="on-page-checklist">On-Page Checklist</h3>
+<ul>
+<li>Judul memuat keyword utama dan manfaat.</li>
+<li>Meta description menonjolkan hasil realistis.</li>
+<li>Gunakan H2 berbasis pertanyaan pengguna.</li>
+<li>Internal link ke halaman program terkait.</li>
+<li>Tambahkan FAQ singkat dan spesifik.</li>
+<li>Sisipkan CTA WhatsApp pada awal dan akhir.</li>
+</ul>
+<h2 id="faq-konten-yang-sering-muncul">FAQ Konten yang Sering Muncul</h2>
+<ul>
+<li>Apakah pemula boleh ikut kelas Rp79K?</li>
+<li>Jadwalnya bisa untuk pelajar dan pekerja?</li>
+<li>Kelasnya online live atau rekaman?</li>
+<li>Jumlah peserta per kelas berapa?</li>
+<li>Apa beda TOEFL Prep dan TOEFL Scoring?</li>
+<li>Program IELTS cocok untuk level berapa?</li>
+<li>Orang tua bisa konsultasi kebutuhan anak?</li>
+<li>Ada pendampingan kalau saya pemalu?</li>
+<li>Cara daftar paling cepat lewat mana?</li>
+<li>Bisa lanjut ke private class setelah reguler?</li>
+</ul>
+<h2 id="dashboard-metrik-mingguan">Dashboard Metrik Mingguan</h2>
+<ul>
+<li>Reach per platform.</li>
+<li>Retention 3 detik dan 50%.</li>
+<li>Save dan share rate.</li>
+<li>Klik profil dan klik WhatsApp.</li>
+<li>Jumlah chat masuk per konten.</li>
+<li>Rasio chat ke pendaftaran kelas Rp79K.</li>
+<li>Rasio upgrade ke TOEFL, IELTS, atau Private.</li>
+</ul>
+<h2 id="risiko-eksekusi-dan-mitigasi">Risiko Eksekusi dan Mitigasi</h2>
+<ul>
+<li>Risiko: konten ramai views tapi sepi chat.</li>
+<li>Mitigasi: perjelas CTA dan pain di 5 detik pertama.</li>
+<li>Risiko: tim lelah karena produksi harian.</li>
+<li>Mitigasi: batch recording dua kali seminggu.</li>
+<li>Risiko: komentar negatif soal harga.</li>
+<li>Mitigasi: jawab dengan value dan bukti hasil.</li>
+<li>Risiko: pesan brand tidak konsisten.</li>
+<li>Mitigasi: pakai script bank terstandar.</li>
+</ul>
+<h2 id="sop-ringkas-balas-komentar-ke-whatsapp">SOP Ringkas Balas Komentar ke WhatsApp</h2>
+<ul>
+<li>Balas dalam 15 menit pertama setelah upload.</li>
+<li>Gunakan sapaan hangat dan nama jika ada.</li>
+<li>Jawab pertanyaan inti dalam satu kalimat jelas.</li>
+<li>Arahkan ke WhatsApp dengan manfaat spesifik.</li>
+<li>Hindari balasan panjang dan defensif.</li>
+<li>Catat pertanyaan berulang jadi ide konten baru.</li>
+</ul>
+<h2 id="checklist-eksekusi-mingguan">Checklist Eksekusi Mingguan</h2>
+<ul>
+<li>Audit 20 konten terakhir.</li>
+<li>Pilih 5 format pemenang.</li>
+<li>Produksi 15-20 video baru.</li>
+<li>Jadwalkan posting lintas kanal.</li>
+<li>Update bank hook dan CTA.</li>
+<li>Follow up UGC alumni.</li>
+<li>Sinkronkan dengan admin WhatsApp.</li>
+<li>Review performa ads kreatif.</li>
+<li>Dokumentasikan insight untuk minggu depan.</li>
+</ul>
+<h2 id="penutup-operasional">Penutup Operasional</h2>
+<ul>
+<li>Konten yang menang adalah konten yang memindahkan audiens ke WhatsApp.</li>
+<li>Utamakan kejelasan manfaat, bukti, dan ajakan aksi.</li>
+<li>Jaga ritme harian, evaluasi mingguan, dan perbaikan cepat.</li>
+</ul></section></article></main>
+</div>
+<button aria-label="Kembali ke atas" class="back-to-top" id="backToTop" type="button">&#8593;</button>
+<script>
+    (function () {
+      'use strict';
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      var toggle = document.getElementById('sidebarToggle');
+      var backBtn = document.getElementById('backToTop');
+      var progressBar = document.getElementById('readingProgress');
+      var tocLinks = Array.from(document.querySelectorAll('.toc-list a'));
+      var sections = tocLinks
+        .map(function (a) { return document.getElementById(a.dataset.target); })
+        .filter(Boolean);
+
+      /* --- Sidebar open/close with overlay --- */
+      function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          if (sidebar.classList.contains('open')) { closeSidebar(); }
+          else { openSidebar(); }
+        });
+      }
+      if (overlay) {
+        overlay.addEventListener('click', closeSidebar);
+      }
+
+      /* --- Swipe to close sidebar --- */
+      var touchStartX = 0;
+      var touchStartY = 0;
+      sidebar.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      sidebar.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        var dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+        if (dx < -60 && dy < 80) { closeSidebar(); }
+      }, { passive: true });
+
+      /* --- TOC link click closes sidebar on mobile --- */
+      tocLinks.forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (window.innerWidth <= 1024) { closeSidebar(); }
+        });
+      });
+
+      /* --- Scroll spy --- */
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var id = entry.target.id;
+            tocLinks.forEach(function (link) {
+              if (link.dataset.target === id) {
+                link.classList.add('active');
+                /* Auto-scroll TOC to active item on desktop */
+                if (window.innerWidth > 1024 && sidebar.scrollHeight > sidebar.clientHeight) {
+                  link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                }
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          });
+        },
+        { rootMargin: '-30% 0px -55% 0px', threshold: 0.1 }
+      );
+      sections.forEach(function (sec) { observer.observe(sec); });
+
+      /* --- Reading progress bar + back-to-top --- */
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            var scrollTop = window.scrollY || document.documentElement.scrollTop;
+            var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight > 0) {
+              progressBar.style.width = Math.min((scrollTop / docHeight) * 100, 100) + '%';
+            }
+            if (scrollTop > 400) { backBtn.classList.add('show'); }
+            else { backBtn.classList.remove('show'); }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      backBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      /* --- Profile accordion on mobile --- */
+      function initAccordion() {
+        var isMobile = window.innerWidth <= 768;
+        var profiles = document.querySelectorAll('h3[id]');
+        profiles.forEach(function (h3) {
+          /* Only profile headings (G0-x, numbered, S-x, T-x) */
+          var text = h3.textContent || '';
+          if (!/^(G0-|[0-9]+\.|S[0-9]|T-[0-9])/.test(text.trim())) return;
+
+          var existingBtn = h3.querySelector('.profile-collapse-btn');
+          if (!existingBtn) {
+            var btn = document.createElement('button');
+            btn.className = 'profile-collapse-btn';
+            btn.textContent = '▼';
+            btn.setAttribute('aria-label', 'Buka/tutup profil');
+            h3.appendChild(btn);
+          }
+
+          var btn = h3.querySelector('.profile-collapse-btn');
+          /* Collect siblings until next h3 or h2 */
+          var body = h3.nextElementSibling;
+          if (body && body.classList.contains('profile-body')) {
+            /* Already wrapped */
+            if (isMobile && !body.classList.contains('collapsed')) {
+              body.classList.add('collapsed');
+              btn.textContent = '▶';
+            } else if (!isMobile) {
+              body.classList.remove('collapsed');
+              btn.textContent = '▼';
+            }
+            return;
+          }
+
+          /* Wrap profile content in a div */
+          var wrapper = document.createElement('div');
+          wrapper.className = 'profile-body';
+          var sibling = h3.nextElementSibling;
+          while (sibling && sibling.tagName !== 'H3' && sibling.tagName !== 'H2') {
+            var next = sibling.nextElementSibling;
+            wrapper.appendChild(sibling);
+            sibling = next;
+          }
+          h3.parentNode.insertBefore(wrapper, sibling);
+
+          if (isMobile) {
+            wrapper.classList.add('collapsed');
+            btn.textContent = '▶';
+          }
+        });
+      }
+
+      /* Toggle accordion on click */
+      document.addEventListener('click', function (e) {
+        if (!e.target.classList.contains('profile-collapse-btn')) return;
+        var h3 = e.target.closest('h3');
+        if (!h3) return;
+        var body = h3.nextElementSibling;
+        if (body && body.classList.contains('profile-body')) {
+          body.classList.toggle('collapsed');
+          e.target.textContent = body.classList.contains('collapsed') ? '▶' : '▼';
+        }
+      });
+
+      /* Init accordion on load and resize */
+      initAccordion();
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(initAccordion, 250);
+      });
+
+      /* --- Keyboard: Escape closes sidebar --- */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+          closeSidebar();
+        }
+      });
+    })();
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Funnels &amp; Conversions — Bahasakuinggris</title>
+<style>
+    :root { --bg:#fff; --text:#1f2937; --heading:#1a365d; --accent:#d69e2e; --danger:#e53e3e; --line:#e5e7eb; --muted:#64748b; --soft:#f8fafc; --bridge:#f0f4f8; --lesson:#fffbeb; --whatif:#f5f0ff; }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:"Segoe UI", system-ui, -apple-system, sans-serif; line-height:1.65; }
+    h1,h2,h3,h4,h5 { font-family:Georgia, "Times New Roman", serif; color:var(--heading); line-height:1.3; scroll-margin-top:80px; }
+    .cover { min-height:100vh; display:grid; place-items:center; text-align:center; padding:2rem; border-bottom:1px solid var(--line); }
+    .cover h1 { font-size:clamp(2rem,4vw,3.3rem); margin:.25rem 0; }
+    .cover .subtitle { color:var(--heading); font-size:1.1rem; } .cover .meta { color:var(--muted); margin-top:1rem; }
+    .layout { display:flex; }
+    .sidebar-toggle { display:none; position:fixed; top:12px; left:12px; z-index:1200; border:1px solid var(--line); background:white; border-radius:8px; padding:.45rem .65rem; }
+    aside { position:sticky; top:0; align-self:flex-start; width:310px; max-height:100vh; overflow:auto; border-right:1px solid var(--line); background:#fff; padding:1rem; }
+    .toc-list,.toc-list ul { list-style:none; margin:0; padding-left:.8rem; } .toc-list>li { margin:.24rem 0; }
+    .toc-list a { text-decoration:none; color:#334155; font-size:.92rem; display:block; padding:.16rem .4rem; border-left:2px solid transparent; border-radius:4px; }
+    .toc-list a.active { color:var(--heading); border-left-color:var(--accent); background:#f8fafc; font-weight:600; }
+    main { flex:1; padding:1.2rem clamp(1rem,3vw,2.5rem) 3rem; } .ebook-content { max-width:980px; margin:auto; }
+    .major-section { padding:1rem 0; border-bottom:1px solid var(--line); } .section-alt { background:var(--soft); padding:1.1rem; border-radius:10px; border:1px solid #edf2f7; }
+    .table-scroll { overflow-x:auto; margin:1rem 0; } table { width:100%; border-collapse:collapse; min-width:640px; background:#fff; }
+    th,td { border:1px solid #dbe1e8; padding:.58rem .6rem; vertical-align:top; } th { background:#f8fafc; font-weight:700; }
+    .scorecard-table th::after { content:" ⇅"; color:#94a3b8; font-size:.78em; } .scorecard-table tbody tr:nth-child(even) { background:#fcfdff; }
+    .status-green { background:#e6ffed; } .status-yellow { background:#fffbea; } .status-red { background:#ffe8e8; } .status-gray { background:#f3f4f6; }
+    .warning-marker { color:var(--danger); font-weight:700; font-size:1.12em; } .controversial-heading { border-left:4px solid var(--danger); padding-left:.55rem; }
+    blockquote { margin:1rem 0; border-left:4px solid #cbd5e1; padding:.6rem .85rem; background:#f8fafc; }
+    .archetype-box { display:flex; flex-wrap:wrap; align-items:center; gap:.45rem; margin:.8rem 0 1rem; } .archetype-label { font-weight:700; color:#475569; }
+    .archetype-pill { background:#ebf4ff; border:1px solid #bfdbfe; color:#1e40af; padding:.22rem .55rem; border-radius:999px; font-size:.86rem; }
+    .lesson-box { background:var(--lesson); border-left:4px solid var(--accent); padding:.7rem .8rem; margin:.9rem 0 1.1rem; font-size:.95rem; } .lesson-title { margin:.2rem 0 .45rem; font-weight:700; }
+    .narrative-bridge { background:var(--bridge); border:1px solid #d7e0ea; border-radius:10px; padding:.75rem .9rem; margin:1rem 0; } .narrative-bridge p { font-style:italic; color:#334155; }
+    .timeline-scroll { overflow-x:auto; padding-bottom:.5rem; margin:.9rem 0 1.2rem; } .timeline-track { display:grid; grid-auto-flow:column; grid-auto-columns:minmax(180px,1fr); gap:.65rem; min-width:max-content; }
+    .timeline-col { border:1px solid #dbe4ee; border-radius:10px; background:#fff; padding:.55rem; } .timeline-year { font-weight:700; color:var(--heading); border-bottom:1px solid #e2e8f0; padding-bottom:.35rem; margin-bottom:.45rem; }
+    .timeline-event { font-size:.9rem; padding:.42rem .5rem; border-radius:7px; margin:.36rem 0; border:1px solid transparent; } .timeline-event.positive { background:#ecfdf3; border-color:#b7efcc; } .timeline-event.negative { background:#fff1f1; border-color:#f6c2c2; }
+    .pattern-chain { display:flex; flex-direction:column; gap:.4rem; margin:1rem 0 1.2rem; } .chain-card { border:1px solid #dbe4ee; border-radius:9px; background:#fff; padding:.6rem .7rem; } .chain-arrow { text-align:center; color:#64748b; font-size:1.2rem; }
+    .juxtaposition-wrap { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; margin:.75rem 0 1rem; } .juxta-card { border-radius:10px; border:1px solid #e2e8f0; padding:.65rem .75rem; }
+    .juxta-card.positive { background:#f0fff4; border-color:#bbf7d0; } .juxta-card.positive h5 { color:#166534; } .juxta-card.negative { background:#fff1f2; border-color:#fecdd3; } .juxta-card.negative h5 { color:#991b1b; }
+    .whatif-card { background:var(--whatif); border-left:4px solid #7c3aed; padding:.65rem .8rem; border-radius:8px; margin:.6rem 0; }
+    .checklist-table tbody tr td:first-child { font-weight:700; text-align:center; width:48px; } .fake-checkbox { display:inline-block; border:1px solid #cbd5e1; border-radius:6px; padding:.14rem .38rem; background:#fff; font-family:ui-monospace,monospace; }
+    .retro-score-table td:nth-child(2) { font-weight:700; text-align:center; } .score-safe { background:#ecfdf3; color:#166534; } .score-low { background:#fffbea; color:#92400e; } .score-mid { background:#fff7ed; color:#9a3412; } .score-high { background:#fee2e2; color:#991b1b; }
+    .back-to-top { position:fixed; right:16px; bottom:18px; border:none; background:var(--heading); color:#fff; width:42px; height:42px; border-radius:999px; cursor:pointer; opacity:0; transform:translateY(8px); transition:.2s; } .back-to-top.show { opacity:1; transform:translateY(0); }
+    /* --- Overlay backdrop --- */
+    .sidebar-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:1050; opacity:0; transition:opacity .24s; }
+    .sidebar-overlay.show { display:block; opacity:1; }
+
+    /* --- Reading progress bar --- */
+    .reading-progress { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--accent),#f59e0b); z-index:1300; width:0; transition:width .12s linear; }
+
+    /* --- Accordion for mobile profiles --- */
+    .profile-collapse-btn { display:none; }
+
+    /* ===== TABLET: ≤1024px ===== */
+    @media (max-width:1024px) {
+      .sidebar-toggle { display:block; }
+      aside { position:fixed; top:0; left:0; transform:translateX(-105%); transition:.24s; z-index:1100; width:min(82vw,320px); box-shadow:0 10px 30px rgba(2,6,23,.18); }
+      aside.open { transform:translateX(0); }
+      main { padding-top:3.8rem; }
+      .juxtaposition-wrap { grid-template-columns:1fr; }
+      .toc-list a { padding:.4rem .5rem; min-height:36px; display:flex; align-items:center; }
+    }
+
+    /* ===== MOBILE: ≤768px ===== */
+    @media (max-width:768px) {
+      body { font-size:15px; line-height:1.7; -webkit-text-size-adjust:100%; }
+      h1 { font-size:1.6rem; } h2 { font-size:1.35rem; scroll-margin-top:56px; } h3 { font-size:1.15rem; scroll-margin-top:56px; } h4 { font-size:1.05rem; }
+      main { padding:3.2rem .75rem 4rem; }
+      .cover { min-height:80vh; padding:1.5rem 1rem; }
+      .cover h1 { font-size:1.6rem; }
+      .cover .subtitle { font-size:.95rem; }
+
+      /* Tables: scroll hint + shadow */
+      .table-scroll { position:relative; }
+      .table-scroll::after { content:"← geser →"; display:block; text-align:center; font-size:.78rem; color:var(--muted); padding:.3rem 0; }
+      table { min-width:520px; font-size:.85rem; }
+      th,td { padding:.4rem .45rem; }
+
+      /* TOC touch targets */
+      .toc-list a { padding:.5rem .55rem; min-height:44px; font-size:.95rem; border-radius:6px; }
+      .toc-list>li { margin:.12rem 0; }
+
+      /* Sidebar wider on mobile */
+      aside { width:min(88vw,340px); padding:.8rem .6rem; }
+
+      /* Lesson box, bridge, whatif — full width */
+      .lesson-box, .narrative-bridge, .whatif-card { padding:.6rem .65rem; font-size:.9rem; }
+      blockquote { padding:.5rem .65rem; font-size:.93rem; }
+
+      /* Timeline: smaller columns */
+      .timeline-track { grid-auto-columns:minmax(150px,1fr); }
+      .timeline-event { font-size:.82rem; padding:.35rem .4rem; }
+
+      /* Pattern chain */
+      .chain-card { padding:.5rem .55rem; font-size:.9rem; }
+
+      /* Archetype pills */
+      .archetype-pill { font-size:.8rem; padding:.18rem .45rem; }
+
+      /* Back to top: larger touch target */
+      .back-to-top { width:48px; height:48px; font-size:1.2rem; right:12px; bottom:14px; }
+
+      /* Hamburger: larger */
+      .sidebar-toggle { padding:.55rem .75rem; font-size:1.15rem; top:8px; left:8px; }
+
+      /* Profile accordion */
+      .profile-collapse-btn { display:inline-block; background:none; border:1px solid var(--line); border-radius:6px; padding:.3rem .6rem; font-size:.82rem; color:var(--muted); cursor:pointer; margin-left:.5rem; vertical-align:middle; }
+      .profile-body.collapsed { display:none; }
+
+      /* Juxtaposition cards stacked */
+      .juxta-card { padding:.55rem .6rem; font-size:.9rem; }
+
+      /* Checklist table */
+      .checklist-table { min-width:400px; }
+
+      /* Scorecard table */
+      .scorecard-table { min-width:700px; font-size:.8rem; }
+    }
+
+    /* ===== SMALL PHONE: ≤480px ===== */
+    @media (max-width:480px) {
+      body { font-size:14px; }
+      h1 { font-size:1.4rem; } h2 { font-size:1.2rem; } h3 { font-size:1.08rem; }
+      main { padding:3rem .5rem 4rem; }
+      .cover { min-height:70vh; padding:1.2rem .8rem; }
+      .cover h1 { font-size:1.35rem; }
+      .cover .subtitle { font-size:.88rem; }
+      .section-alt { padding:.7rem; border-radius:8px; }
+      .lesson-box, .narrative-bridge, .whatif-card { margin:.6rem -.15rem; border-radius:6px; }
+      table { min-width:440px; font-size:.78rem; }
+      th,td { padding:.32rem .35rem; }
+      .timeline-track { grid-auto-columns:minmax(130px,1fr); gap:.45rem; }
+      .archetype-box { gap:.3rem; }
+      .archetype-pill { font-size:.75rem; }
+      aside { width:min(92vw,300px); }
+      .toc-list a { font-size:.9rem; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print { @page { margin:2cm; } .sidebar-toggle,aside,.back-to-top,.reading-progress,.sidebar-overlay,.profile-collapse-btn { display:none !important; } main { padding:0; } .major-section,.section-alt { break-inside:avoid; page-break-inside:avoid; border:none; background:#fff; } h2 { break-before:page; page-break-before:always; } a { color:#000; text-decoration:none; } .profile-body.collapsed { display:block !important; } }
+  
+.back-home { padding:.8rem 1.5rem .2rem; }
+.back-home a { display:inline-flex; align-items:center; gap:.4rem; color:#4a5568; text-decoration:none; font-size:.9rem; font-weight:500; padding:.4rem .8rem; border-radius:6px; border:1px solid #e2e8f0; background:#fff; transition:all .15s; }
+.back-home a:hover { color:#1a365d; border-color:#1a365d; background:#f7fafc; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+@media(max-width:600px) { .back-home { padding:.6rem 1rem .2rem; } .back-home a { font-size:.82rem; } }
+</style>
+</head>
+<body>
+<header class="cover">
+<div>
+<h1>Funnels &amp; Conversions — Bahasakuinggris</h1>
+<p class="subtitle">Dokumen Blueprint</p>
+<p class="meta">Regenerasi HTML &#8226; 28 April 2026</p>
+</div>
+</header>
+<div class="reading-progress" id="readingProgress"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<button aria-label="Buka/Tutup Daftar Isi" class="sidebar-toggle" id="sidebarToggle" type="button">&#9776;</button>
+<div class="layout">
+<aside id="sidebar"><h2>Daftar Isi</h2><ul class="toc-list">
+<li><a data-target="header-dokumen" href="#header-dokumen">Header Dokumen</a></li>
+<li><a data-target="target-funnel-90-hari" href="#target-funnel-90-hari">Target Funnel 90 Hari</a></li>
+<li><a data-target="ringkasan-produk-untuk-struktur-funnel" href="#ringkasan-produk-untuk-struktur-funnel">Ringkasan Produk untuk Struktur Funnel</a></li>
+<li><a data-target="funnel-utama-meta-ad-whatsapp-enrollment" href="#funnel-utama-meta-ad-whatsapp-enrollment">Funnel Utama: Meta Ad → WhatsApp → Enrollment</a></li>
+<li><a data-target="awareness-level-mapping" href="#awareness-level-mapping">Awareness Level Mapping</a></li>
+<li><a data-target="offer-framing-by-persona" href="#offer-framing-by-persona">Offer Framing by Persona</a></li>
+<li><a data-target="struktur-landing-page-pendukung-funnel" href="#struktur-landing-page-pendukung-funnel">Struktur Landing Page Pendukung Funnel</a></li>
+<li><a data-target="template-whatsapp-first-response" href="#template-whatsapp-first-response">Template WhatsApp First Response</a></li>
+<li><a data-target="whatsapp-qualification-script" href="#whatsapp-qualification-script">WhatsApp Qualification Script</a></li>
+<li><a data-target="whatsapp-follow-up-sequence-d0-sampai-d10" href="#whatsapp-follow-up-sequence-d0-sampai-d10">WhatsApp Follow-Up Sequence (D+0 sampai D+10)</a></li>
+<li><a data-target="nurture-sequence-untuk-lead-belum-daftar" href="#nurture-sequence-untuk-lead-belum-daftar">Nurture Sequence untuk Lead Belum Daftar</a></li>
+<li><a data-target="retargeting-strategy" href="#retargeting-strategy">Retargeting Strategy</a></li>
+<li><a data-target="conversion-benchmarks-internal" href="#conversion-benchmarks-internal">Conversion Benchmarks Internal</a></li>
+<li><a data-target="funnel-per-product-tier" href="#funnel-per-product-tier">Funnel per Product Tier</a></li>
+<li><a data-target="lead-scoring-sederhana-di-whatsapp" href="#lead-scoring-sederhana-di-whatsapp">Lead Scoring Sederhana di WhatsApp</a></li>
+<li><a data-target="handling-objection-script" href="#handling-objection-script">Handling Objection Script</a></li>
+<li><a data-target="sop-admin-whatsapp-untuk-konversi" href="#sop-admin-whatsapp-untuk-konversi">SOP Admin WhatsApp untuk Konversi</a></li>
+<li><a data-target="konten-pendukung-untuk-menggerakkan-funnel" href="#konten-pendukung-untuk-menggerakkan-funnel">Konten Pendukung untuk Menggerakkan Funnel</a></li>
+<li><a data-target="integrasi-crm-sederhana" href="#integrasi-crm-sederhana">Integrasi CRM Sederhana</a></li>
+<li><a data-target="roadmap-faseminggu-12-minggu" href="#roadmap-faseminggu-12-minggu">Roadmap FASE/MINGGU — 12 Minggu</a></li>
+<li><a data-target="faq-untuk-mempercepat-konversi" href="#faq-untuk-mempercepat-konversi">FAQ untuk Mempercepat Konversi</a></li>
+<li><a data-target="cta-library-untuk-funnel" href="#cta-library-untuk-funnel">CTA Library untuk Funnel</a></li>
+<li><a data-target="checklist-eksekusi-mingguan-funnel" href="#checklist-eksekusi-mingguan-funnel">Checklist Eksekusi Mingguan Funnel</a></li>
+<li><a data-target="checklist-harian-admin-whatsapp" href="#checklist-harian-admin-whatsapp">Checklist Harian Admin WhatsApp</a></li>
+<li><a data-target="risk-register-dan-mitigasi" href="#risk-register-dan-mitigasi">Risk Register dan Mitigasi</a></li>
+<li><a data-target="rencana-30-hari-pertama" href="#rencana-30-hari-pertama">Rencana 30 Hari Pertama</a></li>
+<li><a data-target="penutup-operasional" href="#penutup-operasional">Penutup Operasional</a></li>
+</ul></aside>
+<main><nav class="back-home"><a href="../index.html">&larr; Back to Home Page</a></nav><article class="ebook-content"><section class="major-section"><h1>Funnels &amp; Conversions — Bahasakuinggris</h1>
+<h2 id="header-dokumen">Header Dokumen</h2>
+<ul>
+<li>Tujuan file: jadi playbook funnel end-to-end untuk menaikkan konversi dari trafik ke enrollment.</li>
+<li>Dipakai oleh: media buyer, admin WhatsApp, tim sales, content lead, dan owner.</li>
+</ul>
+<ul>
+<li>Fungsi public/utama: desain funnel, mapping awareness, alur chat, retargeting, benchmark, nurture.</li>
+</ul>
+<h2 id="target-funnel-90-hari">Target Funnel 90 Hari</h2>
+<ul>
+<li>Prioritas utama: produk front-end Rp79K sebagai pintu akuisisi massal.</li>
+<li>Target kedua: upsell ke TOEFL Prep, IELTS Prep, dan Private Class.</li>
+<li>Target ketiga: aktifkan layanan TOEFL Scoring untuk lead evaluasi level.</li>
+<li>Prinsip: semua jalur konversi berakhir ke WhatsApp.</li>
+</ul>
+<h2 id="ringkasan-produk-untuk-struktur-funnel">Ringkasan Produk untuk Struktur Funnel</h2>
+<ul>
+<li>Kelas Speaking/Grammar Rp79K, 10x meeting, low barrier entry.</li>
+<li>TOEFL Prep Rp299K, 20x meeting, untuk target score lebih terarah.</li>
+<li>IELTS Prep Rp359K, 20x meeting, untuk akademik dan karier global.</li>
+<li>TOEFL Scoring Rp45K, opsi cepat cek kemampuan.</li>
+<li>Private Class, solusi kebutuhan personal dan jadwal fleksibel.</li>
+</ul>
+<h2 id="funnel-utama-meta-ad-whatsapp-enrollment">Funnel Utama: Meta Ad → WhatsApp → Enrollment</h2>
+<h3 id="tahap-1-click-capture">Tahap 1 — Click Capture</h3>
+<ul>
+<li>Iklan menampilkan pain paling relevan per persona.</li>
+<li>Value langsung jelas dalam 3 detik awal.</li>
+<li>CTA tunggal: klik WhatsApp untuk konsultasi cepat.</li>
+</ul>
+<h3 id="tahap-2-whatsapp-qualification">Tahap 2 — WhatsApp Qualification</h3>
+<ul>
+<li>Admin respon cepat dengan template ringkas.</li>
+<li>Admin gali tujuan, kendala, dan timeline belajar.</li>
+<li>Admin cocokkan produk sesuai kebutuhan.</li>
+</ul>
+<h3 id="tahap-3-offer-presentation">Tahap 3 — Offer Presentation</h3>
+<ul>
+<li>Jelaskan paket dalam bahasa sederhana.</li>
+<li>Tekankan manfaat dan proses belajar realistis.</li>
+<li>Tunjukkan bukti hasil dan kredibilitas lembaga.</li>
+</ul>
+<h3 id="tahap-4-closing-enrollment">Tahap 4 — Closing Enrollment</h3>
+<ul>
+<li>Berikan langkah daftar yang sangat sederhana.</li>
+<li>Gunakan urgency sehat berdasarkan jadwal batch.</li>
+<li>Konfirmasi pembayaran dan onboarding awal.</li>
+</ul>
+<h3 id="tahap-5-post-enrollment">Tahap 5 — Post Enrollment</h3>
+<ul>
+<li>Kirim welcome message dan jadwal kelas.</li>
+<li>Tawarkan jalur upgrade setelah milestone awal.</li>
+<li>Minta testimoni saat progres terlihat.</li>
+</ul>
+<h2 id="awareness-level-mapping">Awareness Level Mapping</h2>
+<div class="table-scroll"><table>
+<thead><tr>
+<th>Level Awareness</th>
+<th>Kondisi Lead</th>
+<th>Angle Pesan</th>
+<th>CTA</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Unaware</td>
+<td>Belum sadar masalah</td>
+<td>Cerita situasi sehari-hari</td>
+<td>Cek kondisi via WhatsApp</td>
+</tr>
+<tr>
+<td>Problem Aware</td>
+<td>Sadar kendala speaking/score</td>
+<td>Diagnosis singkat</td>
+<td>Konsultasi gratis di WhatsApp</td>
+</tr>
+<tr>
+<td>Solution Aware</td>
+<td>Tahu perlu kursus</td>
+<td>Bedakan metode dan kelas kecil</td>
+<td>Tanya program yang cocok</td>
+</tr>
+<tr>
+<td>Product Aware</td>
+<td>Sudah tahu Bahasakuinggris</td>
+<td>Tunjukkan bukti hasil dan legalitas</td>
+<td>Amankan kursi batch</td>
+</tr>
+<tr>
+<td>Most Aware</td>
+<td>Siap daftar</td>
+<td>Tekankan langkah daftar mudah</td>
+<td>Daftar lewat WhatsApp</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="offer-framing-by-persona">Offer Framing by Persona</h2>
+<h3 id="pelajarmahasiswa-15-25">Pelajar/Mahasiswa 15-25</h3>
+<ul>
+<li>Narasi utama: berani speaking untuk kelas dan organisasi.</li>
+<li>Penekanan: latihan ringan tapi rutin.</li>
+<li>Offer awal: kelas Rp79K sebagai start aman.</li>
+</ul>
+<h3 id="pekerja-23-40">Pekerja 23-40</h3>
+<ul>
+<li>Narasi utama: bahasa Inggris untuk tuntutan kerja nyata.</li>
+<li>Penekanan: jadwal efisien dan praktik kontekstual.</li>
+<li>Offer awal: kelas Rp79K lalu mapping ke TOEFL/IELTS.</li>
+</ul>
+<h3 id="orang-tua-30-50">Orang Tua 30-50</h3>
+<ul>
+<li>Narasi utama: pendampingan aman untuk anak.</li>
+<li>Penekanan: kelas kecil, mentor teruji, izin Diknas.</li>
+<li>Offer awal: konsultasi kebutuhan anak via WhatsApp.</li>
+</ul>
+<h2 id="struktur-landing-page-pendukung-funnel">Struktur Landing Page Pendukung Funnel</h2>
+<h3 id="section-1-hero">Section 1 — Hero</h3>
+<ul>
+<li>Headline problem-solution yang jelas.</li>
+<li>Subheadline menonjolkan USP utama.</li>
+<li>Tombol CTA WhatsApp di atas fold.</li>
+</ul>
+<h3 id="section-2-kredibilitas">Section 2 — Kredibilitas</h3>
+<ul>
+<li>Sorot 100K+ alumni.</li>
+<li>Tampilkan partner: Grab Indonesia, STIE Semarang, My Idea School Jakarta.</li>
+<li>Tampilkan izin Diknas secara ringkas.</li>
+</ul>
+<h3 id="section-3-program-snapshot">Section 3 — Program Snapshot</h3>
+<ul>
+<li>Ringkas semua produk dan durasi meeting.</li>
+<li>Bedakan siapa cocok untuk tiap produk.</li>
+<li>Tampilkan harga secara transparan.</li>
+</ul>
+<h3 id="section-4-bukti-hasil">Section 4 — Bukti Hasil</h3>
+<ul>
+<li>Video testimoni pendek dan spesifik.</li>
+<li>Cerita before-after yang realistis.</li>
+<li>Screenshot feedback peserta.</li>
+</ul>
+<h3 id="section-5-faq">Section 5 — FAQ</h3>
+<ul>
+<li>Jawab 8-10 pertanyaan inti.</li>
+<li>Bahasa sederhana dan tidak teknis.</li>
+<li>Tutup dengan CTA WhatsApp.</li>
+</ul>
+<h3 id="section-6-final-cta">Section 6 — Final CTA</h3>
+<ul>
+<li>Ulang manfaat terkuat.</li>
+<li>Beri alasan aksi sekarang.</li>
+<li>Tombol WhatsApp terakhir yang kontras.</li>
+</ul>
+<h2 id="template-whatsapp-first-response">Template WhatsApp First Response</h2>
+<ul>
+<li>&quot;Halo, makasih sudah chat Bahasakuinggris 🙌&quot;</li>
+<li>&quot;Boleh tahu tujuan belajarnya? Speaking, TOEFL, IELTS, atau untuk anak?&quot;</li>
+<li>&quot;Biar pas, admin bantu pilih kelas paling cocok ya.&quot;</li>
+<li>&quot;Kalau berkenan, sebutkan umur dan target waktunya.&quot;</li>
+</ul>
+<h2 id="whatsapp-qualification-script">WhatsApp Qualification Script</h2>
+<ul>
+<li>Pertanyaan 1: tujuan utama belajar sekarang apa.</li>
+<li>Pertanyaan 2: level saat ini pemula, menengah, atau lanjut.</li>
+<li>Pertanyaan 3: kendala terbesar yang sering muncul.</li>
+<li>Pertanyaan 4: jadwal belajar yang paling mungkin.</li>
+<li>Pertanyaan 5: target mulai kelas kapan.</li>
+<li>Pertanyaan 6: prioritas budget program.</li>
+</ul>
+<h2 id="whatsapp-follow-up-sequence-d0-sampai-d10">WhatsApp Follow-Up Sequence (D+0 sampai D+10)</h2>
+<h3 id="d0-follow-up-1">D+0 — Follow-up 1</h3>
+<ul>
+<li>Ulang ringkas kebutuhan lead.</li>
+<li>Beri rekomendasi program utama.</li>
+<li>Ajak lanjut ke langkah pendaftaran.</li>
+</ul>
+<h3 id="d1-follow-up-2">D+1 — Follow-up 2</h3>
+<ul>
+<li>Kirim testimoni relevan sesuai persona.</li>
+<li>Tekankan suasana kelas kecil 3-10.</li>
+<li>Ingatkan admin siap bantu kapan saja.</li>
+</ul>
+<h3 id="d2-follow-up-3">D+2 — Follow-up 3</h3>
+<ul>
+<li>Kirim mini tips gratis yang langsung kepakai.</li>
+<li>Bangun goodwill sebelum hard sell.</li>
+<li>Tanyakan hambatan untuk lanjut daftar.</li>
+</ul>
+<h3 id="d4-follow-up-4">D+4 — Follow-up 4</h3>
+<ul>
+<li>Tawarkan pilihan batch terdekat.</li>
+<li>Beri opsi program alternatif jika perlu.</li>
+<li>Gunakan CTA jelas ke proses daftar.</li>
+</ul>
+<h3 id="d7-follow-up-5">D+7 — Follow-up 5</h3>
+<ul>
+<li>Kirim ringkasan manfaat program pilihan.</li>
+<li>Tampilkan bukti hasil tambahan.</li>
+<li>Tanyakan keputusan dengan sopan.</li>
+</ul>
+<h3 id="d10-follow-up-6">D+10 — Follow-up 6</h3>
+<ul>
+<li>Kirim pesan last call yang hangat.</li>
+<li>Tegaskan kursi batch terbatas sesuai jadwal.</li>
+<li>Tutup dengan ajakan chat cepat.</li>
+</ul>
+<h2 id="nurture-sequence-untuk-lead-belum-daftar">Nurture Sequence untuk Lead Belum Daftar</h2>
+<h3 id="tujuan-nurture">Tujuan Nurture</h3>
+<ul>
+<li>Menjaga lead tetap hangat tanpa tekanan berlebih.</li>
+<li>Mengubah ragu menjadi tindakan melalui edukasi bertahap.</li>
+</ul>
+<h3 id="alur-nurture-4-minggu">Alur Nurture 4 Minggu</h3>
+<ul>
+<li>Minggu 1: edukasi kesalahan umum belajar bahasa Inggris.</li>
+<li>Minggu 1: kirim 1 testimoni sesuai persona.</li>
+<li>Minggu 2: konten motivasi dan strategi konsisten.</li>
+<li>Minggu 2: ajak ikut mini challenge speaking.</li>
+<li>Minggu 3: jelaskan beda Reguler, TOEFL, IELTS, Private.</li>
+<li>Minggu 3: tawarkan konsultasi singkat via WhatsApp.</li>
+<li>Minggu 4: kirim reminder jadwal batch berikutnya.</li>
+<li>Minggu 4: berikan CTA final untuk daftar.</li>
+</ul>
+<h2 id="retargeting-strategy">Retargeting Strategy</h2>
+<h3 id="segment-retargeting">Segment Retargeting</h3>
+<ul>
+<li>Segment A: klik iklan tapi belum chat.</li>
+<li>Segment B: sudah chat tapi belum bayar.</li>
+<li>Segment C: sudah beli Rp79K, belum upgrade.</li>
+</ul>
+<h3 id="kreatif-retargeting">Kreatif Retargeting</h3>
+<ul>
+<li>Segment A: video pain-solution + CTA WhatsApp.</li>
+<li>Segment B: testimoni mendalam + jawaban keberatan.</li>
+<li>Segment C: studi kasus kenaikan level + offer upgrade.</li>
+</ul>
+<h3 id="window-retargeting">Window Retargeting</h3>
+<ul>
+<li>1-3 hari: fokus recall dan klarifikasi manfaat.</li>
+<li>4-7 hari: fokus bukti hasil dan social proof.</li>
+<li>8-14 hari: fokus urgency batch dan keputusan.</li>
+</ul>
+<h2 id="conversion-benchmarks-internal">Conversion Benchmarks Internal</h2>
+<div class="table-scroll"><table>
+<thead><tr>
+<th>Tahap Funnel</th>
+<th>Benchmark Awal</th>
+<th>Catatan Optimasi</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>CTR Meta Ads</td>
+<td>1.5% - 3%</td>
+<td>Uji hook dan visual persona</td>
+</tr>
+<tr>
+<td>Click to WhatsApp Rate</td>
+<td>8% - 15%</td>
+<td>Tegaskan CTA tunggal</td>
+</tr>
+<tr>
+<td>Response Time Admin</td>
+<td>&lt; 5 menit</td>
+<td>Shift admin saat peak hour</td>
+</tr>
+<tr>
+<td>Qualified Lead Rate</td>
+<td>45% - 60%</td>
+<td>Script tanya tujuan lebih tajam</td>
+</tr>
+<tr>
+<td>Chat to Enrollment Rp79K</td>
+<td>12% - 25%</td>
+<td>Follow-up D+0 sampai D+4</td>
+</tr>
+<tr>
+<td>Rp79K to Upsell</td>
+<td>10% - 20%</td>
+<td>Trigger setelah milestone awal</td>
+</tr>
+<tr>
+<td>No-show setelah bayar</td>
+<td>&lt; 8%</td>
+<td>Onboarding dan reminder kelas</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="funnel-per-product-tier">Funnel per Product Tier</h2>
+<h3 id="tier-1-reguler-speakinggrammar-rp79k">Tier 1 — Reguler (Speaking/Grammar Rp79K)</h3>
+<ul>
+<li>Objective: akuisisi volume dan bukti pengalaman belajar awal.</li>
+<li>Entry point: konten tips dan iklan problem awareness.</li>
+<li>Closing point: keputusan cepat lewat WhatsApp.</li>
+<li>KPI utama: cost per enrollment terjaga.</li>
+</ul>
+<h3 id="tier-2-toefl-prep-rp299k">Tier 2 — TOEFL Prep Rp299K</h3>
+<ul>
+<li>Objective: pindahkan siswa berorientasi score.</li>
+<li>Entry point: lead magnet TOEFL Scoring Rp45K.</li>
+<li>Closing point: paket prep 20x meeting.</li>
+<li>KPI utama: conversion dari scoring ke prep.</li>
+</ul>
+<h3 id="tier-3-ielts-prep-rp359k">Tier 3 — IELTS Prep Rp359K</h3>
+<ul>
+<li>Objective: tarik calon beasiswa dan karier global.</li>
+<li>Entry point: konten insight IELTS speaking/writing.</li>
+<li>Closing point: konsultasi kebutuhan target band.</li>
+<li>KPI utama: chat intent tinggi dan enrollment stabil.</li>
+</ul>
+<h3 id="tier-4-private-class">Tier 4 — Private Class</h3>
+<ul>
+<li>Objective: monetisasi kebutuhan khusus dan jadwal fleksibel.</li>
+<li>Entry point: lead dengan urgensi personal.</li>
+<li>Closing point: proposal ringkas sesuai target.</li>
+<li>KPI utama: deal rate dan retention sesi.</li>
+</ul>
+<h2 id="lead-scoring-sederhana-di-whatsapp">Lead Scoring Sederhana di WhatsApp</h2>
+<ul>
+<li>Skor 3: target jelas dan siap mulai minggu ini.</li>
+<li>Skor 2: target jelas tapi masih bandingkan opsi.</li>
+<li>Skor 1: minat awal, belum punya timeline.</li>
+<li>Tindakan skor 3: push closing hari yang sama.</li>
+<li>Tindakan skor 2: kirim bukti dan follow-up 3 hari.</li>
+<li>Tindakan skor 1: masukkan nurture 4 minggu.</li>
+</ul>
+<h2 id="handling-objection-script">Handling Objection Script</h2>
+<h3 id="objection-harga">Objection Harga</h3>
+<ul>
+<li>&quot;Paham kak, kita cari opsi yang paling pas dulu.&quot;</li>
+<li>&quot;Banyak siswa mulai dari Rp79K untuk adaptasi.&quot;</li>
+<li>&quot;Kalau cocok, baru lanjut sesuai kebutuhan.&quot;</li>
+</ul>
+<h3 id="objection-waktu">Objection Waktu</h3>
+<ul>
+<li>&quot;Jadwal bisa disesuaikan, terutama untuk pekerja.&quot;</li>
+<li>&quot;Admin bantu pilih slot paling realistis.&quot;</li>
+<li>&quot;Yang penting ritme belajarnya konsisten.&quot;</li>
+</ul>
+<h3 id="objection-takut-tidak-mampu">Objection Takut Tidak Mampu</h3>
+<ul>
+<li>&quot;Boleh tenang, banyak peserta mulai dari dasar.&quot;</li>
+<li>&quot;Kelas kecil bikin tutor lebih fokus dampingi.&quot;</li>
+<li>&quot;Kita mulai dari target yang paling mudah dulu.&quot;</li>
+</ul>
+<h2 id="sop-admin-whatsapp-untuk-konversi">SOP Admin WhatsApp untuk Konversi</h2>
+<ul>
+<li>Respon cepat dengan sapaan personal.</li>
+<li>Pakai pertanyaan diagnosis, bukan langsung jualan.</li>
+<li>Ringkas jawaban maksimal 3 kalimat.</li>
+<li>Gunakan voice note bila lead butuh penjelasan.</li>
+<li>Tawarkan langkah berikutnya secara spesifik.</li>
+<li>Catat status lead di sheet harian.</li>
+<li>Follow-up sesuai jadwal tanpa spam.</li>
+<li>Eskalasi lead panas ke closer bila perlu.</li>
+</ul>
+<h2 id="konten-pendukung-untuk-menggerakkan-funnel">Konten Pendukung untuk Menggerakkan Funnel</h2>
+<ul>
+<li>Konten awareness: pain dan kesalahan umum.</li>
+<li>Konten consideration: metode belajar dan kelas kecil.</li>
+<li>Konten decision: testimoni, harga, jadwal batch.</li>
+<li>Konten retention: tips mingguan untuk siswa aktif.</li>
+<li>Konten upsell: target score dan jalur lanjutan.</li>
+</ul>
+<h2 id="integrasi-crm-sederhana">Integrasi CRM Sederhana</h2>
+<ul>
+<li>Gunakan sheet dengan kolom nama, persona, status, skor lead.</li>
+<li>Tambahkan kolom produk minat dan tanggal follow-up.</li>
+<li>Tandai alasan no-convert untuk perbaikan iklan.</li>
+<li>Review data setiap akhir minggu.</li>
+</ul>
+<h2 id="roadmap-faseminggu-12-minggu">Roadmap FASE/MINGGU — 12 Minggu</h2>
+<h3 id="fase-1-minggu-1-4-setup-dan-validasi-dasar">FASE 1 (MINGGU 1-4) — Setup dan Validasi Dasar</h3>
+<ul>
+<li>MINGGU 1: finalkan script iklan dan script WhatsApp.</li>
+<li>MINGGU 1: siapkan landing page ringkas.</li>
+<li>MINGGU 2: jalankan 3 angle iklan utama.</li>
+<li>MINGGU 2: latih admin untuk respon &lt; 5 menit.</li>
+<li>MINGGU 3: evaluasi kualitas lead per angle.</li>
+<li>MINGGU 3: perbaiki pertanyaan qualification.</li>
+<li>MINGGU 4: tetapkan benchmark funnel awal.</li>
+<li>MINGGU 4: rapikan alur follow-up D+0 sampai D+10.</li>
+</ul>
+<h3 id="fase-2-minggu-5-8-scale-dan-segmentasi">FASE 2 (MINGGU 5-8) — Scale dan Segmentasi</h3>
+<ul>
+<li>MINGGU 5: scale iklan pemenang untuk Rp79K.</li>
+<li>MINGGU 5: aktifkan retargeting segment A dan B.</li>
+<li>MINGGU 6: jalankan lead scoring konsisten.</li>
+<li>MINGGU 6: tambah library objection handling.</li>
+<li>MINGGU 7: buka jalur upsell TOEFL dan IELTS.</li>
+<li>MINGGU 7: uji offer TOEFL Scoring Rp45K.</li>
+<li>MINGGU 8: optimasi landing section testimoni.</li>
+<li>MINGGU 8: evaluasi close rate admin per shift.</li>
+</ul>
+<h3 id="fase-3-minggu-9-12-optimasi-margin-dan-retensi">FASE 3 (MINGGU 9-12) — Optimasi Margin dan Retensi</h3>
+<ul>
+<li>MINGGU 9: fokus no-show reduction setelah bayar.</li>
+<li>MINGGU 9: kuatkan onboarding siswa baru.</li>
+<li>MINGGU 10: scale retargeting untuk upgrade produk.</li>
+<li>MINGGU 10: bikin kampanye private class khusus.</li>
+<li>MINGGU 11: audit performa funnel per persona.</li>
+<li>MINGGU 11: sinkronkan konten dengan keberatan terbanyak.</li>
+<li>MINGGU 12: review keseluruhan KPI funnel.</li>
+<li>MINGGU 12: tetapkan eksperimen kuartal berikutnya.</li>
+</ul>
+<h2 id="faq-untuk-mempercepat-konversi">FAQ untuk Mempercepat Konversi</h2>
+<ul>
+<li>Program mana yang cocok untuk pemula?</li>
+<li>Kelas Rp79K dapat berapa kali pertemuan?</li>
+<li>Jadwal kelas bisa menyesuaikan kerja?</li>
+<li>Kelas online ini live atau rekaman?</li>
+<li>Berapa peserta dalam satu kelas?</li>
+<li>Beda TOEFL Scoring dan TOEFL Prep apa?</li>
+<li>IELTS Prep cocok untuk target band berapa?</li>
+<li>Orang tua bisa konsultasi dulu sebelum daftar?</li>
+<li>Cara daftar paling cepat bagaimana?</li>
+<li>Bisa upgrade ke private class kapan?</li>
+</ul>
+<h2 id="cta-library-untuk-funnel">CTA Library untuk Funnel</h2>
+<ul>
+<li>&quot;Mau dibantu pilih kelas? Chat WhatsApp sekarang.&quot;</li>
+<li>&quot;Kirim tujuan belajarmu, admin bantu mapping.&quot;</li>
+<li>&quot;Amankan kursi batch via WhatsApp hari ini.&quot;</li>
+<li>&quot;Masih bingung? Konsultasi dulu di WhatsApp.&quot;</li>
+<li>&quot;Klik WhatsApp, kita pilih program paling pas.&quot;</li>
+<li>&quot;Butuh cepat mulai? Admin siap bantu daftar.&quot;</li>
+<li>&quot;Cek jadwal terbaru lewat WhatsApp sekarang.&quot;</li>
+<li>&quot;Orang tua bisa tanya kebutuhan anak di WhatsApp.&quot;</li>
+<li>&quot;Siap upgrade score? Chat admin WhatsApp.&quot;</li>
+<li>&quot;Mau private class? Konsultasi via WhatsApp.&quot;</li>
+</ul>
+<h2 id="checklist-eksekusi-mingguan-funnel">Checklist Eksekusi Mingguan Funnel</h2>
+<ul>
+<li>Cek performa iklan per persona.</li>
+<li>Cek response time admin harian.</li>
+<li>Audit 30 chat pertama setiap minggu.</li>
+<li>Review alasan lead tidak lanjut.</li>
+<li>Perbarui script objection handling.</li>
+<li>Uji 2 variasi CTA baru.</li>
+<li>Evaluasi retargeting 7 dan 14 hari.</li>
+<li>Sinkronkan tim konten dan admin.</li>
+<li>Review benchmark vs realisasi.</li>
+</ul>
+<h2 id="checklist-harian-admin-whatsapp">Checklist Harian Admin WhatsApp</h2>
+<ul>
+<li>Balas chat baru secepat mungkin.</li>
+<li>Lakukan qualification 6 pertanyaan inti.</li>
+<li>Berikan rekomendasi produk yang jelas.</li>
+<li>Catat status lead di sheet.</li>
+<li>Kirim follow-up sesuai jadwal.</li>
+<li>Laporkan lead panas ke closer.</li>
+<li>Simpan keberatan baru ke bank script.</li>
+</ul>
+<h2 id="risk-register-dan-mitigasi">Risk Register dan Mitigasi</h2>
+<ul>
+<li>Risiko: banyak chat, sedikit enrollment.</li>
+<li>Mitigasi: tajamkan qualification dan offer fit.</li>
+<li>Risiko: admin lambat saat jam ramai.</li>
+<li>Mitigasi: bagi shift dan pakai template cepat.</li>
+<li>Risiko: retargeting boros budget.</li>
+<li>Mitigasi: sempitkan audience dan refresh kreatif.</li>
+<li>Risiko: upsell terasa memaksa.</li>
+<li>Mitigasi: upsell hanya setelah progres awal terlihat.</li>
+</ul>
+<h2 id="rencana-30-hari-pertama">Rencana 30 Hari Pertama</h2>
+<h3 id="minggu-1">Minggu 1</h3>
+<ul>
+<li>Aktifkan funnel Meta Ad ke WhatsApp.</li>
+<li>Uji 3 copy dan 3 kreatif utama.</li>
+<li>Terapkan script first response.</li>
+</ul>
+<h3 id="minggu-2">Minggu 2</h3>
+<ul>
+<li>Audit kualitas lead dan niat beli.</li>
+<li>Perbaiki pertanyaan qualification.</li>
+<li>Tambah 5 testimoni relevan di chat.</li>
+</ul>
+<h3 id="minggu-3">Minggu 3</h3>
+<ul>
+<li>Jalankan retargeting segment A dan B.</li>
+<li>Aktifkan follow-up D+0 sampai D+7.</li>
+<li>Review close rate per admin.</li>
+</ul>
+<h3 id="minggu-4">Minggu 4</h3>
+<ul>
+<li>Scale angle iklan pemenang.</li>
+<li>Uji penawaran TOEFL Scoring Rp45K.</li>
+<li>Susun pipeline upsell siswa aktif.</li>
+</ul>
+<h2 id="penutup-operasional">Penutup Operasional</h2>
+<ul>
+<li>Funnel yang sehat bergerak cepat dari klik ke chat, lalu ke daftar.</li>
+<li>Kecepatan respon admin dan kecocokan offer jadi kunci utama.</li>
+<li>Semua kanal wajib mengarah ke WhatsApp dengan pesan yang konsisten.</li>
+</ul></section></article></main>
+</div>
+<button aria-label="Kembali ke atas" class="back-to-top" id="backToTop" type="button">&#8593;</button>
+<script>
+    (function () {
+      'use strict';
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      var toggle = document.getElementById('sidebarToggle');
+      var backBtn = document.getElementById('backToTop');
+      var progressBar = document.getElementById('readingProgress');
+      var tocLinks = Array.from(document.querySelectorAll('.toc-list a'));
+      var sections = tocLinks
+        .map(function (a) { return document.getElementById(a.dataset.target); })
+        .filter(Boolean);
+
+      /* --- Sidebar open/close with overlay --- */
+      function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          if (sidebar.classList.contains('open')) { closeSidebar(); }
+          else { openSidebar(); }
+        });
+      }
+      if (overlay) {
+        overlay.addEventListener('click', closeSidebar);
+      }
+
+      /* --- Swipe to close sidebar --- */
+      var touchStartX = 0;
+      var touchStartY = 0;
+      sidebar.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      sidebar.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        var dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+        if (dx < -60 && dy < 80) { closeSidebar(); }
+      }, { passive: true });
+
+      /* --- TOC link click closes sidebar on mobile --- */
+      tocLinks.forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (window.innerWidth <= 1024) { closeSidebar(); }
+        });
+      });
+
+      /* --- Scroll spy --- */
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var id = entry.target.id;
+            tocLinks.forEach(function (link) {
+              if (link.dataset.target === id) {
+                link.classList.add('active');
+                /* Auto-scroll TOC to active item on desktop */
+                if (window.innerWidth > 1024 && sidebar.scrollHeight > sidebar.clientHeight) {
+                  link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                }
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          });
+        },
+        { rootMargin: '-30% 0px -55% 0px', threshold: 0.1 }
+      );
+      sections.forEach(function (sec) { observer.observe(sec); });
+
+      /* --- Reading progress bar + back-to-top --- */
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            var scrollTop = window.scrollY || document.documentElement.scrollTop;
+            var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight > 0) {
+              progressBar.style.width = Math.min((scrollTop / docHeight) * 100, 100) + '%';
+            }
+            if (scrollTop > 400) { backBtn.classList.add('show'); }
+            else { backBtn.classList.remove('show'); }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      backBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      /* --- Profile accordion on mobile --- */
+      function initAccordion() {
+        var isMobile = window.innerWidth <= 768;
+        var profiles = document.querySelectorAll('h3[id]');
+        profiles.forEach(function (h3) {
+          /* Only profile headings (G0-x, numbered, S-x, T-x) */
+          var text = h3.textContent || '';
+          if (!/^(G0-|[0-9]+\.|S[0-9]|T-[0-9])/.test(text.trim())) return;
+
+          var existingBtn = h3.querySelector('.profile-collapse-btn');
+          if (!existingBtn) {
+            var btn = document.createElement('button');
+            btn.className = 'profile-collapse-btn';
+            btn.textContent = '▼';
+            btn.setAttribute('aria-label', 'Buka/tutup profil');
+            h3.appendChild(btn);
+          }
+
+          var btn = h3.querySelector('.profile-collapse-btn');
+          /* Collect siblings until next h3 or h2 */
+          var body = h3.nextElementSibling;
+          if (body && body.classList.contains('profile-body')) {
+            /* Already wrapped */
+            if (isMobile && !body.classList.contains('collapsed')) {
+              body.classList.add('collapsed');
+              btn.textContent = '▶';
+            } else if (!isMobile) {
+              body.classList.remove('collapsed');
+              btn.textContent = '▼';
+            }
+            return;
+          }
+
+          /* Wrap profile content in a div */
+          var wrapper = document.createElement('div');
+          wrapper.className = 'profile-body';
+          var sibling = h3.nextElementSibling;
+          while (sibling && sibling.tagName !== 'H3' && sibling.tagName !== 'H2') {
+            var next = sibling.nextElementSibling;
+            wrapper.appendChild(sibling);
+            sibling = next;
+          }
+          h3.parentNode.insertBefore(wrapper, sibling);
+
+          if (isMobile) {
+            wrapper.classList.add('collapsed');
+            btn.textContent = '▶';
+          }
+        });
+      }
+
+      /* Toggle accordion on click */
+      document.addEventListener('click', function (e) {
+        if (!e.target.classList.contains('profile-collapse-btn')) return;
+        var h3 = e.target.closest('h3');
+        if (!h3) return;
+        var body = h3.nextElementSibling;
+        if (body && body.classList.contains('profile-body')) {
+          body.classList.toggle('collapsed');
+          e.target.textContent = body.classList.contains('collapsed') ? '▶' : '▼';
+        }
+      });
+
+      /* Init accordion on load and resize */
+      initAccordion();
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(initAccordion, 250);
+      });
+
+      /* --- Keyboard: Escape closes sidebar --- */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+          closeSidebar();
+        }
+      });
+    })();
+    
+</script>
+</body>
+</html>

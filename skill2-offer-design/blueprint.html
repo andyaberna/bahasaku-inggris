@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Offer Creation &amp; Value Optimization — Bahasakuinggris</title>
+<style>
+    :root { --bg:#fff; --text:#1f2937; --heading:#1a365d; --accent:#d69e2e; --danger:#e53e3e; --line:#e5e7eb; --muted:#64748b; --soft:#f8fafc; --bridge:#f0f4f8; --lesson:#fffbeb; --whatif:#f5f0ff; }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:"Segoe UI", system-ui, -apple-system, sans-serif; line-height:1.65; }
+    h1,h2,h3,h4,h5 { font-family:Georgia, "Times New Roman", serif; color:var(--heading); line-height:1.3; scroll-margin-top:80px; }
+    .cover { min-height:100vh; display:grid; place-items:center; text-align:center; padding:2rem; border-bottom:1px solid var(--line); }
+    .cover h1 { font-size:clamp(2rem,4vw,3.3rem); margin:.25rem 0; }
+    .cover .subtitle { color:var(--heading); font-size:1.1rem; } .cover .meta { color:var(--muted); margin-top:1rem; }
+    .layout { display:flex; }
+    .sidebar-toggle { display:none; position:fixed; top:12px; left:12px; z-index:1200; border:1px solid var(--line); background:white; border-radius:8px; padding:.45rem .65rem; }
+    aside { position:sticky; top:0; align-self:flex-start; width:310px; max-height:100vh; overflow:auto; border-right:1px solid var(--line); background:#fff; padding:1rem; }
+    .toc-list,.toc-list ul { list-style:none; margin:0; padding-left:.8rem; } .toc-list>li { margin:.24rem 0; }
+    .toc-list a { text-decoration:none; color:#334155; font-size:.92rem; display:block; padding:.16rem .4rem; border-left:2px solid transparent; border-radius:4px; }
+    .toc-list a.active { color:var(--heading); border-left-color:var(--accent); background:#f8fafc; font-weight:600; }
+    main { flex:1; padding:1.2rem clamp(1rem,3vw,2.5rem) 3rem; } .ebook-content { max-width:980px; margin:auto; }
+    .major-section { padding:1rem 0; border-bottom:1px solid var(--line); } .section-alt { background:var(--soft); padding:1.1rem; border-radius:10px; border:1px solid #edf2f7; }
+    .table-scroll { overflow-x:auto; margin:1rem 0; } table { width:100%; border-collapse:collapse; min-width:640px; background:#fff; }
+    th,td { border:1px solid #dbe1e8; padding:.58rem .6rem; vertical-align:top; } th { background:#f8fafc; font-weight:700; }
+    .scorecard-table th::after { content:" ⇅"; color:#94a3b8; font-size:.78em; } .scorecard-table tbody tr:nth-child(even) { background:#fcfdff; }
+    .status-green { background:#e6ffed; } .status-yellow { background:#fffbea; } .status-red { background:#ffe8e8; } .status-gray { background:#f3f4f6; }
+    .warning-marker { color:var(--danger); font-weight:700; font-size:1.12em; } .controversial-heading { border-left:4px solid var(--danger); padding-left:.55rem; }
+    blockquote { margin:1rem 0; border-left:4px solid #cbd5e1; padding:.6rem .85rem; background:#f8fafc; }
+    .archetype-box { display:flex; flex-wrap:wrap; align-items:center; gap:.45rem; margin:.8rem 0 1rem; } .archetype-label { font-weight:700; color:#475569; }
+    .archetype-pill { background:#ebf4ff; border:1px solid #bfdbfe; color:#1e40af; padding:.22rem .55rem; border-radius:999px; font-size:.86rem; }
+    .lesson-box { background:var(--lesson); border-left:4px solid var(--accent); padding:.7rem .8rem; margin:.9rem 0 1.1rem; font-size:.95rem; } .lesson-title { margin:.2rem 0 .45rem; font-weight:700; }
+    .narrative-bridge { background:var(--bridge); border:1px solid #d7e0ea; border-radius:10px; padding:.75rem .9rem; margin:1rem 0; } .narrative-bridge p { font-style:italic; color:#334155; }
+    .timeline-scroll { overflow-x:auto; padding-bottom:.5rem; margin:.9rem 0 1.2rem; } .timeline-track { display:grid; grid-auto-flow:column; grid-auto-columns:minmax(180px,1fr); gap:.65rem; min-width:max-content; }
+    .timeline-col { border:1px solid #dbe4ee; border-radius:10px; background:#fff; padding:.55rem; } .timeline-year { font-weight:700; color:var(--heading); border-bottom:1px solid #e2e8f0; padding-bottom:.35rem; margin-bottom:.45rem; }
+    .timeline-event { font-size:.9rem; padding:.42rem .5rem; border-radius:7px; margin:.36rem 0; border:1px solid transparent; } .timeline-event.positive { background:#ecfdf3; border-color:#b7efcc; } .timeline-event.negative { background:#fff1f1; border-color:#f6c2c2; }
+    .pattern-chain { display:flex; flex-direction:column; gap:.4rem; margin:1rem 0 1.2rem; } .chain-card { border:1px solid #dbe4ee; border-radius:9px; background:#fff; padding:.6rem .7rem; } .chain-arrow { text-align:center; color:#64748b; font-size:1.2rem; }
+    .juxtaposition-wrap { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; margin:.75rem 0 1rem; } .juxta-card { border-radius:10px; border:1px solid #e2e8f0; padding:.65rem .75rem; }
+    .juxta-card.positive { background:#f0fff4; border-color:#bbf7d0; } .juxta-card.positive h5 { color:#166534; } .juxta-card.negative { background:#fff1f2; border-color:#fecdd3; } .juxta-card.negative h5 { color:#991b1b; }
+    .whatif-card { background:var(--whatif); border-left:4px solid #7c3aed; padding:.65rem .8rem; border-radius:8px; margin:.6rem 0; }
+    .checklist-table tbody tr td:first-child { font-weight:700; text-align:center; width:48px; } .fake-checkbox { display:inline-block; border:1px solid #cbd5e1; border-radius:6px; padding:.14rem .38rem; background:#fff; font-family:ui-monospace,monospace; }
+    .retro-score-table td:nth-child(2) { font-weight:700; text-align:center; } .score-safe { background:#ecfdf3; color:#166534; } .score-low { background:#fffbea; color:#92400e; } .score-mid { background:#fff7ed; color:#9a3412; } .score-high { background:#fee2e2; color:#991b1b; }
+    .back-to-top { position:fixed; right:16px; bottom:18px; border:none; background:var(--heading); color:#fff; width:42px; height:42px; border-radius:999px; cursor:pointer; opacity:0; transform:translateY(8px); transition:.2s; } .back-to-top.show { opacity:1; transform:translateY(0); }
+    /* --- Overlay backdrop --- */
+    .sidebar-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:1050; opacity:0; transition:opacity .24s; }
+    .sidebar-overlay.show { display:block; opacity:1; }
+
+    /* --- Reading progress bar --- */
+    .reading-progress { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--accent),#f59e0b); z-index:1300; width:0; transition:width .12s linear; }
+
+    /* --- Accordion for mobile profiles --- */
+    .profile-collapse-btn { display:none; }
+
+    /* ===== TABLET: ≤1024px ===== */
+    @media (max-width:1024px) {
+      .sidebar-toggle { display:block; }
+      aside { position:fixed; top:0; left:0; transform:translateX(-105%); transition:.24s; z-index:1100; width:min(82vw,320px); box-shadow:0 10px 30px rgba(2,6,23,.18); }
+      aside.open { transform:translateX(0); }
+      main { padding-top:3.8rem; }
+      .juxtaposition-wrap { grid-template-columns:1fr; }
+      .toc-list a { padding:.4rem .5rem; min-height:36px; display:flex; align-items:center; }
+    }
+
+    /* ===== MOBILE: ≤768px ===== */
+    @media (max-width:768px) {
+      body { font-size:15px; line-height:1.7; -webkit-text-size-adjust:100%; }
+      h1 { font-size:1.6rem; } h2 { font-size:1.35rem; scroll-margin-top:56px; } h3 { font-size:1.15rem; scroll-margin-top:56px; } h4 { font-size:1.05rem; }
+      main { padding:3.2rem .75rem 4rem; }
+      .cover { min-height:80vh; padding:1.5rem 1rem; }
+      .cover h1 { font-size:1.6rem; }
+      .cover .subtitle { font-size:.95rem; }
+
+      /* Tables: scroll hint + shadow */
+      .table-scroll { position:relative; }
+      .table-scroll::after { content:"← geser →"; display:block; text-align:center; font-size:.78rem; color:var(--muted); padding:.3rem 0; }
+      table { min-width:520px; font-size:.85rem; }
+      th,td { padding:.4rem .45rem; }
+
+      /* TOC touch targets */
+      .toc-list a { padding:.5rem .55rem; min-height:44px; font-size:.95rem; border-radius:6px; }
+      .toc-list>li { margin:.12rem 0; }
+
+      /* Sidebar wider on mobile */
+      aside { width:min(88vw,340px); padding:.8rem .6rem; }
+
+      /* Lesson box, bridge, whatif — full width */
+      .lesson-box, .narrative-bridge, .whatif-card { padding:.6rem .65rem; font-size:.9rem; }
+      blockquote { padding:.5rem .65rem; font-size:.93rem; }
+
+      /* Timeline: smaller columns */
+      .timeline-track { grid-auto-columns:minmax(150px,1fr); }
+      .timeline-event { font-size:.82rem; padding:.35rem .4rem; }
+
+      /* Pattern chain */
+      .chain-card { padding:.5rem .55rem; font-size:.9rem; }
+
+      /* Archetype pills */
+      .archetype-pill { font-size:.8rem; padding:.18rem .45rem; }
+
+      /* Back to top: larger touch target */
+      .back-to-top { width:48px; height:48px; font-size:1.2rem; right:12px; bottom:14px; }
+
+      /* Hamburger: larger */
+      .sidebar-toggle { padding:.55rem .75rem; font-size:1.15rem; top:8px; left:8px; }
+
+      /* Profile accordion */
+      .profile-collapse-btn { display:inline-block; background:none; border:1px solid var(--line); border-radius:6px; padding:.3rem .6rem; font-size:.82rem; color:var(--muted); cursor:pointer; margin-left:.5rem; vertical-align:middle; }
+      .profile-body.collapsed { display:none; }
+
+      /* Juxtaposition cards stacked */
+      .juxta-card { padding:.55rem .6rem; font-size:.9rem; }
+
+      /* Checklist table */
+      .checklist-table { min-width:400px; }
+
+      /* Scorecard table */
+      .scorecard-table { min-width:700px; font-size:.8rem; }
+    }
+
+    /* ===== SMALL PHONE: ≤480px ===== */
+    @media (max-width:480px) {
+      body { font-size:14px; }
+      h1 { font-size:1.4rem; } h2 { font-size:1.2rem; } h3 { font-size:1.08rem; }
+      main { padding:3rem .5rem 4rem; }
+      .cover { min-height:70vh; padding:1.2rem .8rem; }
+      .cover h1 { font-size:1.35rem; }
+      .cover .subtitle { font-size:.88rem; }
+      .section-alt { padding:.7rem; border-radius:8px; }
+      .lesson-box, .narrative-bridge, .whatif-card { margin:.6rem -.15rem; border-radius:6px; }
+      table { min-width:440px; font-size:.78rem; }
+      th,td { padding:.32rem .35rem; }
+      .timeline-track { grid-auto-columns:minmax(130px,1fr); gap:.45rem; }
+      .archetype-box { gap:.3rem; }
+      .archetype-pill { font-size:.75rem; }
+      aside { width:min(92vw,300px); }
+      .toc-list a { font-size:.9rem; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print { @page { margin:2cm; } .sidebar-toggle,aside,.back-to-top,.reading-progress,.sidebar-overlay,.profile-collapse-btn { display:none !important; } main { padding:0; } .major-section,.section-alt { break-inside:avoid; page-break-inside:avoid; border:none; background:#fff; } h2 { break-before:page; page-break-before:always; } a { color:#000; text-decoration:none; } .profile-body.collapsed { display:block !important; } }
+  
+.back-home { padding:.8rem 1.5rem .2rem; }
+.back-home a { display:inline-flex; align-items:center; gap:.4rem; color:#4a5568; text-decoration:none; font-size:.9rem; font-weight:500; padding:.4rem .8rem; border-radius:6px; border:1px solid #e2e8f0; background:#fff; transition:all .15s; }
+.back-home a:hover { color:#1a365d; border-color:#1a365d; background:#f7fafc; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+@media(max-width:600px) { .back-home { padding:.6rem 1rem .2rem; } .back-home a { font-size:.82rem; } }
+</style>
+</head>
+<body>
+<header class="cover">
+<div>
+<h1>Offer Creation &amp; Value Optimization — Bahasakuinggris</h1>
+<p class="subtitle">Dokumen Blueprint</p>
+<p class="meta">Regenerasi HTML &#8226; 28 April 2026</p>
+</div>
+</header>
+<div class="reading-progress" id="readingProgress"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<button aria-label="Buka/Tutup Daftar Isi" class="sidebar-toggle" id="sidebarToggle" type="button">&#9776;</button>
+<div class="layout">
+<aside id="sidebar"><h2>Daftar Isi</h2><ul class="toc-list">
+<li><a data-target="tujuan-blueprint" href="#tujuan-blueprint">Tujuan Blueprint</a></li>
+<li><a data-target="ringkasan-brand-dan-konteks-offer" href="#ringkasan-brand-dan-konteks-offer">Ringkasan Brand dan Konteks Offer</a></li>
+<li><a data-target="prinsip-utama-offer-design" href="#prinsip-utama-offer-design">Prinsip Utama Offer Design</a></li>
+<li><a data-target="value-equation-framework" href="#value-equation-framework">Value Equation Framework</a></li>
+<li><a data-target="mapping-value-equation-per-icp" href="#mapping-value-equation-per-icp">Mapping Value Equation per ICP</a></li>
+<li><a data-target="dream-outcome-library" href="#dream-outcome-library">Dream Outcome Library</a></li>
+<li><a data-target="perceived-likelihood-engine" href="#perceived-likelihood-engine">Perceived Likelihood Engine</a></li>
+<li><a data-target="time-delay-compression" href="#time-delay-compression">Time Delay Compression</a></li>
+<li><a data-target="effort-friction-reduction" href="#effort-friction-reduction">Effort Friction Reduction</a></li>
+<li><a data-target="struktur-grand-slam-offer" href="#struktur-grand-slam-offer">Struktur Grand Slam Offer</a></li>
+<li><a data-target="offer-stack-untuk-produk-inti" href="#offer-stack-untuk-produk-inti">Offer Stack untuk Produk Inti</a></li>
+<li><a data-target="bonus-stack-design" href="#bonus-stack-design">Bonus Stack Design</a></li>
+<li><a data-target="aturan-bonus-stack" href="#aturan-bonus-stack">Aturan Bonus Stack</a></li>
+<li><a data-target="pricing-psychology-yang-dipakai" href="#pricing-psychology-yang-dipakai">Pricing Psychology yang Dipakai</a></li>
+<li><a data-target="naming-architecture" href="#naming-architecture">Naming Architecture</a></li>
+<li><a data-target="rekomendasi-nama-offer" href="#rekomendasi-nama-offer">Rekomendasi Nama Offer</a></li>
+<li><a data-target="positioning-statement" href="#positioning-statement">Positioning Statement</a></li>
+<li><a data-target="messaging-pillars" href="#messaging-pillars">Messaging Pillars</a></li>
+<li><a data-target="offer-page-structure" href="#offer-page-structure">Offer Page Structure</a></li>
+<li><a data-target="whatsapp-closing-flow" href="#whatsapp-closing-flow">WhatsApp Closing Flow</a></li>
+<li><a data-target="guarantee-strategy" href="#guarantee-strategy">Guarantee Strategy</a></li>
+<li><a data-target="scarcity-urgency-strategy" href="#scarcity-urgency-strategy">Scarcity &amp; Urgency Strategy</a></li>
+<li><a data-target="anti-discount-trap" href="#anti-discount-trap">Anti-Discount Trap</a></li>
+<li><a data-target="offer-personalization-by-icp" href="#offer-personalization-by-icp">Offer Personalization by ICP</a></li>
+<li><a data-target="offer-bundling-strategy" href="#offer-bundling-strategy">Offer Bundling Strategy</a></li>
+<li><a data-target="upsell-trigger-design" href="#upsell-trigger-design">Upsell Trigger Design</a></li>
+<li><a data-target="conversion-assets-minimum" href="#conversion-assets-minimum">Conversion Assets Minimum</a></li>
+<li><a data-target="roadmap-eksekusi-offer" href="#roadmap-eksekusi-offer">Roadmap Eksekusi Offer</a></li>
+<li><a data-target="kpi-offer-quality" href="#kpi-offer-quality">KPI Offer Quality</a></li>
+<li><a data-target="checklist-audit-offer-mingguan" href="#checklist-audit-offer-mingguan">Checklist Audit Offer Mingguan</a></li>
+<li><a data-target="objection-handling-matrix" href="#objection-handling-matrix">Objection Handling Matrix</a></li>
+<li><a data-target="qa-rules-sebelum-offer-go-live" href="#qa-rules-sebelum-offer-go-live">QA Rules Sebelum Offer Go Live</a></li>
+<li><a data-target="lampiran-a-hook-offer-design" href="#lampiran-a-hook-offer-design">Lampiran A — Hook Offer Design</a></li>
+<li><a data-target="lampiran-b-cta-whatsapp" href="#lampiran-b-cta-whatsapp">Lampiran B — CTA WhatsApp</a></li>
+<li><a data-target="lampiran-c-faq-offer" href="#lampiran-c-faq-offer">Lampiran C — FAQ Offer</a></li>
+<li><a data-target="penutup-eksekusi" href="#penutup-eksekusi">Penutup Eksekusi</a></li>
+</ul></aside>
+<main><nav class="back-home"><a href="../index.html">&larr; Back to Home Page</a></nav><article class="ebook-content"><section class="major-section"><h1>Offer Creation &amp; Value Optimization — Bahasakuinggris</h1>
+<h2 id="tujuan-blueprint">Tujuan Blueprint</h2>
+<ul>
+<li>Dokumen ini memandu desain offer yang gampang dibeli.</li>
+<li>Fokusnya menaikkan perceived value tanpa perang harga.</li>
+<li>Offer harus cocok untuk tiga ICP utama.</li>
+<li>Semua alur closing diarahkan ke WhatsApp 0812-1633-0704.</li>
+</ul>
+<h2 id="ringkasan-brand-dan-konteks-offer">Ringkasan Brand dan Konteks Offer</h2>
+<ul>
+<li>Brand: Bahasakuinggris, Click Your English.</li>
+<li>Akar kredibilitas: Kampung Inggris Pare Kediri.</li>
+<li>Delivery: online, tetap interaktif, kelas kecil 3-10 orang.</li>
+<li>Social proof: 100K+ alumni.</li>
+<li>Legal trust: izin Diknas.</li>
+<li>Partner trust: Grab Indonesia, STIE Semarang, My Idea School Jakarta, dan lainnya.</li>
+<li>Entry offer paling kuat: Speaking atau Grammar Rp79K.</li>
+<li>Anchor price untuk framing: Rp150K.</li>
+</ul>
+<h2 id="prinsip-utama-offer-design">Prinsip Utama Offer Design</h2>
+<ul>
+<li>Offer bukan sekadar harga, tapi hasil yang terasa.</li>
+<li>Peserta beli kejelasan jalur, bukan jumlah materi.</li>
+<li>Semakin jelas next step, semakin tinggi conversion.</li>
+<li>Semakin cepat small win, semakin rendah refund risk.</li>
+<li>Offer harus terdengar simple waktu dijelaskan via chat.</li>
+</ul>
+<h2 id="value-equation-framework">Value Equation Framework</h2>
+<ul>
+<li>Formula: Value = Dream Outcome x Perceived Likelihood / Time Delay x Effort.</li>
+<li>Tujuan tim: naikkan pembilang, turunkan penyebut.</li>
+<li>Dream outcome harus spesifik per ICP.</li>
+<li>Likelihood naik lewat bukti, struktur, dan mentor quality.</li>
+<li>Time delay turun lewat quick win di minggu awal.</li>
+<li>Effort turun lewat template latihan dan feedback rutin.</li>
+</ul>
+<h2 id="mapping-value-equation-per-icp">Mapping Value Equation per ICP</h2>
+<div class="table-scroll"><table>
+<thead><tr>
+<th>ICP</th>
+<th>Dream Outcome</th>
+<th>Likelihood Booster</th>
+<th>Time Delay Reducer</th>
+<th>Effort Reducer</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Pelajar/Mahasiswa</td>
+<td>Lulus syarat TOEFL kampus</td>
+<td>Mentor Pare + progress report</td>
+<td>Drill dari sesi pertama</td>
+<td>Template latihan harian</td>
+</tr>
+<tr>
+<td>Pekerja</td>
+<td>English untuk karir dan presentasi</td>
+<td>Simulasi konteks kerja</td>
+<td>Role-play sejak minggu awal</td>
+<td>Script presentasi siap pakai</td>
+</tr>
+<tr>
+<td>Orang Tua</td>
+<td>Anak pede pakai English</td>
+<td>Kelas kecil + update orang tua</td>
+<td>Aktivitas praktis tiap sesi</td>
+<td>Worksheet terstruktur</td>
+</tr>
+<tr>
+<td>Alumni Reguler</td>
+<td>Naik level ke TOEFL/IELTS</td>
+<td>Roadmap level lanjut</td>
+<td>Placement cepat</td>
+<td>Kalender belajar mingguan</td>
+</tr>
+<tr>
+<td>Calon Private</td>
+<td>Solusi target spesifik</td>
+<td>Plan personal dengan mentor</td>
+<td>Kickoff 1:1 cepat</td>
+<td>Materi dipersonalisasi</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="dream-outcome-library">Dream Outcome Library</h2>
+<ul>
+<li>Speak more confidently dalam interaksi harian.</li>
+<li>Capai skor TOEFL untuk syarat kampus atau kerja.</li>
+<li>Bangun English habit yang konsisten tiap minggu.</li>
+<li>Latihan IELTS terarah untuk target global.</li>
+<li>Naik level dari belajar acak ke roadmap jelas.</li>
+<li>Orang tua dapat visibilitas progress anak.</li>
+</ul>
+<h2 id="perceived-likelihood-engine">Perceived Likelihood Engine</h2>
+<ul>
+<li>Tampilkan profil mentor berpengalaman Kampung Inggris.</li>
+<li>Tampilkan progress report sebagai bukti proses.</li>
+<li>Tampilkan testimoni yang menyebut hasil spesifik.</li>
+<li>Tampilkan data alumni sebagai trust multiplier.</li>
+<li>Tampilkan partner institusi untuk social credibility.</li>
+<li>Tampilkan sample class flow sebelum daftar.</li>
+</ul>
+<h2 id="time-delay-compression">Time Delay Compression</h2>
+<ul>
+<li>Week 1 wajib ada mini speaking challenge.</li>
+<li>Week 1 wajib ada grammar correction feedback.</li>
+<li>Hari onboarding kirim roadmap personal singkat.</li>
+<li>Pekan kedua kirim checkpoint kemajuan.</li>
+<li>Pekan ketiga kirim rekomendasi jalur lanjut.</li>
+</ul>
+<h2 id="effort-friction-reduction">Effort Friction Reduction</h2>
+<ul>
+<li>Beri template notes per sesi.</li>
+<li>Beri checklist latihan 15 menit per hari.</li>
+<li>Beri contoh jawaban speaking siap adaptasi.</li>
+<li>Beri bank soal mini untuk persiapan ujian.</li>
+<li>Beri reminder otomatis sebelum kelas.</li>
+<li>Beri akses admin untuk tanya teknis cepat.</li>
+</ul>
+<h2 id="struktur-grand-slam-offer">Struktur Grand Slam Offer</h2>
+<h3 id="core-offer">Core Offer</h3>
+<ul>
+<li>Kelas Speaking atau Grammar Rp79K.</li>
+<li>Total 10x meeting, format live online.</li>
+<li>Kelas kecil, interaksi lebih intens.</li>
+<li>Mentor teruji dari ekosistem Pare Kediri.</li>
+</ul>
+<h3 id="result-promise">Result Promise</h3>
+<ul>
+<li>Peserta punya kebiasaan latihan terarah.</li>
+<li>Peserta tahu level dan jalur lanjut yang tepat.</li>
+<li>Peserta dapat feedback praktis, bukan teori panjang.</li>
+</ul>
+<h3 id="delivery-advantage">Delivery Advantage</h3>
+<ul>
+<li>Jadwal kelas disusun untuk pelajar dan pekerja.</li>
+<li>Admin support responsif via WhatsApp.</li>
+<li>Materi dibagi dalam step yang gampang diikuti.</li>
+</ul>
+<h2 id="offer-stack-untuk-produk-inti">Offer Stack untuk Produk Inti</h2>
+<div class="table-scroll"><table>
+<thead><tr>
+<th>Level</th>
+<th>Nama Offer</th>
+<th>Harga</th>
+<th>Durasi</th>
+<th>Outcome Utama</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Front-End</td>
+<td>Click Start Speaking/Grammar</td>
+<td>Rp79.000</td>
+<td>10x</td>
+<td>Pondasi + habit</td>
+</tr>
+<tr>
+<td>Kids</td>
+<td>Click Kids English</td>
+<td>Rp99.000</td>
+<td>10x</td>
+<td>Confidence anak</td>
+</tr>
+<tr>
+<td>Diagnostic</td>
+<td>Click TOEFL Check</td>
+<td>Rp45.000</td>
+<td>1 sesi</td>
+<td>Tahu skor awal</td>
+</tr>
+<tr>
+<td>Mid Ticket</td>
+<td>Click TOEFL Accelerator</td>
+<td>Rp299.000</td>
+<td>20x</td>
+<td>Kenaikan skor</td>
+</tr>
+<tr>
+<td>Mid-High</td>
+<td>Click IELTS Accelerator</td>
+<td>Rp359.000</td>
+<td>20x</td>
+<td>Target IELTS roadmap</td>
+</tr>
+<tr>
+<td>Premium</td>
+<td>Click Private Intensive</td>
+<td>Custom</td>
+<td>Fleksibel</td>
+<td>Solusi personal</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="bonus-stack-design">Bonus Stack Design</h2>
+<ul>
+<li>Bonus 1: Placement check sederhana saat onboarding.</li>
+<li>Bonus 2: Weekly progress note ringkas.</li>
+<li>Bonus 3: E-book starter speaking drill.</li>
+<li>Bonus 4: Vocabulary tracker template.</li>
+<li>Bonus 5: Mini TOEFL tips sheet.</li>
+<li>Bonus 6: Rekaman sesi tertentu untuk review.</li>
+<li>Bonus 7: Grup challenge 14 hari.</li>
+<li>Bonus 8: Konsultasi jalur kelas lanjutan.</li>
+</ul>
+<h2 id="aturan-bonus-stack">Aturan Bonus Stack</h2>
+<ul>
+<li>Bonus harus relevan ke core outcome.</li>
+<li>Bonus harus ringan dipakai peserta.</li>
+<li>Bonus harus membantu percepatan hasil.</li>
+<li>Bonus tidak boleh menambah kebingungan.</li>
+<li>Bonus ditampilkan sebagai value, bukan gimmick.</li>
+</ul>
+<h2 id="pricing-psychology-yang-dipakai">Pricing Psychology yang Dipakai</h2>
+<h3 id="anchor-strategy">Anchor Strategy</h3>
+<ul>
+<li>Tampilkan harga normal Rp150K untuk konteks nilai.</li>
+<li>Tampilkan promo Rp79K sebagai action trigger.</li>
+<li>Tampilkan selisih hemat secara jelas.</li>
+<li>Hindari terlalu banyak angka yang membingungkan.</li>
+</ul>
+<h3 id="decoy-strategy">Decoy Strategy</h3>
+<ul>
+<li>Tampilkan jalur reguler, TOEFL, dan IELTS berurutan.</li>
+<li>Biarkan pembeli lihat value progression alami.</li>
+<li>Private ditampilkan sebagai premium path.</li>
+<li>Corporate ditampilkan sebagai plan untuk tim.</li>
+</ul>
+<h3 id="price-value-language">Price-Value Language</h3>
+<ul>
+<li>Pakai bahasa hasil dan pengalaman belajar.</li>
+<li>Hindari fokus berlebihan pada diskon.</li>
+<li>Fokus ke manfaat, dukungan, dan progress.</li>
+</ul>
+<h2 id="naming-architecture">Naming Architecture</h2>
+<ul>
+<li>Gunakan awalan konsisten: Click.</li>
+<li>Nama harus langsung tunjuk hasil.</li>
+<li>Nama harus mudah dipakai di chat.</li>
+<li>Nama harus enak dipakai di kreatif ads.</li>
+</ul>
+<h2 id="rekomendasi-nama-offer">Rekomendasi Nama Offer</h2>
+<ul>
+<li>Click Start Speaking.</li>
+<li>Click Start Grammar.</li>
+<li>Click Kids English.</li>
+<li>Click TOEFL Check.</li>
+<li>Click TOEFL Accelerator.</li>
+<li>Click IELTS Accelerator.</li>
+<li>Click Private Intensive.</li>
+<li>Click Team English.</li>
+</ul>
+<h2 id="positioning-statement">Positioning Statement</h2>
+<ul>
+<li>Untuk pelajar dan pekerja yang butuh English terarah.</li>
+<li>Bahasakuinggris memberi kelas online kecil dan intens.</li>
+<li>Mentor Pare, progres terukur, dan jalur belajar jelas.</li>
+<li>Mulai dari Rp79K, lalu naik level sesuai target.</li>
+</ul>
+<h2 id="messaging-pillars">Messaging Pillars</h2>
+<ul>
+<li>Pillar 1: Small class, big practice.</li>
+<li>Pillar 2: Mentor Pare yang ngerti kebutuhan nyata.</li>
+<li>Pillar 3: Progress report bikin belajar lebih jelas.</li>
+<li>Pillar 4: Roadmap dari reguler sampai profesional.</li>
+</ul>
+<h2 id="offer-page-structure">Offer Page Structure</h2>
+<ul>
+<li>Headline: target + hasil + durasi.</li>
+<li>Subheadline: bukti trust dan format kelas kecil.</li>
+<li>Section problem: pain per ICP.</li>
+<li>Section solution: jalur offer bertahap.</li>
+<li>Section proof: testimoni, alumni, partner.</li>
+<li>Section price: anchor Rp150K ke promo Rp79K.</li>
+<li>Section urgency: kuota 3-10 peserta per kelas.</li>
+<li>Section CTA: chat WhatsApp sekarang.</li>
+</ul>
+<h2 id="whatsapp-closing-flow">WhatsApp Closing Flow</h2>
+<ul>
+<li>Step 1: Tanya target utama user.</li>
+<li>Step 2: Mapping user ke jalur offer paling cocok.</li>
+<li>Step 3: Jelaskan hasil yang realistis dan cepat terlihat.</li>
+<li>Step 4: Tawarkan seat batch terdekat.</li>
+<li>Step 5: Tutup dengan CTA transfer booking.</li>
+</ul>
+<h2 id="guarantee-strategy">Guarantee Strategy</h2>
+<ul>
+<li>Gunakan guarantee yang fair dan kredibel.</li>
+<li>Fokus ke komitmen proses, bukan janji berlebihan.</li>
+<li>Contoh: &quot;Jika 2 sesi awal tidak cocok, boleh pindah batch sekali.&quot;</li>
+<li>Contoh: &quot;Jika jadwal bentrok, dapat opsi kelas pengganti.&quot;</li>
+<li>Contoh: &quot;Jika materi terlalu cepat, dapat sesi orientasi ulang.&quot;</li>
+<li>Jelaskan syarat guarantee dengan bahasa sederhana.</li>
+</ul>
+<h2 id="scarcity-urgency-strategy">Scarcity &amp; Urgency Strategy</h2>
+<ul>
+<li>Scarcity utama: kelas kecil 3-10 peserta.</li>
+<li>Scarcity kedua: batch periodik dengan kuota.</li>
+<li>Urgency utama: deadline pendaftaran per batch.</li>
+<li>Urgency kedua: bonus onboarding untuk pendaftar awal.</li>
+<li>Tampilkan slot tersisa saat follow-up WA.</li>
+<li>Hindari urgency palsu yang merusak trust.</li>
+</ul>
+<h2 id="anti-discount-trap">Anti-Discount Trap</h2>
+<ul>
+<li>Jangan ubah promo setiap hari.</li>
+<li>Jangan kasih diskon lebih besar tanpa alasan.</li>
+<li>Jangan turunkan harga mid ticket terlalu cepat.</li>
+<li>Naikkan value lewat bonus dan support.</li>
+<li>Jaga persepsi kualitas lewat hasil peserta.</li>
+</ul>
+<h2 id="offer-personalization-by-icp">Offer Personalization by ICP</h2>
+<h3 id="pelajarmahasiswa">Pelajar/Mahasiswa</h3>
+<ul>
+<li>Fokus ke syarat TOEFL, speaking kampus, dan confidence.</li>
+<li>Bahasa promosi lebih energik dan simpel.</li>
+<li>Gunakan contoh situasi kelas dan organisasi.</li>
+</ul>
+<h3 id="pekerja">Pekerja</h3>
+<ul>
+<li>Fokus ke meeting, email, presentasi, dan promosi.</li>
+<li>Gunakan bahasa langsung ke impact karir.</li>
+<li>Tawarkan opsi jadwal setelah jam kerja.</li>
+</ul>
+<h3 id="orang-tua">Orang Tua</h3>
+<ul>
+<li>Fokus ke growth anak dan progress yang terukur.</li>
+<li>Gunakan bahasa hangat dan menenangkan.</li>
+<li>Tekankan laporan progres dan pendampingan.</li>
+</ul>
+<h2 id="offer-bundling-strategy">Offer Bundling Strategy</h2>
+<ul>
+<li>Bundle A: Click Start + Click TOEFL Check.</li>
+<li>Bundle B: Click TOEFL Accelerator + speaking drill.</li>
+<li>Bundle C: Click IELTS Accelerator + mock interview.</li>
+<li>Bundle D: Kids class + parent progress consult.</li>
+<li>Setiap bundle punya satu outcome utama.</li>
+</ul>
+<h2 id="upsell-trigger-design">Upsell Trigger Design</h2>
+<ul>
+<li>Trigger 1: Setelah peserta hadir 3 sesi.</li>
+<li>Trigger 2: Setelah peserta kirim target skor.</li>
+<li>Trigger 3: Setelah mini assessment selesai.</li>
+<li>Trigger 4: Saat batch hampir lulus.</li>
+<li>Trigger 5: 14 hari setelah lulus.</li>
+</ul>
+<h2 id="conversion-assets-minimum">Conversion Assets Minimum</h2>
+<ul>
+<li>Satu landing page per offer inti.</li>
+<li>Satu deck PDF untuk closing WA.</li>
+<li>Tiga video testimoni per ICP.</li>
+<li>Template chat untuk 5 skenario umum.</li>
+<li>FAQ ringkas agar admin cepat jawab.</li>
+</ul>
+<h2 id="roadmap-eksekusi-offer">Roadmap Eksekusi Offer</h2>
+<h3 id="fase-1-minggu-1-2-rapikan-fondasi">FASE 1 (Minggu 1-2): Rapikan Fondasi</h3>
+<ul>
+<li>Finalisasi naming architecture.</li>
+<li>Finalisasi value proposition per ICP.</li>
+<li>Finalisasi script WA dan CTA inti.</li>
+</ul>
+<h3 id="fase-2-minggu-3-4-launch-offer-inti">FASE 2 (Minggu 3-4): Launch Offer Inti</h3>
+<ul>
+<li>Launch halaman Click Start.</li>
+<li>Launch bonus stack dasar.</li>
+<li>Pasang anchor Rp150K dengan framing jelas.</li>
+</ul>
+<h3 id="fase-3-minggu-5-6-uji-bundle">FASE 3 (Minggu 5-6): Uji Bundle</h3>
+<ul>
+<li>Uji bundle A dan B di WA.</li>
+<li>Ukur conversion dan AOV.</li>
+<li>Pertahankan bundle dengan uptake terbaik.</li>
+</ul>
+<h3 id="fase-4-minggu-7-8-scale-mid-ticket">FASE 4 (Minggu 7-8): Scale Mid Ticket</h3>
+<ul>
+<li>Perkuat pitch TOEFL Accelerator.</li>
+<li>Perkuat jalur lanjut ke IELTS.</li>
+<li>Aktifkan upsell trigger pasca lulus.</li>
+</ul>
+<h3 id="fase-5-minggu-9-12-premium-b2b-prep">FASE 5 (Minggu 9-12): Premium &amp; B2B Prep</h3>
+<ul>
+<li>Rapikan offer private intensif.</li>
+<li>Siapkan paket Click Team English.</li>
+<li>Uji mini pilot dari jaringan alumni.</li>
+</ul>
+<h2 id="kpi-offer-quality">KPI Offer Quality</h2>
+<ul>
+<li>Conversion rate chat ke pembayaran.</li>
+<li>AOV per buyer baru.</li>
+<li>Upgrade rate 30 hari.</li>
+<li>Upsell acceptance rate per admin.</li>
+<li>Refund request rate.</li>
+<li>NPS pasca batch.</li>
+<li>Time to close dari chat pertama.</li>
+<li>Win rate per skrip penawaran.</li>
+</ul>
+<h2 id="checklist-audit-offer-mingguan">Checklist Audit Offer Mingguan</h2>
+<ul>
+<li>[ ] Apakah headline offer jelas dan spesifik.</li>
+<li>[ ] Apakah value equation terlihat di copy.</li>
+<li>[ ] Apakah anchor Rp150K tampil konsisten.</li>
+<li>[ ] Apakah bonus stack tetap relevan.</li>
+<li>[ ] Apakah CTA WhatsApp tampil kuat.</li>
+<li>[ ] Apakah scarcity kuota disampaikan jujur.</li>
+<li>[ ] Apakah guarantee dijelaskan sederhana.</li>
+<li>[ ] Apakah admin pakai script terbaru.</li>
+<li>[ ] Apakah objection handling sudah update.</li>
+<li>[ ] Apakah testimoni baru sudah masuk materi.</li>
+<li>[ ] Apakah upsell trigger berjalan tepat waktu.</li>
+<li>[ ] Apakah FAQ menjawab pertanyaan dominan.</li>
+</ul>
+<h2 id="objection-handling-matrix">Objection Handling Matrix</h2>
+<ul>
+<li>&quot;Aku pemula banget.&quot; → Mulai dari Click Start, ritmenya aman untuk basic.</li>
+<li>&quot;Takut nggak konsisten.&quot; → Ada challenge mingguan dan progress note.</li>
+<li>&quot;Waktuku sempit.&quot; → Ada opsi jadwal yang cocok pelajar atau pekerja.</li>
+<li>&quot;Mau hasil lebih cepat.&quot; → Ada jalur private intensif sesuai target.</li>
+<li>&quot;Anakku pemalu.&quot; → Kelas kecil bantu anak lebih berani bicara.</li>
+<li>&quot;Budget terbatas.&quot; → Mulai dulu dari Rp79K, lanjut bertahap.</li>
+</ul>
+<h2 id="qa-rules-sebelum-offer-go-live">QA Rules Sebelum Offer Go Live</h2>
+<ul>
+<li>Cek semua angka harga konsisten di semua aset.</li>
+<li>Cek semua CTA mengarah ke nomor WhatsApp benar.</li>
+<li>Cek tidak ada klaim berlebihan.</li>
+<li>Cek semua benefit masih bisa dipenuhi tim.</li>
+<li>Cek semua bonus bisa dikirim tepat waktu.</li>
+</ul>
+<h2 id="lampiran-a-hook-offer-design">Lampiran A — Hook Offer Design</h2>
+<ul>
+<li>Mulai dari Rp79K, bangun English habit yang kepakai.</li>
+<li>Kelas kecil bikin kamu kebagian praktik lebih banyak.</li>
+<li>Dari bingung mulai, jadi punya roadmap jelas.</li>
+<li>Mentor Pare bantu kamu latihan lebih percaya diri.</li>
+<li>Siap TOEFL? Mulai dari check level dulu.</li>
+<li>Target IELTS butuh plan yang rapi.</li>
+<li>Pekerja sibuk tetap bisa upgrade English.</li>
+<li>Orang tua tenang, progres anak dipantau.</li>
+<li>Bukan teori panjang, fokus praktik terarah.</li>
+<li>Promo entry ada, kualitas tetap dijaga.</li>
+<li>Belajar online, interaksi tetap hidup.</li>
+</ul>
+<h2 id="lampiran-b-cta-whatsapp">Lampiran B — CTA WhatsApp</h2>
+<ul>
+<li>Chat WA untuk cek kelas cocok.</li>
+<li>Klik sekarang, seat batch terbatas.</li>
+<li>Konsultasi target English kamu sekarang.</li>
+<li>Daftar kelas lewat WhatsApp hari ini.</li>
+<li>Tanya jadwal terbaru di WA.</li>
+<li>Mulai dari Rp79K sekarang.</li>
+<li>Ambil slot kelas minggu ini.</li>
+<li>Cek roadmap TOEFL kamu di WA.</li>
+<li>Cek plan IELTS kamu sekarang.</li>
+<li>Pilih kelas anak via WhatsApp.</li>
+<li>Booking private class sekarang.</li>
+<li>Klaim bonus onboarding di WA.</li>
+</ul>
+<h2 id="lampiran-c-faq-offer">Lampiran C — FAQ Offer</h2>
+<ul>
+<li>Kelas ini cocok untuk pemula?</li>
+<li>Berapa peserta dalam satu kelas?</li>
+<li>Kelas berlangsung online atau offline?</li>
+<li>Apa beda Click Start dan TOEFL Check?</li>
+<li>Kapan sebaiknya lanjut TOEFL Accelerator?</li>
+<li>Apakah ada laporan progress rutin?</li>
+<li>Jika jadwal bentrok, ada solusi?</li>
+<li>Bisa langsung ambil private class?</li>
+<li>Ada kelas khusus untuk anak?</li>
+<li>Cara daftar paling cepat bagaimana?</li>
+</ul>
+<h2 id="penutup-eksekusi">Penutup Eksekusi</h2>
+<ul>
+<li>Offer kuat membuat closing lebih ringan.</li>
+<li>Value jelas membuat harga terasa masuk akal.</li>
+<li>Roadmap bertahap bikin buyer mau lanjut.</li>
+<li>Fokus pada hasil peserta dan pengalaman belajar.</li>
+<li>Dari satu chat, bangun relasi jangka panjang.</li>
+</ul></section></article></main>
+</div>
+<button aria-label="Kembali ke atas" class="back-to-top" id="backToTop" type="button">&#8593;</button>
+<script>
+    (function () {
+      'use strict';
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      var toggle = document.getElementById('sidebarToggle');
+      var backBtn = document.getElementById('backToTop');
+      var progressBar = document.getElementById('readingProgress');
+      var tocLinks = Array.from(document.querySelectorAll('.toc-list a'));
+      var sections = tocLinks
+        .map(function (a) { return document.getElementById(a.dataset.target); })
+        .filter(Boolean);
+
+      /* --- Sidebar open/close with overlay --- */
+      function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          if (sidebar.classList.contains('open')) { closeSidebar(); }
+          else { openSidebar(); }
+        });
+      }
+      if (overlay) {
+        overlay.addEventListener('click', closeSidebar);
+      }
+
+      /* --- Swipe to close sidebar --- */
+      var touchStartX = 0;
+      var touchStartY = 0;
+      sidebar.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      sidebar.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        var dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+        if (dx < -60 && dy < 80) { closeSidebar(); }
+      }, { passive: true });
+
+      /* --- TOC link click closes sidebar on mobile --- */
+      tocLinks.forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (window.innerWidth <= 1024) { closeSidebar(); }
+        });
+      });
+
+      /* --- Scroll spy --- */
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var id = entry.target.id;
+            tocLinks.forEach(function (link) {
+              if (link.dataset.target === id) {
+                link.classList.add('active');
+                /* Auto-scroll TOC to active item on desktop */
+                if (window.innerWidth > 1024 && sidebar.scrollHeight > sidebar.clientHeight) {
+                  link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                }
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          });
+        },
+        { rootMargin: '-30% 0px -55% 0px', threshold: 0.1 }
+      );
+      sections.forEach(function (sec) { observer.observe(sec); });
+
+      /* --- Reading progress bar + back-to-top --- */
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            var scrollTop = window.scrollY || document.documentElement.scrollTop;
+            var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight > 0) {
+              progressBar.style.width = Math.min((scrollTop / docHeight) * 100, 100) + '%';
+            }
+            if (scrollTop > 400) { backBtn.classList.add('show'); }
+            else { backBtn.classList.remove('show'); }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      backBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      /* --- Profile accordion on mobile --- */
+      function initAccordion() {
+        var isMobile = window.innerWidth <= 768;
+        var profiles = document.querySelectorAll('h3[id]');
+        profiles.forEach(function (h3) {
+          /* Only profile headings (G0-x, numbered, S-x, T-x) */
+          var text = h3.textContent || '';
+          if (!/^(G0-|[0-9]+\.|S[0-9]|T-[0-9])/.test(text.trim())) return;
+
+          var existingBtn = h3.querySelector('.profile-collapse-btn');
+          if (!existingBtn) {
+            var btn = document.createElement('button');
+            btn.className = 'profile-collapse-btn';
+            btn.textContent = '▼';
+            btn.setAttribute('aria-label', 'Buka/tutup profil');
+            h3.appendChild(btn);
+          }
+
+          var btn = h3.querySelector('.profile-collapse-btn');
+          /* Collect siblings until next h3 or h2 */
+          var body = h3.nextElementSibling;
+          if (body && body.classList.contains('profile-body')) {
+            /* Already wrapped */
+            if (isMobile && !body.classList.contains('collapsed')) {
+              body.classList.add('collapsed');
+              btn.textContent = '▶';
+            } else if (!isMobile) {
+              body.classList.remove('collapsed');
+              btn.textContent = '▼';
+            }
+            return;
+          }
+
+          /* Wrap profile content in a div */
+          var wrapper = document.createElement('div');
+          wrapper.className = 'profile-body';
+          var sibling = h3.nextElementSibling;
+          while (sibling && sibling.tagName !== 'H3' && sibling.tagName !== 'H2') {
+            var next = sibling.nextElementSibling;
+            wrapper.appendChild(sibling);
+            sibling = next;
+          }
+          h3.parentNode.insertBefore(wrapper, sibling);
+
+          if (isMobile) {
+            wrapper.classList.add('collapsed');
+            btn.textContent = '▶';
+          }
+        });
+      }
+
+      /* Toggle accordion on click */
+      document.addEventListener('click', function (e) {
+        if (!e.target.classList.contains('profile-collapse-btn')) return;
+        var h3 = e.target.closest('h3');
+        if (!h3) return;
+        var body = h3.nextElementSibling;
+        if (body && body.classList.contains('profile-body')) {
+          body.classList.toggle('collapsed');
+          e.target.textContent = body.classList.contains('collapsed') ? '▶' : '▼';
+        }
+      });
+
+      /* Init accordion on load and resize */
+      initAccordion();
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(initAccordion, 250);
+      });
+
+      /* --- Keyboard: Escape closes sidebar --- */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+          closeSidebar();
+        }
+      });
+    })();
+    
+</script>
+</body>
+</html>
