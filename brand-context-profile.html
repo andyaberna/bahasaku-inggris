@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Brand Context Engine — Bahasakuinggris</title>
+<style>
+:root { --bg:#f0f7ff; --text:#1f2937; --heading:#1a365d; --accent:#2563eb; --accent2:#f59e0b; --line:#dbeafe; --muted:#64748b; --card:#fff; --success:#059669; --warn:#dc2626; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--bg); color:var(--text); font-family:"Segoe UI",system-ui,sans-serif; line-height:1.7; }
+
+/* Sidebar */
+.sidebar { position:fixed; top:0; left:-280px; width:280px; height:100vh; background:#1a365d; color:#fff; overflow-y:auto; transition:left .3s; z-index:1000; padding:1.5rem 1rem; }
+.sidebar.open { left:0; }
+.sidebar h3 { font-size:.9rem; color:#93c5fd; margin:1.2rem 0 .5rem; text-transform:uppercase; letter-spacing:.5px; }
+.sidebar a { display:block; color:#e0e7ff; text-decoration:none; font-size:.85rem; padding:.35rem .6rem; border-radius:4px; margin:.1rem 0; }
+.sidebar a:hover { background:rgba(255,255,255,.1); color:#fff; }
+.sidebar-toggle { position:fixed; top:1rem; left:1rem; z-index:1001; background:#1a365d; color:#fff; border:none; width:40px; height:40px; border-radius:8px; font-size:1.3rem; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.4); z-index:999; }
+.overlay.show { display:block; }
+
+/* Progress */
+.progress-bar { position:fixed; top:0; left:0; height:3px; background:var(--accent); z-index:1002; transition:width .1s; }
+
+/* Layout */
+.back-home { padding:.8rem 1.5rem .2rem; }
+.back-home a { display:inline-flex; align-items:center; gap:.4rem; color:#4a5568; text-decoration:none; font-size:.9rem; font-weight:500; padding:.4rem .8rem; border-radius:6px; border:1px solid #e2e8f0; background:#fff; transition:all .15s; }
+.back-home a:hover { color:#1a365d; border-color:#1a365d; background:#f7fafc; }
+main { max-width:860px; margin:0 auto; padding:2rem 1.5rem 4rem; }
+
+/* Cover */
+.cover { background:linear-gradient(135deg,#1a365d 0%,#2563eb 100%); color:#fff; padding:3rem 2rem; border-radius:16px; text-align:center; margin-bottom:2.5rem; }
+.cover h1 { font-size:clamp(1.5rem,4vw,2.2rem); font-family:Georgia,serif; margin-bottom:.5rem; }
+.cover .subtitle { color:#bfdbfe; font-size:1rem; }
+.cover .meta { margin-top:1rem; font-size:.8rem; color:#93c5fd; }
+
+/* Sections */
+section { margin-bottom:2.5rem; }
+h2 { font-family:Georgia,serif; color:var(--heading); font-size:1.4rem; border-bottom:2px solid var(--accent); padding-bottom:.4rem; margin-bottom:1rem; }
+h3 { color:var(--heading); font-size:1.1rem; margin:1.2rem 0 .5rem; }
+
+/* Cards */
+.info-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:.8rem; margin:.8rem 0; }
+.info-card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:1rem; }
+.info-card .label { font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+.info-card .value { font-size:.95rem; font-weight:600; color:var(--heading); margin-top:.2rem; }
+
+/* Tables */
+.table-wrap { overflow-x:auto; margin:.8rem 0; border-radius:10px; border:1px solid var(--line); }
+table { width:100%; border-collapse:collapse; font-size:.85rem; }
+th { background:#1a365d; color:#fff; padding:.6rem .8rem; text-align:left; font-weight:600; }
+td { padding:.6rem .8rem; border-bottom:1px solid var(--line); }
+tr:last-child td { border-bottom:none; }
+tr:nth-child(even) { background:#f8fafc; }
+
+/* Tags */
+.tag-list { display:flex; flex-wrap:wrap; gap:.4rem; margin:.5rem 0; }
+.tag { display:inline-block; padding:.2rem .6rem; border-radius:4px; font-size:.8rem; font-weight:600; }
+.tag-green { background:#d1fae5; color:#065f46; }
+.tag-red { background:#fee2e2; color:#991b1b; }
+.tag-blue { background:#dbeafe; color:#1e40af; }
+.tag-amber { background:#fef3c7; color:#92400e; }
+
+/* Persona */
+.persona-card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:1.5rem; margin:.8rem 0; }
+.persona-card h4 { color:var(--accent); margin-bottom:.5rem; }
+.persona-card ul { padding-left:1.2rem; margin:.3rem 0; }
+.persona-card li { font-size:.88rem; margin:.2rem 0; }
+
+/* Snippet */
+.snippet { background:var(--card); border-left:4px solid var(--accent); padding:.8rem 1rem; margin:.5rem 0; border-radius:0 8px 8px 0; }
+.snippet .snippet-label { font-size:.75rem; color:var(--accent); font-weight:700; text-transform:uppercase; }
+.snippet .snippet-text { font-size:.9rem; margin-top:.2rem; font-style:italic; }
+
+/* Do/Don't */
+.do-dont { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:.8rem 0; }
+.do-box, .dont-box { padding:1rem; border-radius:10px; }
+.do-box { background:#ecfdf5; border:1px solid #a7f3d0; }
+.dont-box { background:#fef2f2; border:1px solid #fecaca; }
+.do-box h4 { color:#065f46; }
+.dont-box h4 { color:#991b1b; }
+.do-box li, .dont-box li { font-size:.85rem; margin:.3rem 0; }
+
+/* Back to top */
+.back-top { position:fixed; bottom:2rem; right:2rem; background:var(--accent); color:#fff; border:none; width:44px; height:44px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:none; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(37,99,235,.3); }
+
+@media(max-width:700px) {
+  main { padding:1rem; }
+  .cover { padding:2rem 1rem; }
+  .do-dont { grid-template-columns:1fr; }
+  .info-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+<button class="sidebar-toggle" id="sidebarBtn">&#9776;</button>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar">
+  <h3>Brand Context</h3>
+  <a href="#overview">Overview</a>
+  <a href="#products">Products</a>
+  <a href="#personas">Personas</a>
+  <a href="#voice">Brand Voice</a>
+  <a href="#values">Vision & Values</a>
+  <a href="#content">Content Preferences</a>
+  <a href="#tech">Tech Stack</a>
+  <a href="#social-proof">Social Proof</a>
+  <a href="#dos-donts">Do's & Don'ts</a>
+</nav>
+
+<nav class="back-home"><a href="index.html">&larr; Back to Home Page</a></nav>
+
+<main>
+<div class="cover">
+  <h1>Brand Context Engine</h1>
+  <div class="subtitle">Bahasakuinggris — Click Your English</div>
+  <div class="meta">Schema v1.1 | Updated: 28 April 2026 | BUILD Mode</div>
+</div>
+
+<section id="overview">
+  <h2>Overview</h2>
+  <div class="info-grid">
+    <div class="info-card"><div class="label">Brand</div><div class="value">Bahasakuinggris</div></div>
+    <div class="info-card"><div class="label">Tagline</div><div class="value">Click Your English</div></div>
+    <div class="info-card"><div class="label">Entity</div><div class="value">Lembaga Kursus Bahasa Inggris Online</div></div>
+    <div class="info-card"><div class="label">Since</div><div class="value">2020 (4+ tahun)</div></div>
+    <div class="info-card"><div class="label">Industry</div><div class="value">Edukasi / Kursus Online</div></div>
+    <div class="info-card"><div class="label">Location</div><div class="value">Kampung Inggris Pare, Kediri</div></div>
+  </div>
+  <h3>Elevator Pitch</h3>
+  <p>Kursus bahasa Inggris online dari Kampung Inggris Pare Kediri &mdash; pengajar teruji, harga mulai Rp 79K untuk 10 pertemuan, izin Diknas resmi, sudah meluluskan 100.000+ peserta. Belajar dari rumah, kualitas Kampung Inggris.</p>
+  <h3>Credentials</h3>
+  <div class="tag-list">
+    <span class="tag tag-blue">Izin Diknas Resmi</span>
+    <span class="tag tag-blue">100.000+ Alumni</span>
+    <span class="tag tag-blue">4+ Tahun Beroperasi</span>
+    <span class="tag tag-amber">Partner: Grab Indonesia</span>
+    <span class="tag tag-amber">Partner: STIE Semarang</span>
+    <span class="tag tag-amber">Partner: My Idea School</span>
+  </div>
+</section>
+
+<section id="products">
+  <h2>Products & Pricing</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Produk</th><th>Harga Normal</th><th>Harga Promo</th><th>Sesi</th><th>Target</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Kelas Speaking</strong></td><td>Rp 150.000</td><td><strong>Rp 79.000</strong></td><td>10x meeting</td><td>Semua usia</td></tr>
+        <tr><td><strong>Kelas Grammar</strong></td><td>Rp 150.000</td><td><strong>Rp 79.000</strong></td><td>10x meeting</td><td>Semua usia</td></tr>
+        <tr><td><strong>Kelas Anak</strong></td><td>Rp 150.000</td><td><strong>Rp 99.000</strong></td><td>10x meeting</td><td>Anak sekolah</td></tr>
+        <tr><td><strong>TOEFL Prep</strong></td><td>Rp 598.000</td><td><strong>Rp 299.000</strong></td><td>20x meeting</td><td>Mahasiswa, pekerja</td></tr>
+        <tr><td><strong>IELTS Prep</strong></td><td>Rp 718.000</td><td><strong>Rp 359.000</strong></td><td>20x meeting</td><td>Calon mahasiswa LN</td></tr>
+        <tr><td><strong>TOEFL Scoring</strong></td><td colspan="2"><strong>Rp 45.000</strong></td><td>1x test</td><td>Butuh sertifikat cepat</td></tr>
+        <tr><td><strong>Private Class</strong></td><td colspan="2">Custom</td><td>Fleksibel</td><td>Individu/korporat</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Upsell Path</h3>
+  <p><strong>Kelas Reguler Rp 79K</strong> &rarr; TOEFL Prep Rp 299K &rarr; IELTS Prep Rp 359K &rarr; Private Class &rarr; Corporate Training</p>
+  <h3>Key Facilities</h3>
+  <div class="tag-list">
+    <span class="tag tag-green">Belajar dari rumah</span>
+    <span class="tag tag-green">Pengajar teruji Pare</span>
+    <span class="tag tag-green">Kelas kecil 3-10 orang</span>
+    <span class="tag tag-green">Kurikulum Diknas</span>
+    <span class="tag tag-green">Laporan progress</span>
+    <span class="tag tag-green">Harga mulai Rp 79K</span>
+  </div>
+</section>
+
+<section id="personas">
+  <h2>Ideal Customer Profiles</h2>
+  
+  <div class="persona-card">
+    <h4>PERSONA 01 — Pelajar & Mahasiswa (15-25 tahun)</h4>
+    <p><strong>Occupation:</strong> Pelajar SMP/SMA, mahasiswa | <strong>Channels:</strong> TikTok, Instagram, YouTube</p>
+    <h5>Pain Points</h5>
+    <ul>
+      <li>Nilai bahasa Inggris jelek di sekolah</li>
+      <li>Butuh TOEFL untuk syarat kuliah/beasiswa tapi belum siap</li>
+      <li>Malu ngomong bahasa Inggris &mdash; takut salah grammar</li>
+      <li>Les offline mahal dan jauh</li>
+      <li>Belajar sendiri dari YouTube nggak terstruktur</li>
+    </ul>
+    <h5>Desires</h5>
+    <ul>
+      <li>Bisa ngomong bahasa Inggris lancar dan PD</li>
+      <li>Dapat sertifikat TOEFL skor tinggi</li>
+      <li>Lolos beasiswa / diterima kampus impian</li>
+    </ul>
+    <h5>Objections</h5>
+    <ul>
+      <li>Harga murah = kualitas jelek?</li>
+      <li>Online beneran efektif nggak sih?</li>
+      <li>Takut kena tipu (kursus online bodong)</li>
+    </ul>
+  </div>
+
+  <div class="persona-card">
+    <h4>PERSONA 02 — Pekerja & Profesional (23-40 tahun)</h4>
+    <p><strong>Occupation:</strong> Karyawan, fresh graduate, freelancer | <strong>Income:</strong> Rp 3-10 juta/bulan | <strong>Channels:</strong> Instagram, Facebook, Google</p>
+    <h5>Pain Points</h5>
+    <ul>
+      <li>Butuh bahasa Inggris untuk naik jabatan tapi malu level masih basic</li>
+      <li>Perusahaan minta sertifikat TOEFL/IELTS tapi belum punya</li>
+      <li>Nggak punya waktu les offline &mdash; kerja 9-to-5</li>
+      <li>Interview kerja gagal karena bahasa Inggris jelek</li>
+    </ul>
+    <h5>Desires</h5>
+    <ul>
+      <li>Bisa meeting pakai bahasa Inggris tanpa grogi</li>
+      <li>Dapat sertifikat TOEFL/IELTS untuk karir</li>
+      <li>Naik gaji / pindah ke perusahaan multinasional</li>
+    </ul>
+    <h5>Objections</h5>
+    <ul>
+      <li>Udah tua, masih bisa belajar nggak?</li>
+      <li>Jadwal kerja padat &mdash; kapan belajarnya?</li>
+      <li>Apa bedanya sama kursus online lain?</li>
+    </ul>
+  </div>
+
+  <div class="persona-card">
+    <h4>PERSONA 03 — Orang Tua / untuk Anak (30-50 tahun)</h4>
+    <p><strong>Occupation:</strong> Ibu rumah tangga, pekerja | <strong>Income:</strong> Rp 5-15 juta/bulan | <strong>Channels:</strong> Facebook, Instagram, WA Groups</p>
+    <h5>Pain Points</h5>
+    <ul>
+      <li>Anak nilai bahasa Inggris jelek di sekolah</li>
+      <li>Nggak bisa ngajarin anak sendiri</li>
+      <li>Les offline mahal (Rp 500K-1jt/bulan) dan harus antar-jemput</li>
+      <li>Khawatir anak ketinggalan dari teman-temannya</li>
+    </ul>
+    <h5>Desires</h5>
+    <ul>
+      <li>Anak bisa bahasa Inggris dari kecil</li>
+      <li>Nilai sekolah naik</li>
+      <li>Les yang terjangkau dan nggak ribet</li>
+    </ul>
+    <h5>Objections</h5>
+    <ul>
+      <li>Anak bisa fokus nggak kalau online?</li>
+      <li>Pengajarnya sabar nggak sama anak kecil?</li>
+      <li>Murah banget &mdash; nggak mungkin bagus</li>
+    </ul>
+  </div>
+</section>
+
+<section id="voice">
+  <h2>Brand Voice</h2>
+  <div class="info-grid">
+    <div class="info-card"><div class="label">Tone</div><div class="value">Friendly, supportive, energetic</div></div>
+    <div class="info-card"><div class="label">Formality</div><div class="value">Semi-kasual &mdash; profesional tapi nggak kaku</div></div>
+    <div class="info-card"><div class="label">Sapaan</div><div class="value">Kak, Kamu, Kalian, Bunda</div></div>
+    <div class="info-card"><div class="label">Language</div><div class="value">Indo dominan + English natural</div></div>
+  </div>
+
+  <h3>Power Words</h3>
+  <div class="tag-list">
+    <span class="tag tag-green">Kampung Inggris</span>
+    <span class="tag tag-green">Pare Kediri</span>
+    <span class="tag tag-green">pengajar teruji</span>
+    <span class="tag tag-green">izin Diknas</span>
+    <span class="tag tag-green">100.000+ alumni</span>
+    <span class="tag tag-green">mulai Rp 79K</span>
+    <span class="tag tag-green">10x meeting</span>
+    <span class="tag tag-green">belajar dari rumah</span>
+    <span class="tag tag-green">kelas kecil</span>
+    <span class="tag tag-green">laporan progress</span>
+  </div>
+
+  <h3>Banned Words</h3>
+  <div class="tag-list">
+    <span class="tag tag-red">termurah</span>
+    <span class="tag tag-red">paling murah se-Indonesia</span>
+    <span class="tag tag-red">dijamin langsung bisa</span>
+    <span class="tag tag-red">tanpa usaha</span>
+    <span class="tag tag-red">instan</span>
+    <span class="tag tag-red">ajaib</span>
+    <span class="tag tag-red">rahasia</span>
+    <span class="tag tag-red">cuma modal HP doang</span>
+  </div>
+
+  <h3>Copy Snippets</h3>
+  <div class="snippet"><div class="snippet-label">Hook Harga</div><div class="snippet-text">Rp 79.000 untuk 10x pertemuan? Iya, beneran. Bukan typo.</div></div>
+  <div class="snippet"><div class="snippet-label">Hook Kredibilitas</div><div class="snippet-text">Dari Kampung Inggris Pare Kediri &mdash; tempat ribuan orang belajar bahasa Inggris dari nol sampai lancar.</div></div>
+  <div class="snippet"><div class="snippet-label">Hook TOEFL</div><div class="snippet-text">Butuh sertifikat TOEFL tapi belum siap? Kelas persiapan 20x meeting, cuma Rp 299K.</div></div>
+  <div class="snippet"><div class="snippet-label">Hook Anak</div><div class="snippet-text">Nilai bahasa Inggris anak masih merah? Coba 10x meeting &mdash; pengajarnya sabar, kelasnya kecil.</div></div>
+  <div class="snippet"><div class="snippet-label">Hook Karir</div><div class="snippet-text">Interview kerja gagal karena bahasa Inggris? Jangan sampai kesempatan lewat lagi.</div></div>
+  <div class="snippet"><div class="snippet-label">CTA WA</div><div class="snippet-text">Ketik 'INFO' ke WA kami &mdash; nanti admin bantu pilihkan kelas yang cocok.</div></div>
+  <div class="snippet"><div class="snippet-label">Trust Builder</div><div class="snippet-text">Izin Diknas resmi. Partnership sama Grab Indonesia, STIE Semarang, dan 4 institusi lainnya. Bukan kursus abal-abal.</div></div>
+  <div class="snippet"><div class="snippet-label">Objection Killer</div><div class="snippet-text">Murah bukan berarti murahan. Kami bisa kasih harga segini karena online &mdash; nggak ada biaya sewa gedung, nggak ada biaya transport. Kualitas tetap Kampung Inggris.</div></div>
+</section>
+
+<section id="values">
+  <h2>Vision & Values</h2>
+  <h3>Vision</h3>
+  <p>Menjadi lembaga pelatihan bahasa Inggris online terbaik yang mencetak generasi berkarakter, melek teknologi, kreatif, inovatif, dan kompetitif di era Society 5.0</p>
+  <h3>Core Values</h3>
+  <div class="tag-list">
+    <span class="tag tag-blue">Aksesibilitas &mdash; bahasa Inggris untuk semua</span>
+    <span class="tag tag-blue">Kualitas Kampung Inggris</span>
+    <span class="tag tag-blue">Harga jujur &mdash; no hidden fee</span>
+    <span class="tag tag-blue">Progress terukur</span>
+  </div>
+</section>
+
+<section id="content">
+  <h2>Content Preferences</h2>
+  <h3>Platforms</h3>
+  <div class="tag-list">
+    <span class="tag tag-amber">TikTok</span>
+    <span class="tag tag-amber">Instagram Reels</span>
+    <span class="tag tag-amber">Facebook Ads</span>
+    <span class="tag tag-amber">YouTube Shorts</span>
+  </div>
+  <h3>Content Pillars</h3>
+  <ul style="padding-left:1.2rem; margin:.5rem 0;">
+    <li>Tips bahasa Inggris singkat (vocabulary, grammar, pronunciation)</li>
+    <li>Testimoni peserta (before/after, video review)</li>
+    <li>Behind the scenes kelas online</li>
+    <li>Motivasi belajar bahasa Inggris</li>
+    <li>Promo & info pendaftaran kelas baru</li>
+  </ul>
+  <h3>CTA Library</h3>
+  <div class="snippet"><div class="snippet-label">CTA 1</div><div class="snippet-text">Ketik 'INFO' ke WA kami</div></div>
+  <div class="snippet"><div class="snippet-label">CTA 2</div><div class="snippet-text">Daftar sekarang &mdash; kelas terbatas!</div></div>
+  <div class="snippet"><div class="snippet-label">CTA 3</div><div class="snippet-text">Konsultasi gratis ke admin</div></div>
+  <div class="snippet"><div class="snippet-label">CTA 4</div><div class="snippet-text">Cek jadwal kelas terdekat</div></div>
+  <div class="snippet"><div class="snippet-label">CTA 5</div><div class="snippet-text">Ambil TOEFL Scoring sekarang &mdash; cuma Rp 45K</div></div>
+</section>
+
+<section id="tech">
+  <h2>Tech Stack</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Component</th><th>Tool</th></tr></thead>
+      <tbody>
+        <tr><td>Website</td><td>Berdu + WordPress + Canva Sites</td></tr>
+        <tr><td>Link Hub</td><td>Linktree</td></tr>
+        <tr><td>Payment</td><td>Transfer manual via WhatsApp</td></tr>
+        <tr><td>CRM</td><td>WhatsApp Business</td></tr>
+        <tr><td>Ads</td><td>Meta Ads (FB + IG) &mdash; 6 Pixels active</td></tr>
+        <tr><td>Class Platform</td><td>Zoom / Google Meet (live)</td></tr>
+        <tr><td>Primary CTA</td><td>WhatsApp message</td></tr>
+        <tr><td>Targeting</td><td>Indonesia, 15-45, interest: belajar English, TOEFL, Kampung Inggris</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="social-proof">
+  <h2>Social Proof</h2>
+  <div class="info-grid">
+    <div class="info-card"><div class="label">Alumni</div><div class="value">100.000+</div></div>
+    <div class="info-card"><div class="label">Beroperasi</div><div class="value">4+ tahun</div></div>
+    <div class="info-card"><div class="label">Corporate Partners</div><div class="value">6 institusi</div></div>
+  </div>
+  <h3>Partners</h3>
+  <div class="tag-list">
+    <span class="tag tag-amber">PT Grab Indonesia</span>
+    <span class="tag tag-amber">My Idea School Jakarta</span>
+    <span class="tag tag-amber">STIE Semarang</span>
+    <span class="tag tag-amber">PT Timuraya Jaya Lestari</span>
+    <span class="tag tag-amber">SDIT Sholahudin Bogor</span>
+    <span class="tag tag-amber">SMA Ar-Rohmah Malang</span>
+  </div>
+  <h3>Testimonials</h3>
+  <div class="snippet"><div class="snippet-label">Linda Agustina</div><div class="snippet-text">Bagus sekali, untuk anak-anak yang ingin memulai belajar English ini recommend sekali. Miss-nya sabar dan bagus sistem pengajarannya, tidak membosankan.</div></div>
+  <div class="snippet"><div class="snippet-label">Ansori Susi</div><div class="snippet-text">Bahasakuinggris sangat membantu anak kami belajar bahasa Inggris, dengan belajar yang menyenangkan. Thanks a lot for Ms Wanda yang sudah sabar banget mengajari anak kami.</div></div>
+</section>
+
+<section id="dos-donts">
+  <h2>Do's & Don'ts</h2>
+  <div class="do-dont">
+    <div class="do-box">
+      <h4>DO's</h4>
+      <ul style="padding-left:1rem;">
+        <li>Selalu sebut 'Kampung Inggris Pare Kediri'</li>
+        <li>Tampilkan harga promo vs harga normal (coret)</li>
+        <li>Gunakan testimoni real dari peserta</li>
+        <li>Sebutkan izin Diknas dan partnership</li>
+        <li>CTA ke WhatsApp &mdash; bukan form panjang</li>
+        <li>Tunjukkan kelas terbatas (scarcity natural)</li>
+      </ul>
+    </div>
+    <div class="dont-box">
+      <h4>DON'Ts</h4>
+      <ul style="padding-left:1rem;">
+        <li>Jangan klaim 'dijamin bisa' tanpa effort</li>
+        <li>Jangan pakai bahasa terlalu formal</li>
+        <li>Jangan compare langsung dengan EF/Wall Street</li>
+        <li>Jangan spam promo tanpa konten edukatif</li>
+        <li>Jangan pakai foto stock &mdash; pakai real</li>
+        <li>Jangan abaikan follow-up WA (max 1 jam)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<button class="back-top" id="backTop">&#8593;</button>
+
+<script>
+// Sidebar toggle
+const sidebar=document.getElementById('sidebar'),overlay=document.getElementById('overlay'),btn=document.getElementById('sidebarBtn');
+btn.onclick=()=>{sidebar.classList.toggle('open');overlay.classList.toggle('show')};
+overlay.onclick=()=>{sidebar.classList.remove('open');overlay.classList.remove('show')};
+
+// Progress bar
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement,b=document.body;
+  const st=h.scrollTop||b.scrollTop;
+  const sh=h.scrollHeight-h.clientHeight;
+  document.getElementById('progress').style.width=(st/sh*100)+'%';
+  document.getElementById('backTop').style.display=st>400?'flex':'none';
+});
+
+// Back to top
+document.getElementById('backTop').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+
+// Sidebar link close
+document.querySelectorAll('.sidebar a').forEach(a=>a.addEventListener('click',()=>{
+  sidebar.classList.remove('open');overlay.classList.remove('show');
+}));
+</script>
+</body>
+</html>
